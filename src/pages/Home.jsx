@@ -22,8 +22,8 @@ export default function Home() {
 
   const testMe = async () => {
     console.log('me');
-    let games = getSeasonGamesForATeam();
-    console.log(games? games.length: "no")
+    console.log(await getSeasonGamesForATeam());
+    console.log('waiting');
   }
 
   return (
