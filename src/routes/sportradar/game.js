@@ -1,5 +1,5 @@
 // get single day data
-const getGamesInADay = () => {
+export const getGamesInADay = () => {
   fetch("sportradar/game/day", {
     method: "POST",
     body: JSON.stringify({
@@ -18,7 +18,7 @@ const getGamesInADay = () => {
 };
 
 // get single game boxscore data
-const getSingleGameBoxscore = () => {
+export const getSingleGameBoxscore = () => {
   let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
   fetch(`sportradar/game/single/${gameId}`).then(async response => {
     console.log("possibly?");
@@ -26,5 +26,3 @@ const getSingleGameBoxscore = () => {
     console.log(test);
   });
 };
-
-module.exports = { getGamesInADay, getSingleGameBoxscore };

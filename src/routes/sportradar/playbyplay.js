@@ -1,5 +1,5 @@
 // get the starting lineup for a given game
-const getStartingLineupForAGame = () => {
+export const getStartingLineupForAGame = () => {
   let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
   fetch(`sportradar/pbp/${gameId}`).then(async response => {
     console.log("possibly?");
@@ -9,7 +9,7 @@ const getStartingLineupForAGame = () => {
 };
 
 // get the play-by-play data for a given game
-const getPBPForAGame = () => {
+export const getPBPForAGame = () => {
   let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
   fetch("sportradar/pbp/home", {
     method: "POST",
@@ -26,5 +26,3 @@ const getPBPForAGame = () => {
     console.log(test);
   });
 };
-
-module.exports = { getStartingLineupForAGame, getPBPForAGame };

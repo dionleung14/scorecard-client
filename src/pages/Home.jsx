@@ -2,15 +2,11 @@ import React from "react";
 import {
   getGamesInADay,
   getSingleGameBoxscore,
-} from "../routes/sportradar/game";
-import {
   getAllGamesInASeason,
   getSeasonGamesForATeam,
-} from "../routes/sportradar/season";
-import {
   getStartingLineupForAGame,
   getPBPForAGame,
-} from "../routes/sportradar/playbyplay";
+} from "../routes/sportradar";
 
 export default function Home() {
   const defFunc = () => {

@@ -1,5 +1,5 @@
 // Get all games in a given season
-const getAllGamesInASeason = () => {
+export const getAllGamesInASeason = () => {
   fetch("sportradar/season/all", {
     method: "POST",
     body: JSON.stringify({
@@ -17,7 +17,7 @@ const getAllGamesInASeason = () => {
 };
 
 // get all games in a season for a given team
-const getSeasonGamesForATeam = () => {
+export const getSeasonGamesForATeam = () => {
   fetch(`sportradar/season/team`, {
     method: "POST",
     body: JSON.stringify({
@@ -34,5 +34,3 @@ const getSeasonGamesForATeam = () => {
     console.log(test);
   });
 };
-
-module.exports = { getAllGamesInASeason, getSeasonGamesForATeam };
