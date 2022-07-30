@@ -18,7 +18,7 @@ export const getAllGamesInASeason = () => {
 
 // get all games in a season for a given team
 export const getSeasonGamesForATeam = async () => {
-  fetch(`sportradar/season/team`, {
+  let games = fetch(`sportradar/season/team`, {
     method: "POST",
     body: JSON.stringify({
       year: 2021,
@@ -31,8 +31,7 @@ export const getSeasonGamesForATeam = async () => {
   }).then(async response => {
     console.log("fetching games in a season for a team");
     let test = await response.json();
-    console.log(test.length);
-    console.log(typeof test);
     return test;
   });
+  return games;
 };

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-export default function Example() {
-  const [count, setCount] = useState(0);
+export default function Game(props) {
+  const {game} = props
+  const date = game.scheduled.split("").slice(0,10).join("")
+  console.log(typeof date)
   return (
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(5)}>Click me</button>
+      {date}: {game.away.abbr} @ {game.home.abbr}
     </div>
   );
 }
