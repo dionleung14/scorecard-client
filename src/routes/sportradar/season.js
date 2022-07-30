@@ -32,5 +32,6 @@ export const getSeasonGamesForATeam = () => {
     console.log("possibly?");
     let test = await response.json();
     console.log(test);
+    return test;
   });
 };

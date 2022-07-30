@@ -10,7 +10,7 @@ export const getStartingLineupForAGame = () => {
 
 // get the play-by-play data for a given game
 export const getPBPForAGame = () => {
-  let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
+  // let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
   fetch("sportradar/pbp/home", {
     method: "POST",
     body: JSON.stringify({
