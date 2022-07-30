@@ -10,7 +10,6 @@ import {
 import Game from "../components/Game";
 
 export default function Home() {
-  const [ count, setCount ] = useState(0);
   const [ displayGames, setDisplayGames ] = useState([]);
   const defFunc = () => {
     fetch("/scorecards/home").then(async response => {
@@ -22,7 +21,6 @@ export default function Home() {
 
   async function testMe () {
     let games = await getSeasonGamesForATeam()
-    // console.log(games.slice(0,5))
     setDisplayGames(games)
   };
 
@@ -35,8 +33,9 @@ export default function Home() {
       </div>
       <div>
         <button onClick={getAllGamesInASeason}>All games in a season</button>
-        {/* <button onClick={() => setDisplayGames(getSeasonGamesForATeam)}> */}
-        <button onClick={testMe}>Season games for a team</button>
+        <button onClick={() =>  setDisplayGames(getSeasonGamesForATeam())}>
+        {/* <button onClick={testMe}>Season games for a team */}Season games for a team
+        </button>
       </div>
       <div>
         <button onClick={getStartingLineupForAGame}>Starting lineups</button>
