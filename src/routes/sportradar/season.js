@@ -23,13 +23,15 @@ export const getAllGamesInASeason = async data => {
 };
 
 // get all games in a season for a given team
-export const getSeasonGamesForATeam = async () => {
+export const getSeasonGamesForATeam = async searchTerms => {
+  console.log(searchTerms);
+  const { year, team, type: season } = searchTerms;
   let games = fetch(`sportradar/season/team`, {
     method: "POST",
     body: JSON.stringify({
-      year: 2021,
-      season: "REG",
-      team: "SEA",
+      year,
+      season,
+      team,
     }),
     headers: {
       "Content-Type": "application/json",
