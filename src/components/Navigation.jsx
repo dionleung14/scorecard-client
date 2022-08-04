@@ -7,7 +7,9 @@ export default function Navigation() {
       Navigation
     <div>
       <Link to="/">Home</Link>
-      <Link to="/game-lookup">Search game</Link>
+      <Link to="/game-lookup">Search past games</Link>
+      <Link to="/current-games">Current games</Link>
+      <Link to="/todays-schedule">Today's schedule</Link>
       <Link to="/pbp">PBP</Link>
     </div>
 

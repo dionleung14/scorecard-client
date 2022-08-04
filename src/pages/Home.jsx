@@ -1,6 +1,5 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
-  getGamesInADay,
   getSingleGameBoxscore,
   getAllGamesInASeason,
   getSeasonGamesForATeam,
@@ -32,11 +31,11 @@ export default function Home() {
   const submission = async event => {
     event.preventDefault();
     if (formAllGamesInSzn.year !== "" && formAllGamesInSzn.type !== null) {
-      console.log("hit")
+      console.log("hit");
       // let games = await getAllGamesInASeason(formAllGamesInSzn);
       // console.log("hitta")
       // console.log(games.length)
-      setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)))
+      setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)));
     } else {
       let games = await getAllGamesInASeason({ year: null, type: null });
       setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)));
@@ -60,14 +59,13 @@ export default function Home() {
     <div>
       <div>
         <button onClick={defFunc}>Click me</button>
-        <button onClick={getGamesInADay}>Games in a day</button>
         <button onClick={getSingleGameBoxscore}>Single game box score</button>
       </div>
       <div>
         <button onClick={getAllGamesInASeason}>All games in a season</button>
         <button onClick={showGames}>
-          {/* <button onClick={testMe}>Season games for a team */}Season games
-          for a team
+          {/* <button onClick={testMe}>Season games for a team */}
+          Season games for a team
         </button>
       </div>
       <div>
@@ -82,9 +80,8 @@ export default function Home() {
         <h1>no games in state</h1>
       )}
 
-      <h3>Find all games in a season</h3>
+      {/* <h3>Find all games in a season</h3>
       <form onSubmit={submission}>
-        {/* <input type="text" name="test" onChange={handleChange} /> */}
         <select
           name="year"
           id="year"
@@ -108,9 +105,8 @@ export default function Home() {
           <option value="REG">Regular season</option>
           <option value="PST">Postseason</option>
         </select>
-        {/* <input type="date" name="calendar" onChange={handleChange} /> */}
         <input type="submit" value="no" />
-      </form>
+      </form> */}
     </div>
   );
 }

@@ -1,20 +1,55 @@
 // get single day data
-export const getGamesInADay = () => {
-  fetch("sportradar/game/day", {
-    method: "POST",
-    body: JSON.stringify({
-      year: 2021,
-      month: 4,
-      day: 16,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(async response => {
-    console.log("possibly?");
-    let test = await response.json();
-    console.log(test);
-  });
+export const getGamesInADay = async date => {
+  const { year, month, day } = date;
+  if (year && month && day) {
+    let games = fetch("sportradar/game/day", {
+      method: "POST",
+      body: JSON.stringify({
+        year,
+        month,
+        day,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async response => {
+        // console.log("possibly?");
+        // console.log(response);
+        let test = await response.json();
+        console.log(test);
+        return test;
+        // return test;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    return games;
+  } else {
+    let games = fetch("sportradar/game/day", {
+      method: "POST",
+      body: JSON.stringify({
+        year: 2021,
+        month: 4,
+        day: 16,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async response => {
+        // console.log("possibly?");
+        // console.log(response);
+        let test = await response.json();
+        console.log(test);
+        return test;
+        // return test;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    return games;
+  }
 };
 
 // get single game boxscore data
