@@ -24,15 +24,15 @@ export default function TodaysSchedule() {
 
   // manual
   const loadGames = async () => {
-    // let games = await getGamesInADay(); // no arguments = 4/16/2021
-    let now = new Date(Date.now());
-    let day = now.getDate()
-    let month = now.getMonth() + 1
-    let year = now.getFullYear()
-    let today = {
-      day, month, year
-    }
-    let schedule = await getGamesInADay(today);
+    let schedule = await getGamesInADay(); // no arguments = 4/16/2021
+    // let now = new Date(Date.now());
+    // let day = now.getDate()
+    // let month = now.getMonth() + 1
+    // let year = now.getFullYear()
+    // let today = {
+    //   day, month, year
+    // }
+    // let schedule = await getGamesInADay(today);
     setDisplayGames(schedule.games)
   };
   return (
