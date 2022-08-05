@@ -15,7 +15,6 @@ export const getGamesInADay = async date => {
     })
       .then(async response => {
         let test = await response.json();
-        console.log(test);
         return test;
       })
       .catch(err => {
@@ -42,7 +41,21 @@ export const getGamesInADay = async date => {
 
 // get single game boxscore data
 export const getSingleGameBoxscore = async gameId => {
+  console.log("getting single game box score");
   if (gameId) {
+    console.log("hitting live api");
+    let scores = fetch(`sportradar/game/single/${gameId}`).then(
+      async response => {
+        // let test = await response.json();
+        // console.log(test);
+        console.log(response);
+        // return test;
+      }
+    );
+    return scores;
+  } else {
+    console.log("hitting saved data");
+    let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
     let scores = fetch(`sportradar/game/single/${gameId}`).then(
       async response => {
         let test = await response.json();
@@ -51,12 +64,26 @@ export const getSingleGameBoxscore = async gameId => {
       }
     );
     return scores;
+  }
+};
+
+// get single game full info data
+export const getSingleGameFullInfo = async gameId => {
+  console.log("getting single game full info");
+  if (gameId) {
+    console.log("hitting live api");
+    let scores = fetch(`sportradar/game/game-info/${gameId}`).then(
+      async response => {
+        return response.json();
+      }
+    );
+    return scores;
   } else {
+    console.log("hitting saved data");
     let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
     let scores = fetch(`sportradar/game/single/${gameId}`).then(
       async response => {
         let test = await response.json();
-        console.log(test);
         return test;
       }
     );
