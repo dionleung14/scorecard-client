@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import Game from '../../components/Game';
-import { getSeasonGamesForATeam } from '../../routes/sportradar';
-import teams from '../../data/teams';
+import React, { useState } from "react";
+import Game from "../../components/Game";
+import { getSeasonGamesForATeam } from "../../routes/sportradar";
+import teams from "../../data/teams";
 
 export default function SearchPastGames() {
   // const [searchMethodDisplay, setSearchMethodDisplay] = useState("none")
@@ -25,15 +25,19 @@ export default function SearchPastGames() {
 
   const submission = async event => {
     event.preventDefault();
-    if (formAllGamesInSzn.year !== null && formAllGamesInSzn.type !== null&& formAllGamesInSzn.team !== null) {
-      console.log("hit")
+    if (
+      formAllGamesInSzn.year !== null &&
+      formAllGamesInSzn.type !== null &&
+      formAllGamesInSzn.team !== null
+    ) {
+      console.log("hit");
       // let games = await getAllGamesInASeason(formAllGamesInSzn);
       // console.log("hitta")
       // console.log(games.length)
-      let games = await getSeasonGamesForATeam(formAllGamesInSzn)
+      let games = await getSeasonGamesForATeam(formAllGamesInSzn);
       // console.log(games[5])
-      setDisplayGames(games)
-      
+      setDisplayGames(games);
+
       // setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)))
     } else {
       let games = await getSeasonGamesForATeam({ year: null, type: null });
@@ -41,7 +45,6 @@ export default function SearchPastGames() {
       console.log("gotta fill out the form");
     }
   };
-
 
   return (
     <div>
@@ -54,6 +57,12 @@ export default function SearchPastGames() {
           defaultValue="Choose season year"
           onChange={handleChangeAllGamesInSzn}>
           <option disabled>Choose season year</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
           <option value="2017">2017</option>
           <option value="2018">2018</option>
           <option value="2019">2019</option>
@@ -66,10 +75,14 @@ export default function SearchPastGames() {
           id="team"
           defaultValue="Choose a team"
           onChange={handleChangeAllGamesInSzn}>
-            <option disabled>Choose a team</option>
-            {teams.map(team => {
-              return <option key={team.abbr} value={team.abbr}>{`${team.market} ${team.name}`}</option>
-            })}
+          <option disabled>Choose a team</option>
+          {teams.map(team => {
+            return (
+              <option
+                key={team.abbr}
+                value={team.abbr}>{`${team.market} ${team.name}`}</option>
+            );
+          })}
         </select>
         <select
           name="type"
@@ -88,12 +101,18 @@ export default function SearchPastGames() {
       <button onClick={() => setSearchMethodDisplay("team")}>By Team</button>
       {searchMethodDisplay === "season" ? <SearchBySeason /> : searchMethodDisplay === "team" ? <SearchByTeam /> : null} */}
       {displayGames.length > 0 ? (
-        displayGames.map(game => {
-          return <Game game={game} key={game.id} />;
-        })
+        <div>
+          <h5>
+            Results for the {formAllGamesInSzn.year} {formAllGamesInSzn.team}{" "}
+            {formAllGamesInSzn.type} ({displayGames.length} games)
+          </h5>
+          {displayGames.map(game => {
+            return <Game game={game} key={game.id} />;
+          })}
+        </div>
       ) : (
         <h1>no games in state</h1>
       )}
     </div>
-  )
+  );
 }
