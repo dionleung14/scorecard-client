@@ -12,25 +12,25 @@ export default function GameInfo() {
     setTimeout(async () => {
       let pbp = await getPBPForAGame(gameId);
       setGamePlayByPlay(pbp.game);
-    }, 3000)
+    }, 3000);
     setGameState(info.game);
   };
   return (
     <div>
       GameInfo
       <button onClick={getGameInfo}>Get game info</button>
-      {gameState ? (
+      {gameState && gameState.status !== "canceled" ? (
         <div>
           <h3>
             Score: {gameState.away.abbr} {gameState.away.runs} @{" "}
             {gameState.home.abbr} {gameState.home.runs}
           </h3>
-          <BoxScore gameInfo={gameState}/>
+          <BoxScore gameInfo={gameState} />
         </div>
       ) : (
         <h1>Loading</h1>
       )}
-      {gamePlayByPlay ? (
+      {gamePlayByPlay && gamePlayByPlay.status !== "canceled" ? (
         <div>{gamePlayByPlay.scoring.home.name}</div>
       ) : (
         <h1>none</h1>

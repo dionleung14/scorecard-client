@@ -1,26 +1,26 @@
 // Get all games in a given season
-export const getAllGamesInASeason = async data => {
-  const { year, type: season } = data;
-  fetch("sportradar/season/all", {
-    method: "POST",
-    body: JSON.stringify({
-      year,
-      season,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(async response => {
-      // let test = await response.json();
-      // console.log(typeof test);
-      // return test;
-      return response;
-    })
-    .catch(err => {
-      console.error(err);
-    });
-};
+// export const getAllGamesInASeason = async data => {
+//   const { year, type: season } = data;
+//   fetch("sportradar/season/all", {
+//     method: "POST",
+//     body: JSON.stringify({
+//       year,
+//       season,
+//     }),
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   })
+//     .then(async response => {
+//       // let test = await response.json();
+//       // console.log(typeof test);
+//       // return test;
+//       return response;
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
+// };
 
 // get all games in a season for a given team
 export const getSeasonGamesForATeam = async searchTerms => {

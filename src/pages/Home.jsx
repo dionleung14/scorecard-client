@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import {
   getSingleGameBoxscore,
-  getAllGamesInASeason,
+  // getAllGamesInASeason,
   getSeasonGamesForATeam,
   getStartingLineupForAGame,
   getPBPForAGame,
 } from "../routes/sportradar";
-import Game from "../components/Game";
+import Game from "../components/Game/Game";
 
 export default function Home() {
   const [displayGames, setDisplayGames] = useState([]);
@@ -28,20 +28,20 @@ export default function Home() {
     setDisplayGames(games);
   };
 
-  const submission = async event => {
-    event.preventDefault();
-    if (formAllGamesInSzn.year !== "" && formAllGamesInSzn.type !== null) {
-      console.log("hit");
-      // let games = await getAllGamesInASeason(formAllGamesInSzn);
-      // console.log("hitta")
-      // console.log(games.length)
-      setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)));
-    } else {
-      let games = await getAllGamesInASeason({ year: null, type: null });
-      setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)));
-      console.log("gotta fill out the form");
-    }
-  };
+  // const submission = async event => {
+  //   event.preventDefault();
+  //   if (formAllGamesInSzn.year !== "" && formAllGamesInSzn.type !== null) {
+  //     console.log("hit");
+  //     // let games = await getAllGamesInASeason(formAllGamesInSzn);
+  //     // console.log("hitta")
+  //     // console.log(games.length)
+  //     setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)));
+  //   } else {
+  //     let games = await getAllGamesInASeason({ year: null, type: null });
+  //     setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)));
+  //     console.log("gotta fill out the form");
+  //   }
+  // };
 
   const handleChangeAllGamesInSzn = async event => {
     // console.log(event)
@@ -62,7 +62,7 @@ export default function Home() {
         <button onClick={getSingleGameBoxscore}>Single game box score</button>
       </div>
       <div>
-        <button onClick={getAllGamesInASeason}>All games in a season</button>
+        {/* <button onClick={getAllGamesInASeason}>All games in a season</button> */}
         <button onClick={showGames}>
           {/* <button onClick={testMe}>Season games for a team */}
           Season games for a team

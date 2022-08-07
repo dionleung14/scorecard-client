@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Game from "../../components/Game";
+import Game from "../../components/Game/Game";
 import { getSeasonGamesForATeam } from "../../routes/sportradar";
 import teams from "../../data/teams";
 
@@ -57,7 +57,6 @@ export default function SearchPastGames() {
           defaultValue="Choose season year"
           onChange={handleChangeAllGamesInSzn}>
           <option disabled>Choose season year</option>
-          <option value="2011">2011</option>
           <option value="2012">2012</option>
           <option value="2013">2013</option>
           <option value="2014">2014</option>

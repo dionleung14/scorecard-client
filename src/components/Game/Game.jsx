@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom"
-import { getSingleGameBoxscore } from "../routes/sportradar";
+import { getSingleGameBoxscore } from "../../routes/sportradar";
+import "./game.css"
 
 export default function Game(props) {
   const [ score, setScore ] = useState(null)
@@ -15,7 +16,7 @@ export default function Game(props) {
   //   loadScores();
   // }, []);
   return (
-    <div>
+    <div className="game">
       {date}: {game.away.abbr} {score ? score.away : null} @ {game.home.abbr} {score ? score.home : null}
       <Link to={`/game-info-${game.id}`}>Game info</Link>
     </div>
