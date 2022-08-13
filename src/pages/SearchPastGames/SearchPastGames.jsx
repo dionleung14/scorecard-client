@@ -105,9 +105,11 @@ export default function SearchPastGames() {
             Results for the {formAllGamesInSzn.year} {formAllGamesInSzn.team}{" "}
             {formAllGamesInSzn.type} ({displayGames.length} games)
           </h5>
-          {displayGames.map(game => {
-            return <Game game={game} key={game.id} />;
-          })}
+          <div className="games-container">
+            {displayGames.map(game => {
+              return <Game game={game} key={game.id} />;
+            })}
+          </div>
         </div>
       ) : (
         <h1>no games in state</h1>

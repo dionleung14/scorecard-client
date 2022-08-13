@@ -1,3 +1,19 @@
 .game {
-  color: "red",
+  color: "red";
+  border: 1px solid black;
+  width: 25%;
+  height: 4rem;
+  margin: 1rem 2rem;
+  display: flex;
+  align-items: center;
 }
+
+.games-container {
+  color: "red";
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
