@@ -5,5 +5,29 @@
   height: 4rem;
   margin: 1rem 2rem;
   display: flex;
+  justify-content: space-around;
   align-items: center;
+}
+
+.team-boxscore {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 25%;
+}
+
+.team-boxscore div {
+  /* text-decoration: line-through ; */
+  /* height: 2rem */
+}
+
+.logo {
+  width: 35px;
+}
+
+.date {
+  font-style:italic;
+}
+.game-info {
+  width: 20%
 }
