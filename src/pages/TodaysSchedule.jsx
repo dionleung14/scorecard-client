@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Game from "../components/Game/Game";
+import GamesContainer from "../components/GamesContainer/GamesContainer";
 import { getGamesInADay } from "../routes/sportradar";
 
 export default function TodaysSchedule() {
@@ -40,9 +41,11 @@ export default function TodaysSchedule() {
       <h3>Today's Schedule</h3>
       <button onClick={loadGames}>Load games today</button>
       {displayGames.length > 0 ? (
-        displayGames.map(game => {
+        <GamesContainer>
+        {displayGames.map(game => {
           return <Game game={game} key={game.id} />;
-        })
+        })}
+        </GamesContainer>
       ) : (
         <h1>no games in state</h1>
       )}

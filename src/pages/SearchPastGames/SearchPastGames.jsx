@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Game from "../../components/Game/Game";
+import GamesContainer from "../../components/GamesContainer/GamesContainer";
 import { getSeasonGamesForATeam } from "../../routes/sportradar";
 import teams from "../../data/teams";
 
@@ -105,11 +106,11 @@ export default function SearchPastGames() {
             Results for the {formAllGamesInSzn.year} {formAllGamesInSzn.team}{" "}
             {formAllGamesInSzn.type} ({displayGames.length} games)
           </h5>
-          <div className="games-container">
+            <GamesContainer>
             {displayGames.map(game => {
               return <Game game={game} key={game.id} />;
             })}
-          </div>
+            </GamesContainer>
         </div>
       ) : (
         <h1>no games in state</h1>
