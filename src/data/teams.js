@@ -2,7 +2,7 @@ const teams = [
   {
     name: "Diamondbacks",
     market: "Arizona",
-    abbr: "AZ",
+    abbr: "ARI",
     logo: require("../photos/teamLogos/diamondbacks.jpg"),
     insignia: require("../photos/teamInsignias/diamondbacks.png"),
   },
