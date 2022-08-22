@@ -19,6 +19,7 @@
 .team-boxscore div {
   /* text-decoration: line-through ; */
   /* height: 2rem */
+  /* overflow: hidden; */
 }
 
 .logo {

@@ -2,8 +2,9 @@ import React from "react";
 
 export default function BoxScore(props) {
   const { gameInfo } = props;
-  console.log(gameInfo);
   return (
+    <div>
+      <h2>Box score</h2>
     <table>
       <tr>
         <th>Team</th>
@@ -33,5 +34,6 @@ export default function BoxScore(props) {
         <td>{gameInfo.home.errors}</td>
       </tr>
     </table>
+    </div>
   );
 }

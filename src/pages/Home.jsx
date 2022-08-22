@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  getSingleGameBoxscore,
+  getSingleGameBoxScore,
   // getAllGamesInASeason,
   getSeasonGamesForATeam,
   getStartingLineupForAGame,
@@ -59,7 +59,7 @@ export default function Home() {
     <div>
       <div>
         <button onClick={defFunc}>Click me</button>
-        <button onClick={getSingleGameBoxscore}>Single game box score</button>
+        <button onClick={getSingleGameBoxScore}>Single game box score</button>
       </div>
       <div>
         {/* <button onClick={getAllGamesInASeason}>All games in a season</button> */}

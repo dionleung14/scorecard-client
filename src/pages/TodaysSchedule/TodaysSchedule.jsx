@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Game from "./components/GameCurrent";
+import GameCurrent from "./components/GameCurrent";
 import GamesContainer from "../../components/GamesContainer/GamesContainer";
 import { getGamesInADay } from "../../routes/sportradar";
 import './todaysSchedule.css'
@@ -26,7 +26,7 @@ export default function TodaysSchedule() {
 
   // manual
   const loadGames = async () => {
-    let schedule = await getGamesInADay(); // no arguments = 4/16/2021
+    // let schedule = await getGamesInADay(); // no arguments = 4/16/2021
     let now = new Date(Date.now());
     let day = now.getDate()
     let month = now.getMonth() + 1
@@ -34,11 +34,11 @@ export default function TodaysSchedule() {
     let today = {
       day, month, year
     }
-    // let schedule = await getGamesInADay(today);
+    let schedule = await getGamesInADay(today);
     // let inProgress = schedule.games.filter(game => {
     //   return game.status === "inprogress"
     // })
-    setDisplayGames(schedule.games)
+    setDisplayGames(schedule)
   };
   return (
     <div>
@@ -47,7 +47,7 @@ export default function TodaysSchedule() {
       {displayGames.length > 0 ? (
         <GamesContainer>
         {displayGames.map(game => {
-          return <Game game={game} key={game.id} />;
+          return <GameCurrent game={game} key={game.id} />;
         })}
         </GamesContainer>
       ) : (

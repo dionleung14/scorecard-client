@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getSingleGameBoxscore } from "../../../routes/sportradar";
+import teams from '../../../data/teams'
 
 export default function GameCurrent(props) {
   const [score, setScore] = useState(null);
@@ -13,6 +14,23 @@ export default function GameCurrent(props) {
     let day = dateStr.split("").slice(8, 10).join("");
     return `${month}/${day}/${year}`;
   };
+  const getLogo = (teamAbbr, homeOrAway) => {
+    let teamObj;
+    if (homeOrAway === "home") {
+      teamObj = teams.find(team => {
+        return game.home.abbr === team.abbr
+      })
+    } else if (homeOrAway === "away") {
+      teamObj = teams.find(team => {
+        return game.away.abbr === team.abbr
+      })
+    } else {
+      teamObj = null;
+    }
+    if (teamObj) {
+      return teamObj.insignia
+    }
+  };
   // useEffect(() => {
   //   const loadScores = async () => {
   //     let schedule = await getSingleGameBoxscore(game.id)
@@ -23,16 +41,38 @@ export default function GameCurrent(props) {
   // }, []);
   return (
     <div className="game">
-      <p>{displayDate(date)}</p>
-      <div>
-        <p>
-          {game.away.abbr} {score ? score.away : null}
-        </p>
-        <p>
-          {game.home.abbr}
-          {score ? score.home : null}
-        </p>
-      </div>
+      <p className="date">{displayDate(date)}</p>
+      {game.away.colors && game.home.colors ? (
+        <div className="team-boxscore">
+          <div
+            style={{
+              color: "white",
+              backgroundColor: `#${game.away.colors.primary}`,
+            }}>
+            <img className="logo" src={getLogo(game.away.abbr, "away")}/>
+            {game.away.abbr} {score ? score.away : null}
+          </div>
+          <div
+            style={{
+              color: "white",
+              backgroundColor: `#${game.home.colors.primary}`,
+            }}>
+              <img className="logo" src={getLogo(game.home.abbr, "home")}/>
+            {game.home.abbr}
+            {score ? score.home : null}
+          </div>
+        </div>
+      ) : (
+        <div>
+          <p>
+            {game.away.abbr} {score ? score.away : null}
+          </p>
+          <p>
+            {game.home.abbr}
+            {score ? score.home : null}
+          </p>
+        </div>
+      )}
       {game.status === "inprogress" ? (
         <p>In progress</p>
       ) : game.status === "closed" ? (

@@ -7,6 +7,12 @@ import teams from "../../data/teams";
 export default function SearchPastGames() {
   // const [searchMethodDisplay, setSearchMethodDisplay] = useState("none")
   const [displayGames, setDisplayGames] = useState([]);
+  const [searchPending, setSearchPending] = useState(false);
+  const [displaySearchTerms, setDisplaySearchTerms] = useState({
+    year: null,
+    team: null,
+    type: null,
+  });
   const [formAllGamesInSzn, setFormAllGamesInSzn] = useState({
     year: null,
     team: null,
@@ -32,12 +38,20 @@ export default function SearchPastGames() {
       formAllGamesInSzn.team !== null
     ) {
       console.log("hit");
+      setSearchPending(true);
       // let games = await getAllGamesInASeason(formAllGamesInSzn);
       // console.log("hitta")
       // console.log(games.length)
       let games = await getSeasonGamesForATeam(formAllGamesInSzn);
       // console.log(games[5])
       setDisplayGames(games);
+      setDisplaySearchTerms({
+        ...displaySearchTerms,
+        year: formAllGamesInSzn.year,
+        team: formAllGamesInSzn.team,
+        type: formAllGamesInSzn.type,
+      });
+      setSearchPending(false);
 
       // setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)))
     } else {
@@ -100,20 +114,24 @@ export default function SearchPastGames() {
       {/* <button onClick={() => setSearchMethodDisplay("season")}>By Season</button>
       <button onClick={() => setSearchMethodDisplay("team")}>By Team</button>
       {searchMethodDisplay === "season" ? <SearchBySeason /> : searchMethodDisplay === "team" ? <SearchByTeam /> : null} */}
+      {searchPending ? (
+        <h5>Searching</h5>
+      ) : !searchPending && displayGames.length > 0 ? (
+        <h5>
+          Results for the {displaySearchTerms.year} {displaySearchTerms.team}{" "}
+          {displaySearchTerms.type} ({displayGames.length} games)
+        </h5>
+      ) : null}
       {displayGames.length > 0 ? (
         <div>
-          <h5>
-            Results for the {formAllGamesInSzn.year} {formAllGamesInSzn.team}{" "}
-            {formAllGamesInSzn.type} ({displayGames.length} games)
-          </h5>
-            <GamesContainer>
+          <GamesContainer>
             {displayGames.map(game => {
               return <Game game={game} key={game.id} />;
             })}
-            </GamesContainer>
+          </GamesContainer>
         </div>
       ) : (
-        <h1>no games in state</h1>
+        <h1>Search for games using dropdowns</h1>
       )}
     </div>
   );
