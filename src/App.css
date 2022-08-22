@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.game-summary {
+  color: "red",
 }
 
 .nav-bar {
