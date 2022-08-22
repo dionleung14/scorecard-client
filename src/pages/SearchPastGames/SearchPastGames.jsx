@@ -5,14 +5,20 @@ import { getSeasonGamesForATeam } from "../../routes/sportradar";
 import teams from "../../data/teams";
 
 export default function SearchPastGames() {
-  // const [searchMethodDisplay, setSearchMethodDisplay] = useState("none")
-  const [displayGames, setDisplayGames] = useState([]);
-  const [searchPending, setSearchPending] = useState(false);
+  const [displayGames, setDisplayGames] = useState([]); // array to hold games from results
+  const [searchPending, setSearchPending] = useState(false); // search pending flag for loading or nah
+
+  // copy of drop down form that updates when search completes so it can be displayed
   const [displaySearchTerms, setDisplaySearchTerms] = useState({
     year: null,
     team: null,
     type: null,
   });
+
+  // search completed string
+  const [searchString, setSearchString] = useState("");
+
+  // search form
   const [formAllGamesInSzn, setFormAllGamesInSzn] = useState({
     year: null,
     team: null,
@@ -20,14 +26,10 @@ export default function SearchPastGames() {
   });
 
   const handleChangeAllGamesInSzn = event => {
-    // console.log(event)
     setFormAllGamesInSzn({
       ...formAllGamesInSzn,
       [event.target.name]: event.target.value,
     });
-    // console.log(event.target.name)
-    // console.log(event.target.value)
-    // setInputText(event.target.value);
   };
 
   const submission = async event => {
@@ -37,35 +39,41 @@ export default function SearchPastGames() {
       formAllGamesInSzn.type !== null &&
       formAllGamesInSzn.team !== null
     ) {
-      console.log("hit");
-      setSearchPending(true);
-      // let games = await getAllGamesInASeason(formAllGamesInSzn);
-      // console.log("hitta")
-      // console.log(games.length)
-      let games = await getSeasonGamesForATeam(formAllGamesInSzn);
-      // console.log(games[5])
-      setDisplayGames(games);
+      setSearchPending(true); // toggle search flag
+      let games = await getSeasonGamesForATeam(formAllGamesInSzn); // fetch games
+      setDisplayGames(games); // displays games for a given team in a given year
       setDisplaySearchTerms({
+        // set the display results graphic
         ...displaySearchTerms,
         year: formAllGamesInSzn.year,
         team: formAllGamesInSzn.team,
         type: formAllGamesInSzn.type,
       });
-      setSearchPending(false);
-
-      // setDisplayGames(JSON.parse(getAllGamesInASeason(formAllGamesInSzn)))
+      setSearchPending(false); // toggle search flag
+      generateSearchResultsString(formAllGamesInSzn)
     } else {
-      let games = await getSeasonGamesForATeam({ year: null, type: null });
-      setDisplayGames(JSON.parse(getSeasonGamesForATeam(formAllGamesInSzn)));
-      console.log("gotta fill out the form");
+      window.alert("Please fill out the form completely"); // alert user to fill out form
     }
   };
+
+  const clearForm = () => { // clear out the stateful form
+    setFormAllGamesInSzn({
+      year: null,
+      team: null,
+      type: null,
+    });
+  };
+
+  const generateSearchResultsString = (formObj) => {
+    const {year, team, type} = formObj
+    let disp = `Search results for the ${year} ${team} ${type}`
+    console.log(disp)
+  }
 
   return (
     <div>
       <h1>Search past games</h1>
-      <form onSubmit={submission}>
-        {/* <input type="text" name="test" onChange={handleChange} /> */}
+      <form onSubmit={submission} onReset={clearForm}>
         <select
           name="year"
           id="year"
@@ -108,12 +116,13 @@ export default function SearchPastGames() {
           <option value="REG">Regular season</option>
           <option value="PST">Postseason</option>
         </select>
-        {/* <input type="date" name="calendar" onChange={handleChange} /> */}
         <input type="submit" value="Search" />
+        {formAllGamesInSzn.year ||
+        formAllGamesInSzn.team ||
+        formAllGamesInSzn.type ? (
+          <input type="reset" value="Reset form" />
+        ) : null}
       </form>
-      {/* <button onClick={() => setSearchMethodDisplay("season")}>By Season</button>
-      <button onClick={() => setSearchMethodDisplay("team")}>By Team</button>
-      {searchMethodDisplay === "season" ? <SearchBySeason /> : searchMethodDisplay === "team" ? <SearchByTeam /> : null} */}
       {searchPending ? (
         <h5>Searching</h5>
       ) : !searchPending && displayGames.length > 0 ? (
