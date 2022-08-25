@@ -22,7 +22,7 @@ export default function GameInfo() {
       let playByPlay = await getPBPForAGame(gameId);
       console.log(playByPlay)
       setGameLineups(playByPlay.lineups);
-      setSimpleScore(playByPlay.finalScore);
+      setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
     }, 1500);
     setGameBoxScore(boxscore);

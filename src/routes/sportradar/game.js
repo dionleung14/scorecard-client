@@ -69,41 +69,21 @@ export const getSingleGameBoxScore = async gameId => {
   }
 };
 
-// get the lineups for both teams for a given game
-export const getLineupsForBothTeamsAGame = gameId => {
-  // let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
+// get single game extended summary data
+export const getSingleGameExtendedSummary = async gameId => {
+  console.log("getting extended summary for a single game");
   if (gameId) {
-    console.log("getting lineups home and away for a game");
-    let playByPlay = fetch(`sportradar/pbp/${gameId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(async response => {
+    let scores = fetch(
+      `/sportradar/game/game-info/extended-summary/${gameId}`
+    ).then(async response => {
       if (response.status === 202) {
-        console.log("lineup data is from file");
+        console.log("extended summary data is from file");
       } else if (response.status === 200) {
-        console.log("lineup data is from api");
+        console.log("extended summary data is from api");
       }
       let parsed = await response.json();
-      console.log("lineups?");
       return parsed;
     });
-    return playByPlay;
-  } else {
-    fetch("sportradar/pbp/home", {
-      method: "POST",
-      body: JSON.stringify({
-        year: 2021,
-        season: "REG",
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(async response => {
-      console.log("possibly?");
-      let test = await response.text();
-      console.log(test);
-    });
+    return scores;
   }
 };
