@@ -1,6 +1,5 @@
 import {
   getGamesInADay,
-  getSingleGameFullInfo,
   getSingleGameBoxScore,
   getLineupsForBothTeamsAGame,
 } from "./game";
@@ -9,7 +8,6 @@ import { getStartingLineupForAGame, getPBPForAGame } from "./playbyplay";
 
 export {
   getGamesInADay,
-  getSingleGameFullInfo,
   getSingleGameBoxScore,
   getLineupsForBothTeamsAGame,
   getSeasonGamesForATeam,

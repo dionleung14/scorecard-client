@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getSingleGameBoxscore } from "../../routes/sportradar";
+import { getSingleGameBoxscore } from "../../routes/sportradar"; // how do i get the score and display it on the preview?
 import "./game.css";
 import teams from '../../data/teams'
 
@@ -20,11 +20,11 @@ export default function Game(props) {
     let teamObj;
     if (homeOrAway === "home") {
       teamObj = teams.find(team => {
-        return game.home.abbr === team.abbr
+        return teamAbbr === team.abbr
       })
     } else if (homeOrAway === "away") {
       teamObj = teams.find(team => {
-        return game.away.abbr === team.abbr
+        return teamAbbr === team.abbr
       })
     } else {
       teamObj = null;

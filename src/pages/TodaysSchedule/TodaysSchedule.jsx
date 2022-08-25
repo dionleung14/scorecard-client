@@ -6,27 +6,9 @@ import './todaysSchedule.css'
 
 export default function TodaysSchedule() {
   const [displayGames, setDisplayGames] = useState([]);
-  // useEffect(() => {
-  //   const loadGames = async () => {
-  //     // let games = await getGamesInADay(); // no arguments = 4/16/2021
-  //     let now = new Date(Date.now());
-  //     let day = now.getDate();
-  //     let month = now.getMonth() + 1;
-  //     let year = now.getFullYear();
-  //     let today = {
-  //       day,
-  //       month,
-  //       year,
-  //     };
-  //     let schedule = await getGamesInADay(today);
-  //     setDisplayGames(schedule.games);
-  //   };
-  //   loadGames();
-  // }, []);
 
-  // manual
+  // get games scheduled to play today
   const loadGames = async () => {
-    // let schedule = await getGamesInADay(); // no arguments = 4/16/2021
     let now = new Date(Date.now());
     let day = now.getDate()
     let month = now.getMonth() + 1
@@ -35,15 +17,20 @@ export default function TodaysSchedule() {
       day, month, year
     }
     let schedule = await getGamesInADay(today);
-    // let inProgress = schedule.games.filter(game => {
-    //   return game.status === "inprogress"
-    // })
     setDisplayGames(schedule)
   };
+
+  // get games on 4/21/21
+  const loadGamesFromFile = async () => {
+    let schedule = await getGamesInADay();
+    setDisplayGames(schedule)
+  };
+
   return (
     <div>
       <h3>Today's Schedule</h3>
       <button onClick={loadGames}>Load games today</button>
+      <button onClick={loadGamesFromFile}>Load games from file (4/21/21)</button>
       {displayGames.length > 0 ? (
         <GamesContainer>
         {displayGames.map(game => {

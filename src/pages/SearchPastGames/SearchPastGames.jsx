@@ -3,6 +3,7 @@ import Game from "../../components/Game/Game";
 import GamesContainer from "../../components/GamesContainer/GamesContainer";
 import { getSeasonGamesForATeam } from "../../routes/sportradar";
 import teams from "../../data/teams";
+import SelectionYearsRange from "./components/SelectionYearsRange";
 
 export default function SearchPastGames() {
   const [displayGames, setDisplayGames] = useState([]); // array to hold games from results
@@ -50,13 +51,14 @@ export default function SearchPastGames() {
         type: formAllGamesInSzn.type,
       });
       setSearchPending(false); // toggle search flag
-      generateSearchResultsString(formAllGamesInSzn)
+      generateSearchResultsString(formAllGamesInSzn);
     } else {
       window.alert("Please fill out the form completely"); // alert user to fill out form
     }
   };
 
-  const clearForm = () => { // clear out the stateful form
+  // clear out the stateful form
+  const clearForm = () => {
     setFormAllGamesInSzn({
       year: null,
       team: null,
@@ -64,34 +66,33 @@ export default function SearchPastGames() {
     });
   };
 
-  const generateSearchResultsString = (formObj) => {
-    const {year, team, type} = formObj
-    let disp = `Search results for the ${year} ${team} ${type}`
-    console.log(disp)
-  }
+  // generates string to display on search results page and sets in state
+  const generateSearchResultsString = formObj => {
+    const { year, team, type } = formObj;
+    let teamFinder = teams.filter(club => {
+      return club.abbr === team;
+    });
+    let seasonType;
+    if (type === "PRE") {
+      seasonType = "Preseason";
+    } else if (type === "PST") {
+      seasonType = "Postseason";
+    } else if (type === "REG") {
+      seasonType = "Regular Season";
+    }
+    let disp = `Search results for the ${year} ${teamFinder[0].market} ${teamFinder[0].name} ${seasonType}`;
+    setSearchString(disp);
+  };
 
   return (
     <div>
       <h1>Search past games</h1>
       <form onSubmit={submission} onReset={clearForm}>
-        <select
-          name="year"
-          id="year"
-          defaultValue="Choose season year"
-          onChange={handleChangeAllGamesInSzn}>
-          <option disabled>Choose season year</option>
-          <option value="2012">2012</option>
-          <option value="2013">2013</option>
-          <option value="2014">2014</option>
-          <option value="2015">2015</option>
-          <option value="2016">2016</option>
-          <option value="2017">2017</option>
-          <option value="2018">2018</option>
-          <option value="2019">2019</option>
-          <option value="2020">2020</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-        </select>
+        <SelectionYearsRange
+          startYear="2016"
+          endYear="2022"
+          handleChange={handleChangeAllGamesInSzn}
+        />
         <select
           name="team"
           id="team"
@@ -127,21 +128,16 @@ export default function SearchPastGames() {
         <h5>Searching</h5>
       ) : !searchPending && displayGames.length > 0 ? (
         <h5>
-          Results for the {displaySearchTerms.year} {displaySearchTerms.team}{" "}
-          {displaySearchTerms.type} ({displayGames.length} games)
+          {searchString} ({displayGames.length} games):
         </h5>
       ) : null}
       {displayGames.length > 0 ? (
-        <div>
-          <GamesContainer>
-            {displayGames.map(game => {
-              return <Game game={game} key={game.id} />;
-            })}
-          </GamesContainer>
-        </div>
-      ) : (
-        <h1>Search for games using dropdowns</h1>
-      )}
+        <GamesContainer>
+          {displayGames.map(game => {
+            return <Game game={game} key={game.id} />;
+          })}
+        </GamesContainer>
+      ) : null}
     </div>
   );
 }

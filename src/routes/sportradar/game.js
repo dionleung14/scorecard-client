@@ -1,5 +1,6 @@
 // get single day data
 export const getGamesInADay = async date => {
+  console.log("getting schedule for games in a day");
   if (date) {
     const { year, month, day } = date;
     let games = fetch("sportradar/game/day", {
@@ -14,8 +15,13 @@ export const getGamesInADay = async date => {
       },
     })
       .then(async response => {
-        let test = await response.json();
-        return test;
+        if (response.status === 202) {
+          console.log("schedule data is from file");
+        } else if (response.status === 200) {
+          console.log("schedule data is from api");
+        }
+        let parsed = await response.json();
+        return parsed;
       })
       .catch(err => {
         console.error(err);
@@ -29,8 +35,13 @@ export const getGamesInADay = async date => {
       },
     })
       .then(async response => {
+        if (response.status === 202) {
+          console.log("schedule data is from file");
+        } else if (response.status === 200) {
+          console.log("schedule data is from api");
+        }
         let parsed = await response.json();
-        return parsed;
+        return parsed.games;
       })
       .catch(err => {
         console.error(err);
@@ -39,45 +50,16 @@ export const getGamesInADay = async date => {
   }
 };
 
-// get single game full info data
-export const getSingleGameFullInfo = async gameId => {
-  console.log("getting single full info");
-  if (gameId) {
-    console.log("hitting live api");
-    let scores = fetch(`sportradar/game/single/${gameId}`).then(
-      async response => {
-        // let test = await response.json();
-        // console.log(test);
-        console.log(response);
-        // return test;
-      }
-    );
-    return scores;
-  } else {
-    console.log("hitting saved data");
-    let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
-    let scores = fetch(`sportradar/game/single/${gameId}`).then(
-      async response => {
-        let test = await response.json();
-        console.log(test);
-        return test;
-      }
-    );
-    return scores;
-  }
-};
-
 // get single game boxscore data
 export const getSingleGameBoxScore = async gameId => {
   console.log("getting single game boxscore");
   if (gameId) {
-    console.log("id was passed in");
     let scores = fetch(`sportradar/game/game-info/boxscore/${gameId}`).then(
       async response => {
         if (response.status === 202) {
-          console.log("data is from file");
+          console.log("boxscore data is from file");
         } else if (response.status === 200) {
-          console.log("data is from api");
+          console.log("boxscore data is from api");
         }
         let parsed = await response.json();
         return parsed;
@@ -85,17 +67,6 @@ export const getSingleGameBoxScore = async gameId => {
     );
     return scores;
   }
-  /*else {
-    console.log("hitting saved data");
-    let gameId = "04849b31-5a13-422c-bb6d-cf8e50a77e8b";
-    let scores = fetch(`sportradar/game/single/${gameId}`).then(
-      async response => {
-        let test = await response.json();
-        return test;
-      }
-    );
-    return scores;
-  } */
 };
 
 // get the lineups for both teams for a given game
@@ -110,9 +81,9 @@ export const getLineupsForBothTeamsAGame = gameId => {
       },
     }).then(async response => {
       if (response.status === 202) {
-        console.log("data is from file");
+        console.log("lineup data is from file");
       } else if (response.status === 200) {
-        console.log("data is from api");
+        console.log("lineup data is from api");
       }
       let parsed = await response.json();
       console.log("lineups?");

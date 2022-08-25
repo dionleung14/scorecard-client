@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getSingleGameBoxscore } from "../../../routes/sportradar";
-import teams from '../../../data/teams'
+import { getSingleGameBoxscore } from "../../../routes/sportradar"; // how do i get the score and display it on the preview?
+import { gameStatusTranslator } from "../../../services/gameStatusTranslator";
+
+import teams from "../../../data/teams";
 
 export default function GameCurrent(props) {
   const [score, setScore] = useState(null);
@@ -14,22 +16,28 @@ export default function GameCurrent(props) {
     let day = dateStr.split("").slice(8, 10).join("");
     return `${month}/${day}/${year}`;
   };
+
   const getLogo = (teamAbbr, homeOrAway) => {
     let teamObj;
     if (homeOrAway === "home") {
       teamObj = teams.find(team => {
-        return game.home.abbr === team.abbr
-      })
+        return teamAbbr === team.abbr;
+      });
     } else if (homeOrAway === "away") {
       teamObj = teams.find(team => {
-        return game.away.abbr === team.abbr
-      })
+        return teamAbbr === team.abbr;
+      });
     } else {
       teamObj = null;
     }
     if (teamObj) {
-      return teamObj.insignia
+      return teamObj.insignia;
     }
+  };
+
+  const generateText = gameStatus => {
+    let text = gameStatusTranslator(gameStatus);
+    return <p>{text}</p>;
   };
   // useEffect(() => {
   //   const loadScores = async () => {
@@ -49,7 +57,7 @@ export default function GameCurrent(props) {
               color: "white",
               backgroundColor: `#${game.away.colors.primary}`,
             }}>
-            <img className="logo" src={getLogo(game.away.abbr, "away")}/>
+            <img className="logo" src={getLogo(game.away.abbr, "away")} />
             {game.away.abbr} {score ? score.away : null}
           </div>
           <div
@@ -57,7 +65,7 @@ export default function GameCurrent(props) {
               color: "white",
               backgroundColor: `#${game.home.colors.primary}`,
             }}>
-              <img className="logo" src={getLogo(game.home.abbr, "home")}/>
+            <img className="logo" src={getLogo(game.home.abbr, "home")} />
             {game.home.abbr}
             {score ? score.home : null}
           </div>
@@ -73,13 +81,7 @@ export default function GameCurrent(props) {
           </p>
         </div>
       )}
-      {game.status === "inprogress" ? (
-        <p>In progress</p>
-      ) : game.status === "closed" ? (
-        <p>Game concluded</p>
-      ) : game.status === "scheduled" ? (
-        <p>Scheduled</p>
-      ) : null}
+      {generateText(game.status)}
       <Link to={`/game-info-${game.id}`}>Game info</Link>
     </div>
   );
