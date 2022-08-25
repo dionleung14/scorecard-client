@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Home from "./pages/Home";
 import TodaysSchedule from "./pages/TodaysSchedule/TodaysSchedule";
@@ -6,7 +5,7 @@ import PlayByPlay from "./pages/PlayByPlay";
 import GameInfo from "./pages/GameInfo/GameInfo";
 import SearchPastGames from "./pages/SearchPastGames/SearchPastGames";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navigation from "./components/Navigation";
+import Navigation from "./components/Navigation/Navigation";
 
 function App() {
   return (

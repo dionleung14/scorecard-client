@@ -1,18 +1,15 @@
 import {
   getGamesInADay,
-  getSingleGameFullInfo,
   getSingleGameBoxScore,
-  getLineupsForBothTeamsAGame,
+  getSingleGameExtendedSummary,
 } from "./game";
 import { getSeasonGamesForATeam } from "./season";
-import { getStartingLineupForAGame, getPBPForAGame } from "./playbyplay";
+import { getPBPForAGame } from "./playbyplay";
 
 export {
   getGamesInADay,
-  getSingleGameFullInfo,
   getSingleGameBoxScore,
-  getLineupsForBothTeamsAGame,
+  getSingleGameExtendedSummary,
   getSeasonGamesForATeam,
-  getStartingLineupForAGame,
   getPBPForAGame,
 };
