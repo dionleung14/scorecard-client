@@ -8,7 +8,8 @@ import {
 import BoxScore from "./components/BoxScore";
 import Lineups from "./components/Lineups";
 import SimpleScore from "./components/SimpleScore";
-import './gameInfo.css'
+import PlayByPlay from "./components/PlayByPlay";
+import "./gameInfo.css";
 
 export default function GameInfo() {
   const { gameId } = useParams();
@@ -20,7 +21,8 @@ export default function GameInfo() {
     let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
       let playByPlay = await getPBPForAGame(gameId);
-      console.log(playByPlay)
+      // console.log(playByPlay)
+      // console.log(playByPlay.scoreablePlays)
       setGameLineups(playByPlay.lineups);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
@@ -40,26 +42,30 @@ export default function GameInfo() {
       GameInfo
       <button onClick={getGameInfo}>Get game info</button>
       {simpleScore ? (
-        <SimpleScore simpleScore={simpleScore}/>
+        <SimpleScore simpleScore={simpleScore} />
       ) : (
         <h1>Final score</h1>
       )}
       {gameBoxScore && gameBoxScore.status !== "canceled" ? (
-          <BoxScore gameInfo={gameBoxScore} />
+        <BoxScore gameInfo={gameBoxScore} />
       ) : (
         <h1>Box score</h1>
       )}
       {gameLineups ? (
         <div className="lineup-card">
-          <Lineups lineup={gameLineups.awayTeam} team="Away"/>
-          <Lineups lineup={gameLineups.homeTeam} team="Home"/>
+          <Lineups lineup={gameLineups.awayTeam} team="Away" />
+          <Lineups lineup={gameLineups.homeTeam} team="Home" />
         </div>
       ) : (
         <h1>Lineups</h1>
       )}
       {gamePlayByPlay ? (
-        // <div>{gamePlayByPlay.innings.length}</div>
-        <h3>{gamePlayByPlay.length}</h3>
+        <div>
+          {/* {gamePlayByPlay.reverse().map(inning => { */}
+          {gamePlayByPlay.map(inning => {
+            return <PlayByPlay inningData={inning} />;
+          })}
+        </div>
       ) : (
         <h1>Play by Play</h1>
       )}
