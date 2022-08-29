@@ -8,6 +8,7 @@ export default function Navigation() {
       <Link to="/game-lookup">Search past games</Link>
       <Link to="/todays-schedule">Today's schedule</Link>
       <Link to="/pbp">PBP</Link>
+      <Link to="/about">About</Link>
     </div>
   )
 }
