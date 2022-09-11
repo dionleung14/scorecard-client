@@ -21,8 +21,8 @@ export default function GameInfo() {
     let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
       let playByPlay = await getPBPForAGame(gameId);
-      // console.log(playByPlay)
-      console.log(playByPlay.scoreablePlays)
+      // console.log(playByPlay.lineups)
+      // console.log(playByPlay.scoreablePlays)
       setGameLineups(playByPlay.lineups);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
