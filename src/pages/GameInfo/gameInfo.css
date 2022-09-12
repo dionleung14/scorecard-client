@@ -2,3 +2,22 @@
   display: flex;
   justify-content: space-between;
 }
+
+.inning-whole {
+  background-color: salmon;
+}
+
+.inning-top {
+  background-color: navy;
+  color: white;
+  text-align: left;
+}
+
+.inning-bottom {
+  background-color: teal;
+  text-align: left;
+}
+
+table * {
+  border: solid black 1px;
+}
