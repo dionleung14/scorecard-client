@@ -34,7 +34,7 @@ export default function Lineups(props) {
                     {player.preferredName} {player.lastName}
                   </td>
                   <td>
-                    {defensivePositionMapper[player.position].positionAbbr}
+                    {defensivePositionMapper[player.positionNumber].positionAbbr}
                   </td>
                 </tr>
               );

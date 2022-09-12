@@ -2,6 +2,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import TodaysSchedule from "./pages/TodaysSchedule/TodaysSchedule";
 import PlayByPlay from "./pages/PlayByPlay";
+import About from "./pages/About";
 import GameInfo from "./pages/GameInfo/GameInfo";
 import SearchPastGames from "./pages/SearchPastGames/SearchPastGames";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -18,6 +19,7 @@ function App() {
           <Route path="/game-lookup" element={<SearchPastGames />} />
           <Route path="/game-info-:gameId" element={<GameInfo />} />
           <Route path="/pbp" element={<PlayByPlay />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
     </Router>
