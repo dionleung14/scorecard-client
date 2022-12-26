@@ -29,6 +29,16 @@
 .date {
   font-style:italic;
 }
+.date-unnecessary {
+  font-style:italic;
+  text-decoration: line-through;
+}
 .game-info {
   width: 20%
+}
+
+.game-info-unnecessary:hover {
+  width: 20%;
+  color: red;
+  cursor:not-allowed
 }

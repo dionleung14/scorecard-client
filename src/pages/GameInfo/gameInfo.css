@@ -2,3 +2,30 @@
   display: flex;
   justify-content: space-between;
 }
+
+.inning-whole {
+  background-color: salmon;
+  border: 1px solid black;
+  margin: 1rem auto;
+}
+.inning-number {
+  text-align: left;
+}
+
+.inning-top {
+  background-color: gray;
+  /* color: white; */
+  text-align: left;
+}
+
+.inning-bottom {
+  background-color: teal;
+  text-align: left;
+}
+.inning-top-or-bottom {
+  text-align: left;
+}
+
+table * {
+  border: solid black 1px;
+}
