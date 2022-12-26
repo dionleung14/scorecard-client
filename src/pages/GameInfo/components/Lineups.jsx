@@ -28,18 +28,22 @@ export default function Lineups(props) {
         {lineup.length > 1
           ? lineup.map(player => {
               return (
-                <tr>
+                <tr key={player.playerId}>
                   <td>{player.jerseyNumber}</td>
                   <td>
                     {player.preferredName} {player.lastName}
                   </td>
                   <td>
-                    {defensivePositionMapper[player.positionNumber].positionAbbr}
+                    {
+                      defensivePositionMapper[player.positionNumber]
+                        .positionAbbr
+                    }
                   </td>
                 </tr>
               );
             })
           : null}
+        {/* Pitchers at the end at index 0 */}
         <tr>
           <td>{props.lineup[0].jerseyNumber}</td>
           <td>

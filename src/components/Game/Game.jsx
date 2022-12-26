@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getSingleGameBoxscore } from "../../routes/sportradar"; // how do i get the score and display it on the preview?
 import "./game.css";
-import teams from '../../data/teams'
+import teams from "../../data/teams";
 
 export default function Game(props) {
   const [score, setScore] = useState(null);
@@ -20,17 +20,17 @@ export default function Game(props) {
     let teamObj;
     if (homeOrAway === "home") {
       teamObj = teams.find(team => {
-        return teamAbbr === team.abbr
-      })
+        return teamAbbr === team.abbr;
+      });
     } else if (homeOrAway === "away") {
       teamObj = teams.find(team => {
-        return teamAbbr === team.abbr
-      })
+        return teamAbbr === team.abbr;
+      });
     } else {
       teamObj = null;
     }
     if (teamObj) {
-      return teamObj.insignia
+      return teamObj.insignia;
     }
   };
   // useEffect(() => {
@@ -43,7 +43,11 @@ export default function Game(props) {
   // }, []);
   return (
     <div className="game">
-      <p className="date">{displayDate(date)}</p>
+      {game.status === "unnecessary" ? (
+        <p className="date-unnecessary">{displayDate(date)} <span>Unnecessary</span></p>
+      ) : (
+        <p className="date">{displayDate(date)}</p>
+      )}
       {game.away.colors && game.home.colors ? (
         <div className="team-boxscore">
           <div
@@ -51,7 +55,7 @@ export default function Game(props) {
               color: "white",
               backgroundColor: `#${game.away.colors.primary}`,
             }}>
-            <img className="logo" src={getLogo(game.away.abbr, "away")}/>
+            <img className="logo" src={getLogo(game.away.abbr, "away")} />
             {game.away.abbr} {score ? score.away : null}
           </div>
           <div
@@ -59,7 +63,7 @@ export default function Game(props) {
               color: "white",
               backgroundColor: `#${game.home.colors.primary}`,
             }}>
-              <img className="logo" src={getLogo(game.home.abbr, "home")}/>
+            <img className="logo" src={getLogo(game.home.abbr, "home")} />
             {game.home.abbr}
             {score ? score.home : null}
           </div>
@@ -75,9 +79,16 @@ export default function Game(props) {
           </p>
         </div>
       )}
-      <button className="game-info">
+      {game.status === "unnecessary" ? (
+        <button className="game-info-unnecessary">
+        <Link disabled to={`/game-info-${game.id}`}>Game info</Link>
+      </button>
+      ) : (
+        <button className="game-info">
         <Link to={`/game-info-${game.id}`}>Game info</Link>
       </button>
+      )}
+      
     </div>
   );
 }
