@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+// import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   getPBPForAGame,
-  setGameLineups,
+  // setGameLineups,
   getSingleGameBoxScore,
 } from "../../routes/sportradar";
 import BoxScore from "./components/BoxScore";
@@ -14,7 +15,7 @@ import "./gameInfo.css";
 
 export default function GameInfo() {
   const { gameId } = useParams();
-  const [showPbpOrNah, setShowPbpOrNah] = useState(true)
+  const [showPbpOrNah, setShowPbpOrNah] = useState(true);
   const [gameBoxScore, setGameBoxScore] = useState(null);
   const [simpleScore, setSimpleScore] = useState(null);
   const [gamePlayByPlay, setGamePlayByPlay] = useState(null);
@@ -33,8 +34,8 @@ export default function GameInfo() {
   };
 
   const toggleShowHide = () => {
-    setShowPbpOrNah(!showPbpOrNah)
-  }
+    setShowPbpOrNah(!showPbpOrNah);
+  };
   // useEffect(() => {
   //   console.log("game PBP state has changed");
   //   if (gamePlayByPlay) {
@@ -69,11 +70,18 @@ export default function GameInfo() {
       )}
       {gamePlayByPlay ? (
         <div>
-          <h1>Play by Play <button onClick={toggleShowHide}>toggle show/hide</button></h1>
+          <h1>
+            Play by Play{" "}
+            <button onClick={toggleShowHide}>toggle show/hide</button>
+          </h1>
           {/* {gamePlayByPlay.reverse().map(inning => { */}
-          {showPbpOrNah ? gamePlayByPlay.map(inning => {
-            return <PlayByPlay inningData={inning} />;
-          }) : <h2>hidden</h2>}
+          {showPbpOrNah ? (
+            gamePlayByPlay.map(inning => {
+              return <PlayByPlay inningData={inning} />;
+            })
+          ) : (
+            <h2>hidden</h2>
+          )}
           {/* {gamePlayByPlay.map(inning => {
             return <PlayByPlay inningData={inning} />;
           })} */}
@@ -81,10 +89,10 @@ export default function GameInfo() {
       ) : (
         <h1>Play by Play</h1>
       )}
-      {gamePlayByPlay && gameLineups ?  (
+      {gamePlayByPlay && gameLineups ? (
         <div>
           <h1>Scoring Table</h1>
-          <Scorecard pbp={gamePlayByPlay} lineups={gameLineups}/>
+          <Scorecard pbp={gamePlayByPlay} lineups={gameLineups} />
         </div>
       ) : (
         <h1>Scoring Table</h1>

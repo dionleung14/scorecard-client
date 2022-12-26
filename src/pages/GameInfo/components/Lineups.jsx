@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 export default function Lineups(props) {
   const [lineup, setLineup] = useState(props.lineup.slice(1, 10));
+  if (!true) { // placeholder to "use" setLineup to avoid deployment bugs
+    setLineup(true)
+  }
 
   const defensivePositionMapper = {
     1: { positionName: "Pitcher", positionAbbr: "P" },
