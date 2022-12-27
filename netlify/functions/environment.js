@@ -6,7 +6,7 @@ exports.handler = async function (event, context) {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: `DIONNNNNNNNNNN : Value of MY_IMPORTANT_VARIABLE is ${value}.`,
+      message: `DIONNNNNNNNNNN : Value of MY_IMPORTANT_VARIABLE is ${newValue}.`,
     }),
   };
 };
