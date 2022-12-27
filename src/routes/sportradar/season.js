@@ -3,6 +3,7 @@ export const getSeasonGamesForATeam = async searchTerms => {
   const { year, team, type: season } = searchTerms;
   const savedData = searchTerms.savedData || false;
   console.log("fetching games in a season for a team");
+  console.log(process.env.FAVORITE_POKEMON);
   let games = fetch(`sportradar/season/team`, {
     method: "POST",
     body: JSON.stringify({
