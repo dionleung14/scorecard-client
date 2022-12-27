@@ -15,6 +15,7 @@ export const getSeasonGamesForATeam = async searchTerms => {
       "Content-Type": "application/json",
     },
   }).then(async response => {
+    console.log("where are youuuuuuuuuuuu");
     let parsed = await response.json();
     return parsed;
   });
