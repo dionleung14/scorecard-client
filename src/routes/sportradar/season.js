@@ -4,7 +4,9 @@ export const getSeasonGamesForATeam = async searchTerms => {
   const savedData = searchTerms.savedData || false;
   console.log("fetching games in a season for a team");
   const pokemon = await process.env.REACT_APP_FAVORITE_POKEMON;
+  const url = await process.env.REACT_APP_SERVER_URL;
   console.log(pokemon);
+  console.log(url);
   let games = fetch(`sportradar/season/team`, {
     method: "POST",
     body: JSON.stringify({
