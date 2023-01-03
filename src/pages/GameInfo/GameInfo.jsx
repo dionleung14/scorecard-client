@@ -45,7 +45,7 @@ export default function GameInfo() {
 
   return (
     <div>
-      GameInfo
+      <h3>GameInfo</h3>
       <button onClick={getGameInfo}>Get game info</button>
       {simpleScore ? (
         <SimpleScore simpleScore={simpleScore} />
