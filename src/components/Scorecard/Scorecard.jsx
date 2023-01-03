@@ -1,5 +1,5 @@
 import React from "react";
-import PlayersColumn from "./components/PlayersColumn";
+import ScoringRow from "./components/ScoringRow";
 // import ScoringCell from "./components/ScoringCell";
 
 export default function Scorecard({ pbp, lineups }) {
@@ -20,7 +20,7 @@ export default function Scorecard({ pbp, lineups }) {
           })}
         </tr>
         {awayBatters.map(player => {
-          return <PlayersColumn key={player.playerId} player={player} />;
+          return <ScoringRow key={player.playerId} player={player} pbp={pbp}/>;
         })}
       </table>
       <h2>------------------------------</h2>
@@ -37,7 +37,7 @@ export default function Scorecard({ pbp, lineups }) {
           })}
         </tr>
         {homeBatters.map(player => {
-          return <PlayersColumn key={player.playerId} player={player} />;
+          return <ScoringRow key={player.playerId} player={player} pbp={pbp}/>;
         })}
       </table>
     </div>

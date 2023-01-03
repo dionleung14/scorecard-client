@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function ScoringCell() {
+export default function ScoringCell({scoringEvent}) {
   return (
-    <div>ScoringCell</div>
+    <td>X</td>
   )
 }
