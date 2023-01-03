@@ -26,6 +26,18 @@
   text-align: left;
 }
 
+/* .scorecards {
+  display: flex;
+} */
+
+.away-scorecard, .home-scorecard {
+  display: flex;
+}
+
+.player-columns-categories th {
+  height: 1.3rem;
+}
+
 table * {
   border: solid black 1px;
 }

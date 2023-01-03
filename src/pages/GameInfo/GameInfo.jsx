@@ -10,7 +10,7 @@ import BoxScore from "./components/BoxScore";
 import Lineups from "./components/Lineups";
 import SimpleScore from "./components/SimpleScore";
 import PlayByPlay from "./components/PlayByPlay";
-import Scorecard from "../../components/Scorecard/Scorecard";
+import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard";
 import "./gameInfo.css";
 
 export default function GameInfo() {
@@ -19,6 +19,7 @@ export default function GameInfo() {
   const [gameBoxScore, setGameBoxScore] = useState(null);
   const [simpleScore, setSimpleScore] = useState(null);
   const [gamePlayByPlay, setGamePlayByPlay] = useState(null);
+  const [playByPlayTeams, setPlayByPlayTeams] = useState(null);
   const [gameLineups, setGameLineups] = useState(null);
   const getGameInfo = async () => {
     let boxscore = await getSingleGameBoxScore(gameId);
@@ -29,6 +30,7 @@ export default function GameInfo() {
       setGameLineups(playByPlay.lineups);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
+      setPlayByPlayTeams(playByPlay.scoreablePlaysByTeam);
     }, 1500);
     setGameBoxScore(boxscore);
   };
@@ -89,13 +91,13 @@ export default function GameInfo() {
       ) : (
         <h1>Play by Play</h1>
       )}
-      {gamePlayByPlay && gameLineups ? (
+      {gamePlayByPlay && playByPlayTeams && gameLineups ? (
         <div>
-          <h1>Scoring Table</h1>
-          <Scorecard pbp={gamePlayByPlay} lineups={gameLineups} />
+          <h1>Combined Scorecard Table</h1>
+          <CombinedScorecard pbp={gamePlayByPlay} teamPbp={playByPlayTeams} lineups={gameLineups} />
         </div>
       ) : (
-        <h1>Scoring Table</h1>
+        <h1>Combined Scorecard Table</h1>
       )}
     </div>
   );
