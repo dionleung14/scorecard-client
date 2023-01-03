@@ -20,6 +20,7 @@ function App() {
           <Route path="/game-info-:gameId" element={<GameInfo />} />
           <Route path="/pbp" element={<PlayByPlay />} />
           <Route path="/about" element={<About />} />
+          <Route path="/*" element={<Home />} />
         </Routes>
       </div>
     </Router>

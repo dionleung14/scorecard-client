@@ -1,6 +1,6 @@
 import React from "react";
 import PlayersColumn from "./components/PlayersColumn";
-import ScoringCell from "./components/ScoringCell";
+// import ScoringCell from "./components/ScoringCell";
 
 export default function Scorecard({ pbp, lineups }) {
   let homeBatters = lineups.homeTeam.slice(1, lineups.length);

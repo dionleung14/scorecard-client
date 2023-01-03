@@ -2,7 +2,8 @@
 export const getPBPForAGame = async gameId => {
   if (gameId) {
     console.log("getting play by play for a game");
-    let playByPlay = fetch(`sportradar/pbp/${gameId}`, {
+    const url = await process.env.REACT_APP_SERVER_URL;
+    let playByPlay = fetch(`${url}sportradar/pbp/${gameId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

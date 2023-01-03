@@ -3,7 +3,8 @@ export const getGamesInADay = async date => {
   console.log("getting schedule for games in a day");
   if (date) {
     const { year, month, day } = date;
-    let games = fetch("sportradar/game/day", {
+    const url = await process.env.REACT_APP_SERVER_URL;
+    let games = fetch(`${url}sportradar/game/day`, {
       method: "POST",
       body: JSON.stringify({
         year,
@@ -54,17 +55,18 @@ export const getGamesInADay = async date => {
 export const getSingleGameBoxScore = async gameId => {
   console.log("getting single game boxscore");
   if (gameId) {
-    let scores = fetch(`sportradar/game/game-info/boxscore/${gameId}`).then(
-      async response => {
-        if (response.status === 202) {
-          console.log("boxscore data is from file");
-        } else if (response.status === 200) {
-          console.log("boxscore data is from api");
-        }
-        let parsed = await response.json();
-        return parsed;
+    const url = await process.env.REACT_APP_SERVER_URL;
+    let scores = fetch(
+      `${url}sportradar/game/game-info/boxscore/${gameId}`
+    ).then(async response => {
+      if (response.status === 202) {
+        console.log("boxscore data is from file");
+      } else if (response.status === 200) {
+        console.log("boxscore data is from api");
       }
-    );
+      let parsed = await response.json();
+      return parsed;
+    });
     return scores;
   }
 };
@@ -73,8 +75,9 @@ export const getSingleGameBoxScore = async gameId => {
 export const getSingleGameExtendedSummary = async gameId => {
   console.log("getting extended summary for a single game");
   if (gameId) {
+    const url = await process.env.REACT_APP_SERVER_URL;
     let scores = fetch(
-      `/sportradar/game/game-info/extended-summary/${gameId}`
+      `${url}/sportradar/game/game-info/extended-summary/${gameId}`
     ).then(async response => {
       if (response.status === 202) {
         console.log("extended summary data is from file");
