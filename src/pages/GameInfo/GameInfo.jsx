@@ -97,7 +97,7 @@ export default function GameInfo() {
           <CombinedScorecard pbp={gamePlayByPlay} teamPbp={playByPlayTeams} lineups={gameLineups} />
         </div>
       ) : (
-        <h1>Combined Scorecard Table</h1>
+        <h1>Combined Scorecard Table missing</h1>
       )}
     </div>
   );
