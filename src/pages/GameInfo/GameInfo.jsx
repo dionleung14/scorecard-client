@@ -26,10 +26,10 @@ export default function GameInfo() {
     setTimeout(async () => {
       let playByPlay = await getPBPForAGame(gameId);
       // console.log(playByPlay.lineups)
-      // console.log(playByPlay.scoreablePlays)
       setGameLineups(playByPlay.lineups);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
+      console.log(playByPlay.scoreablePlaysByTeam)
       setPlayByPlayTeams(playByPlay.scoreablePlaysByTeam);
     }, 1500);
     setGameBoxScore(boxscore);
@@ -78,8 +78,8 @@ export default function GameInfo() {
           </h1>
           {/* {gamePlayByPlay.reverse().map(inning => { */}
           {showPbpOrNah ? (
-            gamePlayByPlay.map(inning => {
-              return <PlayByPlay inningData={inning} />;
+            gamePlayByPlay.map((inning, index) => {
+              return <PlayByPlay key={index} inningData={inning} />;
             })
           ) : (
             <h2>hidden</h2>
@@ -97,7 +97,7 @@ export default function GameInfo() {
           <CombinedScorecard pbp={gamePlayByPlay} teamPbp={playByPlayTeams} lineups={gameLineups} />
         </div>
       ) : (
-        <h1>Combined Scorecard Table</h1>
+        <h1>Combined Scorecard Table missing</h1>
       )}
     </div>
   );
