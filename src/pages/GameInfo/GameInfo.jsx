@@ -78,8 +78,8 @@ export default function GameInfo() {
           </h1>
           {/* {gamePlayByPlay.reverse().map(inning => { */}
           {showPbpOrNah ? (
-            gamePlayByPlay.map(inning => {
-              return <PlayByPlay inningData={inning} />;
+            gamePlayByPlay.map((inning, index) => {
+              return <PlayByPlay key={index} inningData={inning} />;
             })
           ) : (
             <h2>hidden</h2>

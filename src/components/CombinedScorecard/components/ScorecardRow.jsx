@@ -8,11 +8,11 @@ export default function ScorecardRow({ player, pbp, teamPbp }) {
       <th>{player.jerseyNumber}</th>
       <th>{player.lastName}</th>
       <th>{player.defensivePosition.positionAbbr}</th>
-      {teamPbp.map(inning => { 
+      {teamPbp.map((inning, index) => { 
         if (inning.battersInvolved.includes(player.playerId)) {
-          return <ScoringCell />
+          return <ScoringCell key={index} />
         } else {
-          return <EmptyCell />
+          return <EmptyCell key={index} />
         }
       })}
     </tr>
