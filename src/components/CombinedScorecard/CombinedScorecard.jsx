@@ -11,27 +11,29 @@ export default function CombinedScorecard({ pbp, teamPbp, lineups }) {
     <div className="scorecards">
       <div className="away-scorecard">
         <table className="away-roster">
-          <tr className="player-columns-categories">
-            {/* jersey number */}
-            <th></th>
-            {/* name */}
-            <th></th>
-            {/* position */}
-            <th></th>
-            {pbp.map((inning, index) => {
-              return <th key={index}>{inning.number}</th>;
+          <tbody>
+            <tr className="player-columns-categories">
+              {/* jersey number */}
+              <th></th>
+              {/* name */}
+              <th></th>
+              {/* position */}
+              <th></th>
+              {pbp.map((inning, index) => {
+                return <th key={index}>{inning.number}</th>;
+              })}
+            </tr>
+            {awayBatters.map(player => {
+              return (
+                <ScorecardRow
+                  key={player.playerId}
+                  player={player}
+                  pbp={pbp}
+                  teamPbp={teamPbp.awayInnings}
+                />
+              );
             })}
-          </tr>
-          {awayBatters.map(player => {
-            return (
-              <ScorecardRow
-                key={player.playerId}
-                player={player}
-                pbp={pbp}
-                teamPbp={teamPbp.awayInnings}
-              />
-            );
-          })}
+          </tbody>
         </table>
       </div>
       <h2>----------------------------------------------------------------</h2>
