@@ -1,12 +1,6 @@
+// The Home page. Has placeholder bits for user accounts for the time being
 import React from "react";
 // import React, { useState } from "react";
-// import {
-//   getSingleGameBoxScore,
-//   getSeasonGamesForATeam,
-//   getStartingLineupForAGame,
-//   getPBPForAGame,
-// } from "../routes/sportradar";
-// import Game from "../components/Game/Game";
 import { Link } from "react-router-dom";
 
 export default function Home() {

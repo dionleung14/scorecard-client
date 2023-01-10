@@ -8,6 +8,7 @@ import SearchPastGames from "./pages/SearchPastGames/SearchPastGames";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 
+// Not sure if this is best practice but I use App.js essentially as a router
 function App() {
   return (
     <Router>
@@ -20,7 +21,7 @@ function App() {
           <Route path="/game-info-:gameId" element={<GameInfo />} />
           <Route path="/pbp" element={<PlayByPlay />} />
           <Route path="/about" element={<About />} />
-          <Route path="/*" element={<Home />} />
+          <Route path="/*" element={<Home />} /> {/* 404 handler */}
         </Routes>
       </div>
     </Router>
