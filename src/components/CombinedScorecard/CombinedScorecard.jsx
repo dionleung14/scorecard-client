@@ -1,3 +1,5 @@
+// This file is the combined scorecard section in the GameInfo page
+
 import React from "react";
 // import PlayerColumns from "./components/PlayerColumns";
 // import ScoringCell from "./components/ScoringCell";
@@ -5,10 +7,11 @@ import ScorecardRow from "./components/ScorecardRow";
 // import ScoringRow from "./components/ScoringRow";
 
 export default function CombinedScorecard({ pbp, teamPbp, lineups }) {
-  let homeBatters = lineups.homeTeam.slice(1, lineups.length);
-  let awayBatters = lineups.awayTeam.slice(1, lineups.length);
+  let homeBatters = lineups.homeTeam.slice(1, lineups.length); // SP is always first player; extract batters with index 1 to the end
+  let awayBatters = lineups.awayTeam.slice(1, lineups.length); // SP is always first player; extract batters with index 1 to the end
   return (
     <div className="scorecards">
+      <h3>Away team</h3>
       <div className="away-scorecard">
         <table className="away-roster">
           <tbody>
@@ -37,6 +40,7 @@ export default function CombinedScorecard({ pbp, teamPbp, lineups }) {
         </table>
       </div>
       <h2>----------------------------------------------------------------</h2>
+      <h3>Home team</h3>
       <div className="home-scorecard">
         <table className="home-roster">
           <tbody>

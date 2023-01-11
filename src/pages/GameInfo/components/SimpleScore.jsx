@@ -1,10 +1,11 @@
+// The simple score with teams, runs, hits, errors
 import React from "react";
 
 export default function SimpleScore(props) {
   const { simpleScore } = props;
   return (
     <div>
-      <h2>Final score</h2>
+      <h2>Simple score</h2>
       <table>
         <tbody>
           <tr>
