@@ -1,9 +1,8 @@
 // This file is the combined scorecard section in the GameInfo page
 
 import React from "react";
-// import PlayerColumns from "./components/PlayerColumns";
-// import ScoringCell from "./components/ScoringCell";
 import ScorecardRow from "./components/ScorecardRow";
+// import PlayerColumns from "./components/PlayerColumns";
 // import ScoringRow from "./components/ScoringRow";
 
 export default function CombinedScorecard({ pbp, teamPbp, lineups }) {
