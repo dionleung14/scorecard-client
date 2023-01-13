@@ -8,6 +8,7 @@ import {
 } from "../../routes/sportradar";
 import BoxScore from "./components/BoxScore";
 import Lineups from "./components/Lineups";
+import StatefulLineups from "./components/StatefulLineups";
 import SimpleScore from "./components/SimpleScore";
 import PlayByPlay from "./components/PlayByPlay";
 import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard";
@@ -20,16 +21,19 @@ export default function GameInfo() {
   const [simpleScore, setSimpleScore] = useState(null);
   const [gamePlayByPlay, setGamePlayByPlay] = useState(null);
   const [playByPlayTeams, setPlayByPlayTeams] = useState(null);
-  const [gameLineups, setGameLineups] = useState(null);
+  const [startingLineups, setStartingLineups] = useState(null);
+  const [statefulLineup, setStatefulLineups] = useState(null);
+  const [lineupChanges, setLineupChanges] = useState(null);
   const getGameInfo = async () => {
     let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
       let playByPlay = await getPBPForAGame(gameId);
       // console.log(playByPlay.lineups)
-      setGameLineups(playByPlay.lineups);
+      setStartingLineups(playByPlay.lineups);
+      setStatefulLineups(playByPlay.lineups);
+      setLineupChanges(playByPlay.lineupChanges);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
-      console.log(playByPlay.scoreablePlaysByTeam)
       setPlayByPlayTeams(playByPlay.scoreablePlaysByTeam);
     }, 1500);
     setGameBoxScore(boxscore);
@@ -44,6 +48,11 @@ export default function GameInfo() {
   //     setGameLineups(gamePlayByPlay.innings[0]);
   //   }
   // }, [gamePlayByPlay]);
+  // useEffect(() => {
+  //   if (startingLineups && startingLineups.length > 0) {
+  //     setStatefulLineups(startingLineups);
+  //   }
+  // }, [startingLineups]);
 
   return (
     <div>
@@ -59,12 +68,12 @@ export default function GameInfo() {
       ) : (
         <h1>Box score</h1>
       )}
-      {gameLineups ? (
+      {startingLineups ? (
         <div>
           <h1>Lineups</h1>
           <div className="lineup-card">
-            <Lineups lineup={gameLineups.awayTeam} team="Away" />
-            <Lineups lineup={gameLineups.homeTeam} team="Home" />
+            <Lineups lineup={startingLineups.awayTeam} team="Away" />
+            <Lineups lineup={startingLineups.homeTeam} team="Home" />
           </div>
         </div>
       ) : (
@@ -91,10 +100,25 @@ export default function GameInfo() {
       ) : (
         <h1>Play by Play</h1>
       )}
-      {gamePlayByPlay && playByPlayTeams && gameLineups ? (
+      {statefulLineup && lineupChanges ? (
+        <div>
+          <h1>Stateful Lineup</h1>
+          <div className="lineup-card">
+            <StatefulLineups lineup={startingLineups.awayTeam} lineupChanges={lineupChanges} team="Away" />
+            <StatefulLineups lineup={startingLineups.homeTeam} lineupChanges={lineupChanges} team="Home" />
+          </div>
+        </div>
+      ) : (
+        <h1>Stateful Lineup loading</h1>
+      )}
+      {gamePlayByPlay && playByPlayTeams && startingLineups ? (
         <div>
           <h1>Combined Scorecard Table</h1>
-          <CombinedScorecard pbp={gamePlayByPlay} teamPbp={playByPlayTeams} lineups={gameLineups} />
+          <CombinedScorecard
+            pbp={gamePlayByPlay}
+            teamPbp={playByPlayTeams}
+            lineups={startingLineups}
+          />
         </div>
       ) : (
         <h1>Combined Scorecard Table missing</h1>

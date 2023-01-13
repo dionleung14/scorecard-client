@@ -38,6 +38,10 @@
   height: 1.3rem;
 }
 
+.removed {
+  text-decoration: line-through;
+}
+
 table * {
   border: solid black 1px;
 }
