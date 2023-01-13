@@ -39,7 +39,7 @@ export default function StatefulLineupRow({ player, removed }) {
         </td>
         <td>
           <p className="removed">
-            {player.preferredName} {player.lastName} {player.playerId}
+            {player.preferredName} {player.lastName}
           </p>
         </td>
         <td className="removed">{defensivePositionMapper[player.positionNumber].positionAbbr}</td>
@@ -53,7 +53,7 @@ export default function StatefulLineupRow({ player, removed }) {
         </td>
         <td>
           <p>
-            {player.preferredName} {player.lastName} {player.playerId}
+            {player.preferredName} {player.lastName}
           </p>
         </td>
         <td>{defensivePositionMapper[player.positionNumber].positionAbbr}</td>
