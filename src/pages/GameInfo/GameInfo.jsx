@@ -104,8 +104,20 @@ export default function GameInfo() {
         <div>
           <h1>Stateful Lineup</h1>
           <div className="lineup-card">
-            <StatefulLineups lineup={startingLineups.awayTeam} lineupChanges={lineupChanges} team="Away" />
-            <StatefulLineups lineup={startingLineups.homeTeam} lineupChanges={lineupChanges} team="Home" />
+            <StatefulLineups
+              lineup={startingLineups.awayTeam}
+              lineupChanges={lineupChanges.lineupChangesEvents}
+              allOutgoingPlayers={lineupChanges.allOutgoingPlayers}
+              pitchingChanges={lineupChanges.pitchingChanges}
+              team="Away"
+            />
+            <StatefulLineups
+              lineup={startingLineups.homeTeam}
+              lineupChanges={lineupChanges.lineupChangesEvents}
+              allOutgoingPlayers={lineupChanges.allOutgoingPlayers}
+              pitchingChanges={lineupChanges.pitchingChanges}
+              team="Home"
+            />
           </div>
         </div>
       ) : (

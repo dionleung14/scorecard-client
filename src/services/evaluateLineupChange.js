@@ -27,8 +27,8 @@ export const evaluateLineupChange = lineupChange => {
   // console.log(lineupChange);
 };
 
-export const didPlayerGetSubbedOut = (player, outgoingPlayersObj) => {
-  if (outgoingPlayersObj.outgoingPlayers.includes(player.playerId)) {
+export const didPlayerGetSubbedOut = (player, outgoingPlayersArr) => {
+  if (outgoingPlayersArr.includes(player.playerId)) {
     return true;
   } else {
     return false;

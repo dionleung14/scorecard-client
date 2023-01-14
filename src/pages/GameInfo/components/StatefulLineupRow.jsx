@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function StatefulLineupRow({ player, removed }) {
+export default function StatefulLineupRow({ player, removed, team }) {
   const defensivePositionMapper = {
     1: { positionName: "Pitcher", positionAbbr: "P" },
     2: { positionName: "Catcher", positionAbbr: "C" },
