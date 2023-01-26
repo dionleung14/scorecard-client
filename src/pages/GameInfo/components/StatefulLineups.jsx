@@ -50,13 +50,20 @@ export default function StatefulLineups({
                 if (subbed) {
                   return (
                     <StatefulLineupRow
+                      key={player.id}
                       player={player}
                       team={team}
                       removed={true}
                     />
                   );
                 } else {
-                  return <StatefulLineupRow player={player} team={team} />;
+                  return (
+                    <StatefulLineupRow
+                      key={player.id}
+                      player={player}
+                      team={team}
+                    />
+                  );
                 }
               })
             : null}
@@ -66,9 +73,14 @@ export default function StatefulLineups({
             <td>
               {pitcher.firstName} {pitcher.lastName}
             </td>
-            <td>{defensivePositionMapper[1].positionAbbr}</td>
+            {/* <td>{defensivePositionMapper[1].positionAbbr}</td> */}
+            <td>SP</td>
           </tr>
-          <PitchingRecords pitchers={pitchingChanges} team={team} />
+          <PitchingRecords
+            startingPitcher={pitcher}
+            pitchers={pitchingChanges}
+            team={team}
+          />
         </tbody>
       </table>
     </div>

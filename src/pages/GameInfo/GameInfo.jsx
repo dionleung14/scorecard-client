@@ -29,8 +29,8 @@ export default function GameInfo() {
     setTimeout(async () => {
       let playByPlay = await getPBPForAGame(gameId);
       // console.log(playByPlay.lineups)
-      setStartingLineups(playByPlay.lineups);
-      setStatefulLineups(playByPlay.lineups);
+      setStartingLineups(playByPlay.startingLineups);
+      setStatefulLineups(playByPlay.startingLineups);
       setLineupChanges(playByPlay.lineupChanges);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
