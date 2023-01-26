@@ -67,6 +67,28 @@ export default function StatefulLineups({
                 }
               })
             : null}
+        </tbody>
+      </table>
+
+
+      <h5>{team} team pitchers</h5>
+      <table>
+        <tbody>
+        <tr>
+            <th>Number</th>
+            <th>Player</th>
+            <th>Position</th>
+            {/* <th>Innings pitched</th>
+            <th>Hits</th>
+            <th>Runs</th>
+            <th>Earned Runs</th>
+            <th>BB</th>
+            <th>K</th>
+            <th>HBP</th>
+            <th>BK</th>
+            <th>WP</th>
+            <th>TBF</th> */}
+          </tr>
           {/* Starting pitchers at the end at index 0 (in state as pitcher) */}
           <tr>
             <td>{pitcher.jerseyNumber}</td>
