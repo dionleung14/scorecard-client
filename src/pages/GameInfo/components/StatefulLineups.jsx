@@ -47,24 +47,14 @@ export default function StatefulLineups({
           {lineup.length > 1
             ? lineup.map(player => {
                 let subbed = didPlayerGetSubbedOut(player, allOutgoingPlayers);
-                if (subbed) {
-                  return (
-                    <StatefulLineupRow
-                      key={player.id}
-                      player={player}
-                      team={team}
-                      removed={true}
-                    />
-                  );
-                } else {
-                  return (
-                    <StatefulLineupRow
-                      key={player.id}
-                      player={player}
-                      team={team}
-                    />
-                  );
-                }
+                return (
+                  <StatefulLineupRow
+                    key={player.id}
+                    player={player}
+                    team={team}
+                    removed={subbed}
+                  />
+                );
               })
             : null}
         </tbody>
