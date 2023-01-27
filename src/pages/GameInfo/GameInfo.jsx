@@ -24,6 +24,7 @@ export default function GameInfo() {
   const [startingLineups, setStartingLineups] = useState(null);
   const [statefulLineup, setStatefulLineups] = useState(null);
   const [lineupChanges, setLineupChanges] = useState(null);
+  const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
   const getGameInfo = async () => {
     let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
@@ -32,6 +33,7 @@ export default function GameInfo() {
       setStartingLineups(playByPlay.startingLineups);
       setStatefulLineups(playByPlay.startingLineups);
       setLineupChanges(playByPlay.lineupChanges);
+      setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions)
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
       setPlayByPlayTeams(playByPlay.scoreablePlaysByTeam);
@@ -105,15 +107,17 @@ export default function GameInfo() {
           <h1>Stateful Lineup</h1>
           <div className="lineup-card">
             <StatefulLineups
-              lineup={startingLineups.awayTeam}
-              lineupChanges={lineupChanges.lineupChangesEvents}
+              startingLineup={startingLineups.awayTeam}
+              battingChanges={lineupChanges.battingChanges}
+              battingLineupsWithSubs={battingLineupsWithSubs.awayTeam}
               allOutgoingPlayers={lineupChanges.allOutgoingPlayers}
               pitchingChanges={lineupChanges.pitchingChanges}
               team="Away"
-            />
+              />
             <StatefulLineups
-              lineup={startingLineups.homeTeam}
-              lineupChanges={lineupChanges.lineupChangesEvents}
+              startingLineup={startingLineups.homeTeam}
+              battingChanges={lineupChanges.battingChanges}
+              battingLineupsWithSubs={battingLineupsWithSubs.homeTeam}
               allOutgoingPlayers={lineupChanges.allOutgoingPlayers}
               pitchingChanges={lineupChanges.pitchingChanges}
               team="Home"

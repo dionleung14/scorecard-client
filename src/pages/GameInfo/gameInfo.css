@@ -38,8 +38,12 @@
   height: 1.3rem;
 }
 
-.removed {
-  text-decoration: line-through;
+.batting-lineups tr:nth-child(odd) {
+  background-color: pink;
+}
+
+.batting-lineups tr:nth-child(even) {
+  background-color: goldenrod;
 }
 
 table * {

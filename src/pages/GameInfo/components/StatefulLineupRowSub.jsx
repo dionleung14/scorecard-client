@@ -1,11 +1,6 @@
 import React from "react";
 
-export default function StatefulLineupRow({
-  player,
-  battingChanges,
-  removed,
-  team,
-}) {
+export default function StatefulLineupRow({ players, removed, team }) {
   const defensivePositionMapper = {
     1: { positionName: "Pitcher", positionAbbr: "P" },
     2: { positionName: "Catcher", positionAbbr: "C" },
@@ -21,32 +16,31 @@ export default function StatefulLineupRow({
     12: { positionName: "Pinch Runner", positionAbbr: "PR" },
   };
 
-  // return (
-  //   <tr>
-  //     <th>{player.jerseyNumber}</th>
-  //     <th>{player.lastName}</th>
-  //     <th>{player.defensivePosition.positionAbbr}</th>
-  //     {teamPbp.map((inning, index) => {
-  //       if (inning.battersInvolved.includes(player.playerId)) {
-  //         return <ScoringCell key={index} />
-  //       } else {
-  //         return <EmptyCell key={index} />
-  //       }
-  //     })}
-  //   </tr>
-  // );
-
   return (
     <tr>
       <td>
-        <p>{player.jerseyNumber}</p>
+        {players.map(player => {
+          return <p>{player.jerseyNumber}</p>;
+        })}
       </td>
       <td>
-        <p>
-          {player.preferredName} {player.lastName}
-        </p>
+        {players.map(player => {
+          return (
+            <p>
+              {player.preferredName} {player.lastName}
+            </p>
+          );
+        })}
       </td>
-      <td>{defensivePositionMapper[player.positionNumber].positionAbbr}</td>
+      <td>
+        {players.map(player => {
+          return (
+            <p>
+              {defensivePositionMapper[player.positionNumber].positionAbbr}
+            </p>
+          );
+        })}
+      </td>
     </tr>
   );
 }
