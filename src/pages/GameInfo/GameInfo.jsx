@@ -134,6 +134,7 @@ export default function GameInfo() {
             pbp={gamePlayByPlay}
             teamPbp={playByPlayTeams}
             lineups={startingLineups}
+            battingLineupsWithSubs={battingLineupsWithSubs}
           />
         </div>
       ) : (

@@ -22,7 +22,6 @@ export default function StatefulLineups({
     setPitcher(true);
   }
 
-  // arrangeBattersByOrder(battingLineupsWithSubs)
   return (
     <div>
       <h2>{team} team lineup</h2>

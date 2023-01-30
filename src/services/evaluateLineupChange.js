@@ -39,7 +39,7 @@ export const arrangeBattersByOrder = battingLineupWithSubs => {
       lineup.push(lineupArr[0]);
     }
   }
-  console.log(lineup);
+  // console.log(lineup);
   return lineup;
 };
 
