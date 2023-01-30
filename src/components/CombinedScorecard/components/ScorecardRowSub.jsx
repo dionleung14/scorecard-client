@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ScoringCell from "./ScoringCell";
 import EmptyCell from "./EmptyCell";
+import { 
+  wasBatterInvolved
+} from "../../../services/scorecardRowSub";
 
-export default function ScorecardRow({ players, pbp, teamPbp }) {
+export default function ScorecardRowSub({ players, pbp, teamPbp }) {
   const [playerIds, setPlayerIds] = useState([]);
   const defensivePositionMapper = {
     1: { positionName: "Pitcher", positionAbbr: "P" },
@@ -22,19 +25,11 @@ export default function ScorecardRow({ players, pbp, teamPbp }) {
   useEffect(() => {
     let playerIdsTemp = [];
     players.forEach(player => {
-      playerIds.push(player.playerId);
+      playerIdsTemp.push(player.playerId);
     });
-    setPlayerIds(...playerIdsTemp)
+    setPlayerIds([...playerIdsTemp]);
   }, []);
 
-  const checkInvolvement = (playerId, battersInvolved) => {
-    if (battersInvolved.includes(playerId)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-  
   return (
     <tr>
       <th>
@@ -58,20 +53,15 @@ export default function ScorecardRow({ players, pbp, teamPbp }) {
           );
         })}
       </th>
-      {teamPbp.map((inning, index) => {
-        if (playerIds.every(checkInvolvement(player, inning.battersInvolved))) {
-          return <ScoringCell key={index} />;
-        } else {
-          return <EmptyCell key={index} />;
-        }
-      })}
-      {/* {teamPbp.map((inning, index) => {
-        if (inning.battersInvolved.includes(player.playerId)) {
-          return <ScoringCell key={index} />;
-        } else {
-          return <EmptyCell key={index} />;
-        }
-      })} */}
+      {playerIds && playerIds.length > 0
+        ? teamPbp.map((inning, index) => {
+            if (wasBatterInvolved(playerIds, inning.battersInvolved)) {
+              return <ScoringCell key={index} />;
+            } else {
+              return <EmptyCell key={index} />;
+            }
+          })
+        : null}
     </tr>
   );
 }
