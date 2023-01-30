@@ -58,35 +58,45 @@ export default function CombinedScorecard({
         </table>
       </div>
       <h2>----------------------------------------------------------------</h2>
+      <div className="home-scorecard">
+        <table className="home-roster">
+          <tbody>
+            <tr className="player-columns-categories">
+              {/* jersey number */}
+              <th></th>
+              {/* name */}
+              <th></th>
+              {/* position */}
+              <th></th>
+              {pbp.map((inning, index) => {
+                return <th key={index}>{inning.number}</th>;
+              })}
+            </tr>
+            {homeBatters.map((player, index) => {
+              if (player.lineupArr && player.lineupArr.length > 0) {
+                return (
+                  <ScorecardRowSub
+                    key={index}
+                    players={player.lineupArr}
+                    pbp={pbp}
+                    teamPbp={teamPbp.homeInnings}
+                  />
+                );
+              } else {
+                return (
+                  <ScorecardRow
+                    key={player.playerId}
+                    player={player}
+                    pbp={pbp}
+                    teamPbp={teamPbp.homeInnings}
+                  />
+                );
+              }
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
 // this goes below the h2 of dashes
-
-      // <div className="home-scorecard">
-      //   <table className="home-roster">
-      //     <tbody>
-      //       <tr className="player-columns-categories">
-      //         {/* jersey number */}
-      //         <th></th>
-      //         {/* name */}
-      //         <th></th>
-      //         {/* position */}
-      //         <th></th>
-      //         {pbp.map((inning, index) => {
-      //           return <th key={index}>{inning.number}</th>;
-      //         })}
-      //       </tr>
-      //       {homeBatters.map(player => {
-      //         return (
-      //           <ScorecardRow
-      //             key={player.playerId}
-      //             player={player}
-      //             pbp={pbp}
-      //             teamPbp={teamPbp.homeInnings}
-      //           />
-      //         );
-      //       })}
-      //     </tbody>
-      //   </table>
-      // </div>
