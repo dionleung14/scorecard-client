@@ -5,14 +5,12 @@ import StatefulLineupRowSub from "./StatefulLineupRowSub";
 import PitchingRecords from "./PitchingRecords";
 
 export default function StatefulLineups({
-  startingLineup,
   battingChanges,
   battingLineupsWithSubs,
-  allOutgoingPlayers,
-  pitchingChanges,
+  pitchersRecords,
   team,
 }) {
-  const [pitcher, setPitcher] = useState(startingLineup[0]);
+  const [pitcher, setPitcher] = useState(pitchersRecords[0]);
   // const [lineup, setLineup] = useState(startingLineup.slice(1, 10));
   const [lineup, setLineup] = useState(arrangeBattersByOrder(battingLineupsWithSubs));
   if (!true) {
@@ -89,12 +87,11 @@ export default function StatefulLineups({
             <td>
               {pitcher.firstName} {pitcher.lastName}
             </td>
-            {/* <td>{defensivePositionMapper[1].positionAbbr}</td> */}
             <td>SP</td>
           </tr>
           <PitchingRecords
             startingPitcher={pitcher}
-            pitchers={pitchingChanges}
+            pitchers={pitchersRecords.slice(1, pitchersRecords.length)}
             team={team}
           />
         </tbody>

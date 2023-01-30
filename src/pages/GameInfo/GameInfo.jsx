@@ -25,6 +25,7 @@ export default function GameInfo() {
   const [statefulLineup, setStatefulLineups] = useState(null);
   const [lineupChanges, setLineupChanges] = useState(null);
   const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
+  const [pitchersRecords, setPitchersRecords] = useState(null);
   const getGameInfo = async () => {
     let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
@@ -37,6 +38,7 @@ export default function GameInfo() {
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
       setPlayByPlayTeams(playByPlay.scoreablePlaysByTeam);
+      setPitchersRecords(playByPlay.pitchersRecords)
     }, 1500);
     setGameBoxScore(boxscore);
   };
@@ -110,16 +112,14 @@ export default function GameInfo() {
               startingLineup={startingLineups.awayTeam}
               battingChanges={lineupChanges.battingChanges}
               battingLineupsWithSubs={battingLineupsWithSubs.awayTeam}
-              allOutgoingPlayers={lineupChanges.allOutgoingPlayers}
-              pitchingChanges={lineupChanges.pitchingChanges}
+              pitchersRecords={pitchersRecords.awayTeam}
               team="Away"
               />
             <StatefulLineups
               startingLineup={startingLineups.homeTeam}
               battingChanges={lineupChanges.battingChanges}
               battingLineupsWithSubs={battingLineupsWithSubs.homeTeam}
-              allOutgoingPlayers={lineupChanges.allOutgoingPlayers}
-              pitchingChanges={lineupChanges.pitchingChanges}
+              pitchersRecords={pitchersRecords.homeTeam}
               team="Home"
             />
           </div>

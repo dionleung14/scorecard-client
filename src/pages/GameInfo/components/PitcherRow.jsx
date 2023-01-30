@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PitcherRow({ pitcherArr, team }) {
+export default function PitcherRow({ pitcher }) {
   const defensivePositionMapper = {
     1: { positionName: "Pitcher", positionAbbr: "P" },
     2: { positionName: "Catcher", positionAbbr: "C" },
@@ -15,15 +15,14 @@ export default function PitcherRow({ pitcherArr, team }) {
     11: { positionName: "Pinch Hitter", positionAbbr: "PH" },
     12: { positionName: "Pinch Runner", positionAbbr: "PR" },
   };
-  return pitcherArr.map(pitchingChangeEvent => {
-    return (
-      <tr key={pitchingChangeEvent.eventId}>
-        <td>{pitchingChangeEvent.incomingPlayer.jerseyNumber}</td>
-        <td>
-          {pitchingChangeEvent.incomingPlayer.firstName} {pitchingChangeEvent.incomingPlayer.lastName}
-        </td>
-        <td>{defensivePositionMapper[1].positionAbbr}</td>
-      </tr>
-    );
-  });
+  return (
+    <tr key={pitcher.sequenceNumber}>
+      <td>{pitcher.jerseyNumber}</td>
+      <td>
+        {pitcher.preferredName}{" "}
+        {pitcher.lastName}
+      </td>
+      <td>{defensivePositionMapper[1].positionAbbr}</td>
+    </tr>
+  );
 }
