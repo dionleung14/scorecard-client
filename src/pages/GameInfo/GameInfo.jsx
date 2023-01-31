@@ -1,9 +1,11 @@
+// This file is a big page that holds pretty much all the functionality of the client for a specific game
+
 import React, { useState } from "react";
 // import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   getPBPForAGame,
-  // setGameLineups,
+  // setGameLineups, // placeholder for the live roster; could leverage it for a generated scorecard?
   getSingleGameBoxScore,
 } from "../../routes/sportradar";
 import BoxScore from "./components/BoxScore";
@@ -11,7 +13,7 @@ import Lineups from "./components/Lineups";
 import StatefulLineups from "./components/StatefulLineups";
 import SimpleScore from "./components/SimpleScore";
 import PlayByPlay from "./components/PlayByPlay";
-import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard";
+import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard"; // placed this outside of the ./components folder because it is very likely this page will be refactored
 import "./gameInfo.css";
 
 export default function GameInfo() {
@@ -65,7 +67,7 @@ export default function GameInfo() {
       {simpleScore ? (
         <SimpleScore simpleScore={simpleScore} />
       ) : (
-        <h1>Final score</h1>
+        <h1>Simple score</h1>
       )}
       {gameBoxScore && gameBoxScore.status !== "canceled" ? (
         <BoxScore gameInfo={gameBoxScore} />
@@ -74,7 +76,7 @@ export default function GameInfo() {
       )}
       {startingLineups ? (
         <div>
-          <h1>Lineups</h1>
+          <h1>Starting Lineups (Lineups component)</h1>
           <div className="lineup-card">
             <Lineups lineup={startingLineups.awayTeam} team="Away" />
             <Lineups lineup={startingLineups.homeTeam} team="Home" />
@@ -89,7 +91,7 @@ export default function GameInfo() {
             Play by Play{" "}
             <button onClick={toggleShowHide}>toggle show/hide</button>
           </h1>
-          {/* {gamePlayByPlay.reverse().map(inning => { */}
+          {/* {gamePlayByPlay.reverse().map(inning => { // could have a toggle button to do reverse chronological, makes more sense for the live scorecard to have that though  */}
           {showPbpOrNah ? (
             gamePlayByPlay.map((inning, index) => {
               return <PlayByPlay key={index} inningData={inning} />;
@@ -97,9 +99,6 @@ export default function GameInfo() {
           ) : (
             <h2>hidden</h2>
           )}
-          {/* {gamePlayByPlay.map(inning => {
-            return <PlayByPlay inningData={inning} />;
-          })} */}
         </div>
       ) : (
         <h1>Play by Play</h1>
@@ -138,7 +137,7 @@ export default function GameInfo() {
           />
         </div>
       ) : (
-        <h1>Combined Scorecard Table missing</h1>
+        <h1>Combined Scorecard</h1>
       )}
     </div>
   );

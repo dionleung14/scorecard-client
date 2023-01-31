@@ -1,3 +1,6 @@
+// This page retrieves past games in a season filtered by team 
+// Using the back button after searching and clicking on a game clears the results
+// Open the game in a new tab?
 import React, { useState } from "react";
 import Game from "../../components/Game/Game";
 import GamesContainer from "../../components/GamesContainer/GamesContainer";
@@ -9,7 +12,7 @@ export default function SearchPastGames() {
   const [displayGames, setDisplayGames] = useState([]); // array to hold games from results
   const [searchPending, setSearchPending] = useState(false); // search pending flag for loading or nah
 
-  // copy of drop down form that updates when search completes so it can be displayed
+  // copy of drop down form that updates when search completes so it can be displayed in a string
   const [displaySearchTerms, setDisplaySearchTerms] = useState({
     year: null,
     team: null,
@@ -26,6 +29,7 @@ export default function SearchPastGames() {
     type: null,
   });
 
+  // form handler for the dropdowns
   const handleChangeAllGamesInSzn = event => {
     setFormAllGamesInSzn({
       ...formAllGamesInSzn,
@@ -33,6 +37,7 @@ export default function SearchPastGames() {
     });
   };
 
+  // submitting the form
   const submission = async event => {
     event.preventDefault();
     if (
@@ -44,7 +49,7 @@ export default function SearchPastGames() {
       let games = await getSeasonGamesForATeam(formAllGamesInSzn); // fetch games
       setDisplayGames(games); // displays games for a given team in a given year
       setDisplaySearchTerms({
-        // set the display results graphic
+        // set the display results graphic/text
         ...displaySearchTerms,
         year: formAllGamesInSzn.year,
         team: formAllGamesInSzn.team,

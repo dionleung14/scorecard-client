@@ -1,4 +1,7 @@
+// This file is the combined scorecard section in the GameInfo page
+
 import React from "react";
+import ScorecardRow from "./components/ScorecardRow";
 // import PlayerColumns from "./components/PlayerColumns";
 // import ScoringCell from "./components/ScoringCell";
 import ScorecardRow from "./components/ScorecardRow";
@@ -19,6 +22,7 @@ export default function CombinedScorecard({
 
   return (
     <div className="scorecards">
+      <h3>Away team</h3>
       <div className="away-scorecard">
         <table className="away-roster">
           <tbody>
@@ -58,6 +62,7 @@ export default function CombinedScorecard({
         </table>
       </div>
       <h2>----------------------------------------------------------------</h2>
+      <h3>Home team</h3>
       <div className="home-scorecard">
         <table className="home-roster">
           <tbody>

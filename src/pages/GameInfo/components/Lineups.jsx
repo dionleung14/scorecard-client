@@ -1,3 +1,5 @@
+// Starting lineups
+// Could use this as a base for the live lineups (live) or scorecard lineups (generated from past game)
 import React, { useState } from "react";
 import { defensivePositionMapper } from "../../../util/constants";
 
@@ -10,7 +12,7 @@ export default function Lineups(props) {
 
   return (
     <div>
-      <h2>{props.team} team lineup</h2>
+      <h2>{props.team} team starting lineup</h2>
       <table>
         <tbody>
           <tr>

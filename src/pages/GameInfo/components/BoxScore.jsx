@@ -1,3 +1,4 @@
+// Long boxscore component
 import React from "react";
 
 export default function BoxScore(props) {
