@@ -99,4 +99,3 @@ export default function CombinedScorecard({
     </div>
   );
 }
-// this goes below the h2 of dashes
