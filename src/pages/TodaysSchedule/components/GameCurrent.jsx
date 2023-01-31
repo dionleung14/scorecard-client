@@ -1,3 +1,5 @@
+// This file contains the Game element that is rendered in the Array.map for Today's Schedule
+// There is also a Game element/component for a schedule that is very similar
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // import { getSingleGameBoxscore } from "../../../routes/sportradar"; // how do i get the score and display it on the preview?
@@ -13,6 +15,7 @@ export default function GameCurrent(props) {
   const { game } = props;
   const date = game.scheduled.split("").slice(0, 10).join("");
 
+  // Could lift this method to a different file
   const displayDate = dateStr => {
     let year = dateStr.split("").slice(0, 4).join("");
     let month = dateStr.split("").slice(5, 7).join("");
@@ -20,6 +23,8 @@ export default function GameCurrent(props) {
     return `${month}/${day}/${year}`;
   };
 
+  // Lift this too possibly
+  // I don't remember why I have homeOrAway as an argument...
   const getLogo = (teamAbbr, homeOrAway) => {
     let teamObj;
     if (homeOrAway === "home") {
@@ -38,6 +43,7 @@ export default function GameCurrent(props) {
     }
   };
 
+  // Generates a paragraph tag with the game status from sportradar
   const generateText = gameStatus => {
     let text = gameStatusTranslator(gameStatus);
     return <p>{text}</p>;

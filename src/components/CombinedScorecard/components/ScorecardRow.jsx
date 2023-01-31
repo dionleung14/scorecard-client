@@ -1,3 +1,4 @@
+// This file represents a complete row in the scorecard, with player info on the left, baseball info on the right
 import React from "react";
 import ScoringCell from "./ScoringCell";
 import EmptyCell from "./EmptyCell";

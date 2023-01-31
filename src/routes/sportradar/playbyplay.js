@@ -1,4 +1,6 @@
+// This file has the routes matching the play-by-play endpoints on the server
 import { LOCAL_BASE_URL } from "../../util/constants";
+
 // get the play-by-play data for a given game
 export const getPBPForAGame = async gameId => {
   console.log("getting play by play for a game");

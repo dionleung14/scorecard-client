@@ -1,3 +1,4 @@
+// Styling component for games
 import React from 'react'
 import "./gamesContainer.css";
 

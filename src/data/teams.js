@@ -1,3 +1,5 @@
+// This file provides an array of team data, especially the logo and insignia sprites
+// Could merge this with the backend version? Server can't send image data through JSON though
 const teams = [
   {
     name: "Diamondbacks",

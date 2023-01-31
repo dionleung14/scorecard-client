@@ -1,3 +1,4 @@
+// This component deals with the years available to select for getting games in a season
 import React from "react";
 
 export default function SelectionYearsRange(props) {

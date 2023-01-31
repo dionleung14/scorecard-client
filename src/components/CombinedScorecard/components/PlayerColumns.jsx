@@ -1,3 +1,4 @@
+// Legacy code migrated to ScorecardRow, deletion pending
 import React from 'react'
 
 export default function PlayerColumns({player}) {

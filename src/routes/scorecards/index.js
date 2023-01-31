@@ -1,3 +1,6 @@
+// This file is unused; could remove this folder entirely
+// There is a method called getSingleGameExtendedSummary from /routes/sportradar/game
+
 // get single game extended summary data
 export const getSingleGameExtendedSummary = async gameId => {
   console.log("getting extended summary for a single game");
