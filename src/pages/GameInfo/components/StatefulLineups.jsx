@@ -5,7 +5,6 @@ import StatefulLineupRowSub from "./StatefulLineupRowSub";
 import PitchingRecords from "./PitchingRecords";
 
 export default function StatefulLineups({
-  battingChanges,
   battingLineupsWithSubs,
   pitchersRecords,
   team,
@@ -44,7 +43,6 @@ export default function StatefulLineups({
                       key={index}
                       players={player.lineupArr}
                       team={team}
-                      battingChanges={battingChanges}
                     />
                   );
                 } else {

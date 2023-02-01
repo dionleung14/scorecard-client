@@ -109,14 +109,12 @@ export default function GameInfo() {
           <div className="lineup-card">
             <StatefulLineups
               startingLineup={startingLineups.awayTeam}
-              battingChanges={lineupChanges.battingChanges}
               battingLineupsWithSubs={battingLineupsWithSubs.awayTeam}
               pitchersRecords={pitchersRecords.awayTeam}
               team="Away"
               />
             <StatefulLineups
               startingLineup={startingLineups.homeTeam}
-              battingChanges={lineupChanges.battingChanges}
               battingLineupsWithSubs={battingLineupsWithSubs.homeTeam}
               pitchersRecords={pitchersRecords.homeTeam}
               team="Home"
