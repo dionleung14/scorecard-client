@@ -50,3 +50,15 @@ export const didPlayerGetSubbedOut = (player, outgoingPlayersArr) => {
     return false;
   }
 };
+
+export const createBattedAroundColumn = inningOfPlaysObj => {
+  let inningColumns = Math.ceil(inningOfPlaysObj.plays.length / 9);
+  let inningColumnHeaders = [];
+  for (let i = 0; i < inningColumns; i++) {
+    inningColumnHeaders.push({
+      inning: inningOfPlaysObj.inning,
+      columnNumber: i + 1,
+    });
+  }
+  console.log("js script" + inningColumnHeaders);
+};

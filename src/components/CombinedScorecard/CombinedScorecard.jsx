@@ -5,8 +5,11 @@ import React from "react";
 // import ScoringCell from "./components/ScoringCell";
 import ScorecardRow from "./components/ScorecardRow";
 import ScorecardRowSub from "./components/ScorecardRowSub";
-import { arrangeBattersByOrder } from "../../services/evaluateLineupChange";
-// import ScoringRow from "./components/ScoringRow";
+import {
+  arrangeBattersByOrder,
+  createBattedAroundColumn,
+} from "../../services/evaluateLineupChange";
+import "./combinedScorecard.css";
 
 export default function CombinedScorecard({
   pbp,
@@ -22,18 +25,24 @@ export default function CombinedScorecard({
   return (
     <div className="scorecards">
       <h3>Away team</h3>
-      <div className="away-scorecard">
+      <div className="scorecard away-scorecard">
         <table className="away-roster">
           <tbody>
             <tr className="player-columns-categories">
               {/* jersey number */}
-              <th></th>
+              <th>Number</th>
               {/* name */}
-              <th></th>
+              <th>Player</th>
               {/* position */}
-              <th></th>
-              {pbp.map((inning, index) => {
-                return <th key={index}>{inning.number}</th>;
+              <th>Position</th>
+              {teamPbp.awayInnings.map((inning, index) => {
+                if (inning.columns && inning.columns.length > 0) {
+                  return inning.columns.map(inningCol => {
+                    return <th key={inningCol.columnNumber}>{inningCol.inning}</th>;
+                  }) 
+                } else {
+                  return <th key={index}>{inning.inning}</th>;
+                }
               })}
             </tr>
             {awayBatters.map((player, index) => {
@@ -62,7 +71,7 @@ export default function CombinedScorecard({
       </div>
       <h2>----------------------------------------------------------------</h2>
       <h3>Home team</h3>
-      <div className="home-scorecard">
+      <div className="scorecard home-scorecard">
         <table className="home-roster">
           <tbody>
             <tr className="player-columns-categories">
