@@ -27,6 +27,8 @@ export const evaluateLineupChange = lineupChange => {
   // console.log(lineupChange);
 };
 
+// arranges batters into an array of length 9, batters grouped by batting order
+// put this on the server
 export const arrangeBattersByOrder = battingLineupWithSubs => {
   let lineup = [];
   for (let battingOrder = 1; battingOrder < 10; battingOrder++) {
@@ -39,7 +41,6 @@ export const arrangeBattersByOrder = battingLineupWithSubs => {
       lineup.push(lineupArr[0]);
     }
   }
-  // console.log(lineup);
   return lineup;
 };
 

@@ -14,11 +14,8 @@ import "./combinedScorecard.css";
 export default function CombinedScorecard({
   pbp,
   teamPbp,
-  lineups,
   battingLineupsWithSubs,
 }) {
-  // let homeBatters = lineups.homeTeam.slice(1, lineups.length);
-  // let awayBatters = lineups.awayTeam.slice(1, lineups.length);
   let homeBatters = arrangeBattersByOrder(battingLineupsWithSubs.homeTeam);
   let awayBatters = arrangeBattersByOrder(battingLineupsWithSubs.awayTeam);
 

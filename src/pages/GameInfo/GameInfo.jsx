@@ -22,25 +22,22 @@ export default function GameInfo() {
   const [gameBoxScore, setGameBoxScore] = useState(null);
   const [simpleScore, setSimpleScore] = useState(null);
   const [gamePlayByPlay, setGamePlayByPlay] = useState(null);
-  const [playByPlayTeams, setPlayByPlayTeams] = useState(null);
+  const [scorecardPlays, setScorecardPlays] = useState(null);
   const [startingLineups, setStartingLineups] = useState(null);
   const [statefulLineup, setStatefulLineups] = useState(null);
-  const [lineupChanges, setLineupChanges] = useState(null);
   const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
   const [pitchersRecords, setPitchersRecords] = useState(null);
   const getGameInfo = async () => {
     let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
       let playByPlay = await getPBPForAGame(gameId);
-      // console.log(playByPlay.lineups)
       setStartingLineups(playByPlay.startingLineups);
       setStatefulLineups(playByPlay.startingLineups);
-      setLineupChanges(playByPlay.lineupChanges);
-      setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions)
+      setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
-      setPlayByPlayTeams(playByPlay.scoreablePlaysByTeam);
-      setPitchersRecords(playByPlay.pitchersRecords)
+      setScorecardPlays(playByPlay.scorecardPlays);
+      setPitchersRecords(playByPlay.pitchersRecords);
     }, 1500);
     setGameBoxScore(boxscore);
   };
@@ -103,7 +100,7 @@ export default function GameInfo() {
       ) : (
         <h1>Play by Play</h1>
       )}
-      {statefulLineup && lineupChanges ? (
+      {statefulLineup && battingLineupsWithSubs && pitchersRecords ? (
         <div>
           <h1>Stateful Lineup</h1>
           <div className="lineup-card">
@@ -112,7 +109,7 @@ export default function GameInfo() {
               battingLineupsWithSubs={battingLineupsWithSubs.awayTeam}
               pitchersRecords={pitchersRecords.awayTeam}
               team="Away"
-              />
+            />
             <StatefulLineups
               startingLineup={startingLineups.homeTeam}
               battingLineupsWithSubs={battingLineupsWithSubs.homeTeam}
@@ -124,13 +121,12 @@ export default function GameInfo() {
       ) : (
         <h1>Stateful Lineup loading</h1>
       )}
-      {gamePlayByPlay && playByPlayTeams && startingLineups ? (
+      {gamePlayByPlay && scorecardPlays && battingLineupsWithSubs ? (
         <div>
           <h1>Combined Scorecard Table</h1>
           <CombinedScorecard
             pbp={gamePlayByPlay}
-            teamPbp={playByPlayTeams}
-            lineups={startingLineups}
+            teamPbp={scorecardPlays}
             battingLineupsWithSubs={battingLineupsWithSubs}
           />
         </div>
