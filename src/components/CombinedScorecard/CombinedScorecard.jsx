@@ -5,9 +5,9 @@ import React from "react";
 // import ScoringCell from "./components/ScoringCell";
 import ScorecardRow from "./components/ScorecardRow";
 import ScorecardRowSub from "./components/ScorecardRowSub";
-import {
-  createBattedAroundColumn,
-} from "../../services/evaluateLineupChange";
+// import {
+//   createBattedAroundColumn,
+// } from "../../services/evaluateLineupChange";
 import "./combinedScorecard.css";
 
 export default function CombinedScorecard({
