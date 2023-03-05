@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ScoringCell from "./ScoringCell";
 import EmptyCell from "./EmptyCell";
 import { 
@@ -16,6 +16,9 @@ export default function ScorecardRowSub({ players, pbp, teamPbp }) {
   //   });
   //   setPlayerIds([...playerIdsTemp]);
   // }, []);
+  useEffect(() => {
+    setPlayerIds([]);
+  }, []);
 
   return (
     <tr>
