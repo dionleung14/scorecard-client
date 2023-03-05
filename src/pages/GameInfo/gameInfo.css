@@ -25,6 +25,10 @@
 .inning-top-or-bottom {
   text-align: left;
 }
+.scorecards-dion {
+  display: flex;
+  justify-content: space-around;
+}
 
 /* .scorecards {
   display: flex;

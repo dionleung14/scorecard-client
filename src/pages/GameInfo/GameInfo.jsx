@@ -20,6 +20,7 @@ import Dion from "../../components/Dion/Dion";
 export default function GameInfo() {
   const { gameId } = useParams();
   const [showPbpOrNah, setShowPbpOrNah] = useState(true);
+  const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
   const [gameBoxScore, setGameBoxScore] = useState(null);
   const [simpleScore, setSimpleScore] = useState(null);
   const [gamePlayByPlay, setGamePlayByPlay] = useState(null);
@@ -45,8 +46,11 @@ export default function GameInfo() {
     setGameBoxScore(boxscore);
   };
 
-  const toggleShowHide = () => {
+  const toggleShowHidePbp = () => {
     setShowPbpOrNah(!showPbpOrNah);
+  };
+  const toggleShowHideCombinedSC = () => {
+    setShowCombinedScoreCards(!showCombinedScoreCards);
   };
   // useEffect(() => {
   //   console.log("game PBP state has changed");
@@ -89,7 +93,7 @@ export default function GameInfo() {
         <div>
           <h1>
             Play by Play{" "}
-            <button onClick={toggleShowHide}>toggle show/hide</button>
+            <button onClick={toggleShowHidePbp}>toggle show/hide</button>
           </h1>
           {/* {gamePlayByPlay.reverse().map(inning => { // could have a toggle button to do reverse chronological, makes more sense for the live scorecard to have that though  */}
           {showPbpOrNah ? (
@@ -126,26 +130,30 @@ export default function GameInfo() {
       )}
       {gamePlayByPlay && scorecardPlays && battingLineupsWithSubs ? (
         <div>
-          <h1>Combined Scorecard Table</h1>
-          <CombinedScorecard
-            pbp={gamePlayByPlay}
-            teamPbp={scorecardPlays}
-            battingLineupsWithSubs={battingLineupsWithSubs}
-          />
+          <h1>
+            Combined Scorecard Table{" "}
+            <button onClick={toggleShowHideCombinedSC}>toggle show/hide (this is bugged so please hide)</button>
+          </h1>
+          {showCombinedScoreCards ? (
+            <CombinedScorecard
+              pbp={gamePlayByPlay}
+              teamPbp={scorecardPlays}
+              battingLineupsWithSubs={battingLineupsWithSubs}
+            />
+          ) : (
+            <h2>hidden</h2>
+          )}
         </div>
       ) : (
         <h1>Combined Scorecard</h1>
       )}
       {dion && scorecardPlays ? (
         <div>
-          <h1>Dion's Scorecard Table</h1>
-          <Dion
-            dion={dion}
-            teamPbp={scorecardPlays}
-          />
+          <h1>Debugged Scorecard Table</h1>
+          <Dion dion={dion} teamPbp={scorecardPlays} />
         </div>
       ) : (
-        <h1>Dion's Scorecard</h1>
+        <h1>Debugged Scorecard</h1>
       )}
     </div>
   );
