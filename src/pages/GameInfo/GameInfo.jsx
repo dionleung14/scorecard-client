@@ -10,35 +10,47 @@ import {
 } from "../../routes/sportradar";
 import BoxScore from "./components/BoxScore";
 import Lineups from "./components/Lineups";
+import StatefulLineups from "./components/StatefulLineups";
 import SimpleScore from "./components/SimpleScore";
 import PlayByPlay from "./components/PlayByPlay";
 import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard"; // placed this outside of the ./components folder because it is very likely this page will be refactored
 import "./gameInfo.css";
+import Dion from "../../components/Dion/Dion";
 
 export default function GameInfo() {
-  const { gameId } = useParams(); // React hook to grab the game id from the url parameters; used to query for the data from sportradar
-  const [showPbpOrNah, setShowPbpOrNah] = useState(true); // intended to be for development only since pbp is so long; toggle visibility
-  const [gameBoxScore, setGameBoxScore] = useState(null); // longer score with runs per inning
-  const [simpleScore, setSimpleScore] = useState(null); // simple score with runs/hits/errors
-  const [gamePlayByPlay, setGamePlayByPlay] = useState(null); // the big array of play by play data
-  const [playByPlayTeams, setPlayByPlayTeams] = useState(null); // the pbp data but separated by team
-  const [gameLineups, setGameLineups] = useState(null); // starting lineups
-
-  const getGameInfo = async () => { // Hopefully this can be done automatically w/ useEffect or something
-    let boxscore = await getSingleGameBoxScore(gameId); // could possibly get a boxscore from pbp data and avoid the 1.5s delay
+  const { gameId } = useParams();
+  const [showPbpOrNah, setShowPbpOrNah] = useState(true);
+  const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
+  const [gameBoxScore, setGameBoxScore] = useState(null);
+  const [simpleScore, setSimpleScore] = useState(null);
+  const [gamePlayByPlay, setGamePlayByPlay] = useState(null);
+  const [scorecardPlays, setScorecardPlays] = useState(null);
+  const [startingLineups, setStartingLineups] = useState(null);
+  const [statefulLineup, setStatefulLineups] = useState(null);
+  const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
+  const [pitchersRecords, setPitchersRecords] = useState(null);
+  const [dion, setDion] = useState(null);
+  const getGameInfo = async () => {
+    let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
-      let playByPlay = await getPBPForAGame(gameId); 
-      setGameLineups(playByPlay.lineups); // currently only does starting lineups
+      let playByPlay = await getPBPForAGame(gameId);
+      setStartingLineups(playByPlay.startingLineups);
+      setStatefulLineups(playByPlay.startingLineups);
+      setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
       setGamePlayByPlay(playByPlay.scoreablePlays);
-      console.log(playByPlay.scoreablePlaysByTeam)
-      setPlayByPlayTeams(playByPlay.scoreablePlaysByTeam);
+      setScorecardPlays(playByPlay.scorecardPlays);
+      setPitchersRecords(playByPlay.pitchersRecords);
+      setDion(playByPlay.dion);
     }, 1500);
     setGameBoxScore(boxscore);
   };
 
-  const toggleShowHide = () => {
+  const toggleShowHidePbp = () => {
     setShowPbpOrNah(!showPbpOrNah);
+  };
+  const toggleShowHideCombinedSC = () => {
+    setShowCombinedScoreCards(!showCombinedScoreCards);
   };
   // useEffect(() => {
   //   console.log("game PBP state has changed");
@@ -46,6 +58,11 @@ export default function GameInfo() {
   //     setGameLineups(gamePlayByPlay.innings[0]);
   //   }
   // }, [gamePlayByPlay]);
+  // useEffect(() => {
+  //   if (startingLineups && startingLineups.length > 0) {
+  //     setStatefulLineups(startingLineups);
+  //   }
+  // }, [startingLineups]);
 
   return (
     <div>
@@ -61,12 +78,12 @@ export default function GameInfo() {
       ) : (
         <h1>Box score</h1>
       )}
-      {gameLineups ? (
+      {startingLineups ? (
         <div>
           <h1>Starting Lineups (Lineups component)</h1>
           <div className="lineup-card">
-            <Lineups lineup={gameLineups.awayTeam} team="Away" />
-            <Lineups lineup={gameLineups.homeTeam} team="Home" />
+            <Lineups lineup={startingLineups.awayTeam} team="Away" />
+            <Lineups lineup={startingLineups.homeTeam} team="Home" />
           </div>
         </div>
       ) : (
@@ -76,7 +93,7 @@ export default function GameInfo() {
         <div>
           <h1>
             Play by Play{" "}
-            <button onClick={toggleShowHide}>toggle show/hide</button>
+            <button onClick={toggleShowHidePbp}>toggle show/hide</button>
           </h1>
           {/* {gamePlayByPlay.reverse().map(inning => { // could have a toggle button to do reverse chronological, makes more sense for the live scorecard to have that though  */}
           {showPbpOrNah ? (
@@ -90,13 +107,53 @@ export default function GameInfo() {
       ) : (
         <h1>Play by Play</h1>
       )}
-      {gamePlayByPlay && playByPlayTeams && gameLineups ? (
+      {statefulLineup && battingLineupsWithSubs && pitchersRecords ? (
         <div>
-          <h1>Combined Scorecard</h1>
-          <CombinedScorecard pbp={gamePlayByPlay} teamPbp={playByPlayTeams} lineups={gameLineups} />
+          <h1>Stateful Lineup</h1>
+          <div className="lineup-card">
+            <StatefulLineups
+              startingLineup={startingLineups.awayTeam}
+              battingLineupsWithSubs={battingLineupsWithSubs.awayLineup}
+              pitchersRecords={pitchersRecords.awayTeam}
+              team="Away"
+            />
+            <StatefulLineups
+              startingLineup={startingLineups.homeTeam}
+              battingLineupsWithSubs={battingLineupsWithSubs.homeLineup}
+              pitchersRecords={pitchersRecords.homeTeam}
+              team="Home"
+            />
+          </div>
+        </div>
+      ) : (
+        <h1>Stateful Lineup loading</h1>
+      )}
+      {gamePlayByPlay && scorecardPlays && battingLineupsWithSubs ? (
+        <div>
+          <h1>
+            Combined Scorecard Table{" "}
+            <button onClick={toggleShowHideCombinedSC}>toggle show/hide (this is bugged so please hide)</button>
+          </h1>
+          {showCombinedScoreCards ? (
+            <CombinedScorecard
+              pbp={gamePlayByPlay}
+              teamPbp={scorecardPlays}
+              battingLineupsWithSubs={battingLineupsWithSubs}
+            />
+          ) : (
+            <h2>hidden</h2>
+          )}
         </div>
       ) : (
         <h1>Combined Scorecard</h1>
+      )}
+      {dion && scorecardPlays ? (
+        <div>
+          <h1>Debugged Scorecard Table</h1>
+          <Dion dion={dion} teamPbp={scorecardPlays} />
+        </div>
+      ) : (
+        <h1>Debugged Scorecard</h1>
       )}
     </div>
   );
