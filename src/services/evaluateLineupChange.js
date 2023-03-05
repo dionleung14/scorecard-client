@@ -29,20 +29,20 @@ export const evaluateLineupChange = lineupChange => {
 
 // arranges batters into an array of length 9, batters grouped by batting order
 // put this on the server
-export const arrangeBattersByOrder = battingLineupWithSubs => {
-  let lineup = [];
-  for (let battingOrder = 1; battingOrder < 10; battingOrder++) {
-    let lineupArr = battingLineupWithSubs.filter(player => {
-      return player.order === battingOrder;
-    });
-    if (lineupArr.length > 1) {
-      lineup.push({ lineupArr });
-    } else {
-      lineup.push(lineupArr[0]);
-    }
-  }
-  return lineup;
-};
+// export const arrangeBattersByOrder = battingLineupWithSubs => {
+//   let lineup = [];
+//   for (let battingOrder = 1; battingOrder < 10; battingOrder++) {
+//     let lineupArr = battingLineupWithSubs.filter(player => {
+//       return player.order === battingOrder;
+//     });
+//     if (lineupArr.length > 1) {
+//       lineup.push({ lineupArr });
+//     } else {
+//       lineup.push(lineupArr[0]);
+//     }
+//   }
+//   return lineup;
+// };
 
 export const didPlayerGetSubbedOut = (player, outgoingPlayersArr) => {
   if (outgoingPlayersArr.includes(player.playerId)) {

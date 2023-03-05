@@ -6,7 +6,6 @@ import React from "react";
 import ScorecardRow from "./components/ScorecardRow";
 import ScorecardRowSub from "./components/ScorecardRowSub";
 import {
-  arrangeBattersByOrder,
   createBattedAroundColumn,
 } from "../../services/evaluateLineupChange";
 import "./combinedScorecard.css";
@@ -15,9 +14,13 @@ export default function CombinedScorecard({
   pbp,
   teamPbp,
   battingLineupsWithSubs,
+  dion
 }) {
-  let homeBatters = arrangeBattersByOrder(battingLineupsWithSubs.homeTeam);
-  let awayBatters = arrangeBattersByOrder(battingLineupsWithSubs.awayTeam);
+  let homeBatters = battingLineupsWithSubs.homeLineup;
+  let awayBatters = battingLineupsWithSubs.awayLineup;
+
+  // console.log(homeBatters)
+  // console.log(awayBatters)
 
   return (
     <div className="scorecards">
@@ -26,17 +29,17 @@ export default function CombinedScorecard({
         <table className="away-roster">
           <tbody>
             <tr className="player-columns-categories">
-              {/* jersey number */}
               <th>Number</th>
-              {/* name */}
               <th>Player</th>
-              {/* position */}
               <th>Position</th>
+              {/* Scorecard row inning headers */}
               {teamPbp.awayInnings.map((inning, index) => {
                 if (inning.columns && inning.columns.length > 0) {
                   return inning.columns.map(inningCol => {
-                    return <th key={inningCol.columnNumber}>{inningCol.inning}</th>;
-                  }) 
+                    return (
+                      <th key={inningCol.columnNumber}>{inningCol.inning}</th>
+                    );
+                  });
                 } else {
                   return <th key={index}>{inning.inning}</th>;
                 }
@@ -72,12 +75,9 @@ export default function CombinedScorecard({
         <table className="home-roster">
           <tbody>
             <tr className="player-columns-categories">
-              {/* jersey number */}
-              <th></th>
-              {/* name */}
-              <th></th>
-              {/* position */}
-              <th></th>
+              <th>Number</th>
+              <th>Player</th>
+              <th>Position</th>
               {pbp.map((inning, index) => {
                 return <th key={index}>{inning.number}</th>;
               })}

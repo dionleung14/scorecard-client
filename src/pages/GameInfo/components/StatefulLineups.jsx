@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { didPlayerGetSubbedOut, arrangeBattersByOrder } from "../../../services/evaluateLineupChange";
+import { didPlayerGetSubbedOut } from "../../../services/evaluateLineupChange";
 import StatefulLineupRow from "./StatefulLineupRow";
 import StatefulLineupRowSub from "./StatefulLineupRowSub";
 import PitchingRecords from "./PitchingRecords";
@@ -11,7 +11,7 @@ export default function StatefulLineups({
 }) {
   const [pitcher, setPitcher] = useState(pitchersRecords[0]);
   // const [lineup, setLineup] = useState(startingLineup.slice(1, 10));
-  const [lineup, setLineup] = useState(arrangeBattersByOrder(battingLineupsWithSubs));
+  const [lineup, setLineup] = useState(battingLineupsWithSubs);
   if (!true) {
     // placeholder to "use" setLineup to avoid deployment bugs
     setLineup(true);
@@ -31,7 +31,7 @@ export default function StatefulLineups({
             <th>Player</th>
             <th>Position</th>
           </tr>
-          {lineup.length > 1
+          {lineup && lineup.length > 1
             ? lineup.map((player, index) => {
                 // let subbed = didPlayerGetSubbedOut(player, allOutgoingPlayers);
                 // if (subbed) {

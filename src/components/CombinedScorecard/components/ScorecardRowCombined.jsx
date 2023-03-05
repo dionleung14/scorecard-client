@@ -4,7 +4,7 @@ import ScoringCell from "./ScoringCell";
 import EmptyCell from "./EmptyCell";
 import { defensivePositionMapper } from "../../../util/constants";
 
-export default function ScorecardRow({ player, pbp, teamPbp }) {
+export default function ScorecardRowCombnied({ player, pbp, teamPbp }) {
   return (
     <tr>
       <th>{player.jerseyNumber}</th>

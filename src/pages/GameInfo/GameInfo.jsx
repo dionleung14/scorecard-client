@@ -15,6 +15,7 @@ import SimpleScore from "./components/SimpleScore";
 import PlayByPlay from "./components/PlayByPlay";
 import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard"; // placed this outside of the ./components folder because it is very likely this page will be refactored
 import "./gameInfo.css";
+import Dion from "../../components/Dion/Dion";
 
 export default function GameInfo() {
   const { gameId } = useParams();
@@ -27,6 +28,7 @@ export default function GameInfo() {
   const [statefulLineup, setStatefulLineups] = useState(null);
   const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
   const [pitchersRecords, setPitchersRecords] = useState(null);
+  const [dion, setDion] = useState(null);
   const getGameInfo = async () => {
     let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
@@ -38,6 +40,7 @@ export default function GameInfo() {
       setGamePlayByPlay(playByPlay.scoreablePlays);
       setScorecardPlays(playByPlay.scorecardPlays);
       setPitchersRecords(playByPlay.pitchersRecords);
+      setDion(playByPlay.dion);
     }, 1500);
     setGameBoxScore(boxscore);
   };
@@ -106,13 +109,13 @@ export default function GameInfo() {
           <div className="lineup-card">
             <StatefulLineups
               startingLineup={startingLineups.awayTeam}
-              battingLineupsWithSubs={battingLineupsWithSubs.awayTeam}
+              battingLineupsWithSubs={battingLineupsWithSubs.awayLineup}
               pitchersRecords={pitchersRecords.awayTeam}
               team="Away"
             />
             <StatefulLineups
               startingLineup={startingLineups.homeTeam}
-              battingLineupsWithSubs={battingLineupsWithSubs.homeTeam}
+              battingLineupsWithSubs={battingLineupsWithSubs.homeLineup}
               pitchersRecords={pitchersRecords.homeTeam}
               team="Home"
             />
@@ -132,6 +135,17 @@ export default function GameInfo() {
         </div>
       ) : (
         <h1>Combined Scorecard</h1>
+      )}
+      {dion && scorecardPlays ? (
+        <div>
+          <h1>Dion's Scorecard Table</h1>
+          <Dion
+            dion={dion}
+            teamPbp={scorecardPlays}
+          />
+        </div>
+      ) : (
+        <h1>Dion's Scorecard</h1>
       )}
     </div>
   );
