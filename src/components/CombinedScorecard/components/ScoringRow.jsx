@@ -1,3 +1,5 @@
+// Legacy code migrated to ScorecardRow, deletion pending
+
 import React from "react";
 import ScoringCell from "./ScoringCell";
 // import EmptyCell from "./EmptyCell";

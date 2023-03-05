@@ -1,0 +1,12 @@
+.scorecard {
+  display: flex;
+  justify-content: center;
+}
+
+.scoring-cell {
+  background-color: pink;
+}
+
+.empty-cell {
+  background-color: darkkhaki;
+}

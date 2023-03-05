@@ -1,4 +1,6 @@
+// This file has the routes matching the game endpoints on the server
 import { LOCAL_BASE_URL } from "../../util/constants";
+
 // get single day data
 export const getGamesInADay = async date => {
   console.log("getting schedule for games in a day");

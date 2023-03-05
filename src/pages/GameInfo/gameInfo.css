@@ -25,6 +25,10 @@
 .inning-top-or-bottom {
   text-align: left;
 }
+.scorecards-dion {
+  display: flex;
+  justify-content: space-around;
+}
 
 /* .scorecards {
   display: flex;
@@ -38,6 +42,14 @@
   height: 1.3rem;
 }
 
-table * {
+.batting-lineups tr:nth-child(odd) {
+  background-color: pink;
+}
+
+.batting-lineups tr:nth-child(even) {
+  background-color: goldenrod;
+}
+
+table, th, td, tr {
   border: solid black 1px;
 }

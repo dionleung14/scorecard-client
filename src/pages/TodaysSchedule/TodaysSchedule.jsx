@@ -1,3 +1,6 @@
+// This page should display all games scheduled to be played today
+// Currently has to be triggered manually because of some error with useEffect()
+
 import React, { useState } from "react";
 // import React, { useState, useEffect } from "react";
 import GameCurrent from "./components/GameCurrent";
