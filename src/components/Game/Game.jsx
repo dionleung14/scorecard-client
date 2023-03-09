@@ -107,7 +107,7 @@ export default function Game(props) {
         </button>
       ) : (
         <button className="game-info">
-          <Link to={`/game-info-${game.id}`}>Game info</Link>
+          <Link to={`/game-info-${game.id}`} target="_blank">Game info</Link>
         </button>
       )}
     </div>
