@@ -3,6 +3,6 @@ import React from 'react'
 
 export default function EmptyCell() {
   return (
-    <td className='empty-cell'>--</td>
+    <td className='scorecard-cell empty-cell'>--</td>
   )
 }
