@@ -3,6 +3,6 @@ import React from 'react'
 
 export default function ScoringCell({scoringEvent}) {
   return (
-    <td className='scoring-cell'>X</td>
+    <td className='scorecard-cell scoring-cell'>X</td>
   )
 }

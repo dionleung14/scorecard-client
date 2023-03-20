@@ -3,6 +3,18 @@
   justify-content: center;
 }
 
+.scorecard table{
+  /* color: blue */
+}
+
+.scorecard-inning-header {
+  width: 3rem;
+}
+
+.scorecard-cell {
+  color:white;
+}
+
 .scoring-cell {
   background-color: pink;
 }

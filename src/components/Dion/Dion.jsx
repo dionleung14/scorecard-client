@@ -22,11 +22,11 @@ export default function Dion({ dion, teamPbp }) {
                   if (inning.columns && inning.columns.length > 0) {
                     return inning.columns.map(inningCol => {
                       return (
-                        <th key={inningCol.columnNumber}>{inningCol.inning}</th>
+                        <th className="scorecard-inning-header" key={inningCol.columnNumber}>{inningCol.inning}</th>
                       );
                     });
                   } else {
-                    return <th key={index}>{inning.inning}</th>;
+                    return <th className="scorecard-inning-header" key={index}>{inning.inning}</th>;
                   }
                 })}
               </tr>
@@ -57,11 +57,11 @@ export default function Dion({ dion, teamPbp }) {
                   if (inning.columns && inning.columns.length > 0) {
                     return inning.columns.map(inningCol => {
                       return (
-                        <th key={inningCol.columnNumber}>{inningCol.inning}</th>
+                        <th className="scorecard-inning-header" key={inningCol.columnNumber}>{inningCol.inning}</th>
                       );
                     });
                   } else {
-                    return <th key={index}>{inning.inning}</th>;
+                    return <th className="scorecard-inning-header" key={index}>{inning.inning}</th>;
                   }
                 })}
               </tr>
