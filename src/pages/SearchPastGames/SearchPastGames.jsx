@@ -95,7 +95,7 @@ export default function SearchPastGames() {
       <form onSubmit={submission} onReset={clearForm}>
         <SelectionYearsRange
           startYear="2016"
-          endYear="2022"
+          endYear="2023"
           handleChange={handleChangeAllGamesInSzn}
         />
         <select
