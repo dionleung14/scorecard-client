@@ -121,6 +121,7 @@ export default function SearchPastGames() {
           <option value="PRE">Preseason</option>
           <option value="REG">Regular season</option>
           <option value="PST">Postseason</option>
+          <option value="AST">All-Star Game</option>
         </select>
         <input type="submit" value="Search" />
         {formAllGamesInSzn.year ||
