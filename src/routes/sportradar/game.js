@@ -6,8 +6,14 @@ export const getGamesInADay = async date => {
   console.log("getting schedule for games in a day");
   if (process.env.REACT_APP_ENVIRONMENT === "LOCAL_CLIENT") {
     console.log("using local server on 8080");
+    const { year, month, day } = date;
     let games = fetch(`${LOCAL_BASE_URL}/sportradar/game/day`, {
       method: "POST",
+      body: JSON.stringify({
+        year,
+        month,
+        day,
+      }),
       headers: {
         "Content-Type": "application/json",
       },

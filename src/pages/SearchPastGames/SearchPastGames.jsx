@@ -62,30 +62,6 @@ export default function SearchPastGames() {
     }
   };
 
-  const getSavedData = async event => {
-    event.preventDefault();
-    if (
-      formAllGamesInSzn.year !== null &&
-      formAllGamesInSzn.type !== null &&
-      formAllGamesInSzn.team !== null
-    ) {
-      setSearchPending(true); // toggle search flag
-      let games = await getSeasonGamesForATeam({...formAllGamesInSzn, savedData: true}); // fetch games
-      setDisplayGames(games); // displays games for a given team in a given year
-      setDisplaySearchTerms({
-        // set the display results graphic
-        ...displaySearchTerms,
-        year: formAllGamesInSzn.year,
-        team: formAllGamesInSzn.team,
-        type: formAllGamesInSzn.type,
-      });
-      setSearchPending(false); // toggle search flag
-      generateSearchResultsString(formAllGamesInSzn);
-    } else {
-      window.alert("Please fill out the form completely"); // alert user to fill out form
-    }
-  }
-
   // clear out the stateful form
   const clearForm = () => {
     setFormAllGamesInSzn({
@@ -147,7 +123,6 @@ export default function SearchPastGames() {
           <option value="PST">Postseason</option>
         </select>
         <input type="submit" value="Search" />
-        <button onClick={getSavedData}>Search from saved data</button>
         {formAllGamesInSzn.year ||
         formAllGamesInSzn.team ||
         formAllGamesInSzn.type ? (
