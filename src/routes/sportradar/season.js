@@ -4,7 +4,7 @@ import { LOCAL_BASE_URL } from "../../util/constants";
 // get all games in a season for a given team
 export const getSeasonGamesForATeam = async searchTerms => {
   console.log("fetching games in a season for a team");
-  if (process.env.REACT_APP_ENVIRONMENT === "LOCAL_CLIENT") {
+  /*if (process.env.REACT_APP_ENVIRONMENT === "LOCAL_CLIENT") {
     console.log("using local server on 8080");
     const { year, team, type: season } = searchTerms;
     // The line of code (destructuring searchTerms) above is equivalent to the following 3 lines:
@@ -28,12 +28,15 @@ export const getSeasonGamesForATeam = async searchTerms => {
       return parsed;
     });
     return games;
-  } else {
-    const { year, team, type: season } = searchTerms;
-    const savedData = searchTerms.savedData || false;
-    console.log("fetching games in a season for a team");
-    const url = await process.env.REACT_APP_SERVER_URL;
-    let games = fetch(`${url}sportradar/season/team`, {
+  } else {*/
+  const { year, team, type: season } = searchTerms;
+  const savedData = searchTerms.savedData || false;
+  console.log("fetching games in a season for a team");
+  // const url = await process.env.REACT_APP_SERVER_URL;
+  // let games = fetch(`${url}sportradar/season/team`, {
+  let games = fetch(
+    `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/season/team`,
+    {
       method: "POST",
       body: JSON.stringify({
         year,
@@ -44,10 +47,16 @@ export const getSeasonGamesForATeam = async searchTerms => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(async response => {
+    }
+  ).then(async response => {
+    if (response.status === 200) {
       let parsed = await response.json();
       return parsed;
-    });
-    return games;
-  }
+    } else if (response.status === 403) {
+      // console.log("uh oh");
+      return null;
+    }
+  });
+  return games;
+  // }
 };
