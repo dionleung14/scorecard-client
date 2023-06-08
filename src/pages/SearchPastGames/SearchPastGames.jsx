@@ -1,4 +1,4 @@
-// This page retrieves past games in a season filtered by team 
+// This page retrieves past games in a season filtered by team
 // Using the back button after searching and clicking on a game clears the results
 // Open the game in a new tab?
 import React, { useState } from "react";
@@ -11,6 +11,7 @@ import SelectionYearsRange from "./components/SelectionYearsRange";
 export default function SearchPastGames() {
   const [displayGames, setDisplayGames] = useState([]); // array to hold games from results
   const [searchPending, setSearchPending] = useState(false); // search pending flag for loading or nah
+  const [errorLoading, setErrorLoading] = useState(false); // error message
 
   // copy of drop down form that updates when search completes so it can be displayed in a string
   const [displaySearchTerms, setDisplaySearchTerms] = useState({
@@ -47,7 +48,12 @@ export default function SearchPastGames() {
     ) {
       setSearchPending(true); // toggle search flag
       let games = await getSeasonGamesForATeam(formAllGamesInSzn); // fetch games
-      setDisplayGames(games); // displays games for a given team in a given year
+      if (games !== null && games.length > 0) {
+        setDisplayGames(games); // displays games for a given team in a given year
+      } else {
+        setSearchPending(false); // toggle search flag
+        setErrorLoading(true);
+      }
       setDisplaySearchTerms({
         // set the display results graphic/text
         ...displaySearchTerms,
@@ -130,6 +136,7 @@ export default function SearchPastGames() {
           <input type="reset" value="Reset form" />
         ) : null}
       </form>
+      {errorLoading ? <h3>Error: please contact dioncleung@gmail.com for more information</h3> : null}
       {searchPending ? (
         <h5>Searching</h5>
       ) : !searchPending && displayGames.length > 0 ? (
