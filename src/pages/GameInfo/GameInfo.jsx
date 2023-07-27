@@ -128,7 +128,7 @@ export default function GameInfo() {
       ) : (
         <h1>Stateful Lineup loading</h1>
       )}
-      {gamePlayByPlay && scorecardPlays && battingLineupsWithSubs ? (
+      {/* {gamePlayByPlay && scorecardPlays && battingLineupsWithSubs ? (
         <div>
           <h1>
             Combined Scorecard Table{" "}
@@ -146,7 +146,7 @@ export default function GameInfo() {
         </div>
       ) : (
         <h1>Combined Scorecard</h1>
-      )}
+      )} */}
       {dion && scorecardPlays ? (
         <div>
           <h1>Debugged Scorecard Table</h1>
