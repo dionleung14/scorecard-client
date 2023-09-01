@@ -32,7 +32,7 @@ export default function ScorecardRowDion({ order, players, innings, idx }) {
       </th>
       {innings.map(inning => {
           if (inning.involved === true) {
-            return <ScoringCell />;
+            return <ScoringCell scoringEvent={inning.scoringOutcome}/>;
           } else {
             return <EmptyCell />;
           }
