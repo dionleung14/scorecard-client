@@ -12,6 +12,7 @@ export default function TodaysSchedule() {
   const [displayGames, setDisplayGames] = useState([]);
 
   // get games scheduled to play today
+  // local server will get games scheduled on 4/21/2021
   const loadGames = async () => {
     let now = new Date(Date.now());
     let day = now.getDate()
@@ -24,17 +25,23 @@ export default function TodaysSchedule() {
     setDisplayGames(schedule)
   };
 
-  // get games on 4/21/21
-  const loadGamesFromFile = async () => {
-    let schedule = await getGamesInADay();
-    setDisplayGames(schedule)
-  };
+  // const loadGamesFromFile = async () => {
+  //   let now = new Date(Date.now());
+  //   let day = now.getDate()
+  //   let month = now.getMonth() + 1
+  //   let year = now.getFullYear()
+  //   let today = {
+  //     day, month, year
+  //   }
+  //   let schedule = await getGamesInADay(today);
+  //   setDisplayGames(schedule)
+  // };
 
   return (
     <div>
       <h3>Today's Schedule</h3>
-      <button onClick={loadGames}>Load games today</button>
-      <button onClick={loadGamesFromFile}>Load games from file (4/21/21)</button>
+      <button onClick={loadGames}>Find games today</button>
+      {/* <button onClick={loadGamesFromFile}>Find games from the past (you know the date)</button> */}
       {displayGames.length > 0 ? (
         <GamesContainer>
         {displayGames.map(game => {
