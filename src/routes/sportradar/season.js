@@ -12,7 +12,8 @@ export const getSeasonGamesForATeam = async searchTerms => {
     // const team = searchTerms.team
     // const season = searchTerms.type
     const savedData = searchTerms.savedData || false;
-    let games = fetch(`${LOCAL_BASE_URL}/sportradar/season/team`, {
+    // let games = fetch(`${LOCAL_BASE_URL}/sportradar/season/team`, {
+    let games = fetch(`${LOCAL_BASE_URL}/sportradar/schedule/team`, {
       method: "POST",
       body: JSON.stringify({
         year,
@@ -35,6 +36,7 @@ export const getSeasonGamesForATeam = async searchTerms => {
     // const url = await process.env.REACT_APP_SERVER_URL;
     // let games = fetch(`${url}sportradar/season/team`, {
     let games = fetch(
+      // `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/schedule/team`,
       `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/season/team`,
       {
         method: "POST",

@@ -7,7 +7,8 @@ export const getGamesInADay = async date => {
   if (process.env.REACT_APP_ENVIRONMENT === "LOCAL_CLIENT") {
     console.log("using local server on 8080");
     const { year, month, day } = date;
-    let games = fetch(`${LOCAL_BASE_URL}/sportradar/game/day`, {
+    let games = fetch(`${LOCAL_BASE_URL}/sportradar/schedule/day`, {
+      // let games = fetch(`${LOCAL_BASE_URL}/sportradar/game/day`, {
       method: "POST",
       body: JSON.stringify({
         year,
@@ -35,6 +36,7 @@ export const getGamesInADay = async date => {
     console.log("hitting deployed server on AWS/Heroku");
     const { year, month, day } = date;
     const url = await process.env.REACT_APP_SERVER_URL;
+    // let games = fetch(`${url}sportradar/schedule/day`, {
     let games = fetch(`${url}sportradar/game/day`, {
       method: "POST",
       body: JSON.stringify({
@@ -60,6 +62,7 @@ export const getGamesInADay = async date => {
       });
     return games;
   } else {
+    // let games = fetch("sportradar/schedule/day", {
     let games = fetch("sportradar/game/day", {
       method: "POST",
       headers: {
