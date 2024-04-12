@@ -21,6 +21,8 @@ export default function GameInfo() {
   const { gameId } = useParams();
   // toggle for showing and hiding the play by play text
   const [showPbpOrNah, setShowPbpOrNah] = useState(true);
+
+  // toggle for showing and hiding the scorecards
   const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
   const [gameBoxScore, setGameBoxScore] = useState(null);
   const [simpleScore, setSimpleScore] = useState(null);

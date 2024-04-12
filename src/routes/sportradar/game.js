@@ -91,7 +91,8 @@ export const getSingleGameBoxScore = async gameId => {
   if (process.env.REACT_APP_ENVIRONMENT === "LOCAL_CLIENT") {
     console.log("using local server on 8080");
     let scores = fetch(
-      `${LOCAL_BASE_URL}/sportradar/game/game-info/boxscore/${gameId}`
+      // `${LOCAL_BASE_URL}/sportradar/game/game-info/boxscore/${gameId}`
+      `${LOCAL_BASE_URL}/sportradar/pbp/game-info/boxscore/${gameId}`
     ).then(async response => {
       if (response.status === 202) {
         console.log("boxscore data is from file");
@@ -106,6 +107,7 @@ export const getSingleGameBoxScore = async gameId => {
     const url = await process.env.REACT_APP_SERVER_URL;
     let scores = fetch(
       `${url}sportradar/game/game-info/boxscore/${gameId}`
+      // `${url}sportradar/pbp/game-info/boxscore/${gameId}`
     ).then(async response => {
       if (response.status === 202) {
         console.log("boxscore data is from file");
