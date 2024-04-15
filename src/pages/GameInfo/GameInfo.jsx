@@ -19,7 +19,10 @@ import Dion from "../../components/Dion/Dion";
 
 export default function GameInfo() {
   const { gameId } = useParams();
+  // toggle for showing and hiding the play by play text
   const [showPbpOrNah, setShowPbpOrNah] = useState(true);
+
+  // toggle for showing and hiding the scorecards
   const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
   const [gameBoxScore, setGameBoxScore] = useState(null);
   const [simpleScore, setSimpleScore] = useState(null);
@@ -101,7 +104,7 @@ export default function GameInfo() {
               return <PlayByPlay key={index} inningData={inning} />;
             })
           ) : (
-            <h2>hidden</h2>
+            <h2>Play by Play text is hidden</h2>
           )}
         </div>
       ) : (
@@ -126,9 +129,9 @@ export default function GameInfo() {
           </div>
         </div>
       ) : (
-        <h1>Stateful Lineup loading</h1>
+        <h1>Stateful Lineup</h1>
       )}
-      {gamePlayByPlay && scorecardPlays && battingLineupsWithSubs ? (
+      {/* {gamePlayByPlay && scorecardPlays && battingLineupsWithSubs ? (
         <div>
           <h1>
             Combined Scorecard Table{" "}
@@ -146,14 +149,21 @@ export default function GameInfo() {
         </div>
       ) : (
         <h1>Combined Scorecard</h1>
-      )}
+      )} */}
       {dion && scorecardPlays ? (
         <div>
-          <h1>Debugged Scorecard Table</h1>
-          <Dion dion={dion} teamPbp={scorecardPlays} />
+          <h1>
+            Scorecard Table
+            <button onClick={toggleShowHideCombinedSC}>toggle show/hide</button>
+          </h1>
+          {showCombinedScoreCards ? (
+            <Dion dion={dion} teamPbp={scorecardPlays} />
+          ) : (
+            <h2>Scorecards are hidden</h2>
+          )}
         </div>
       ) : (
-        <h1>Debugged Scorecard</h1>
+        <h1>Scorecard</h1>
       )}
     </div>
   );

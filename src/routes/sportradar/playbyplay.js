@@ -18,6 +18,7 @@ export const getPBPForAGame = async gameId => {
         console.log("data is from api");
       }
       let parsed = await response.json();
+      // console.log(parsed.startingLineups.homeTeam[0].defensivePosition);
       console.log(parsed);
       return parsed;
     });

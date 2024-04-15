@@ -15,7 +15,7 @@ export default function SelectionYearsRange(props) {
       defaultValue="Choose season year"
       onChange={props.handleChange}>
         <option disabled>Choose season year</option>
-      {iterableYears.map(year => {
+      {iterableYears.reverse().map(year => {
         return (
           <option value={year} key={year}>
             {year}
