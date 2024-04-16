@@ -99,6 +99,10 @@ export default function SearchPastGames() {
     });
   };
 
+  const clearSearchResults = () => {
+    setDisplayGames([]);
+  };
+
   // const searchForAllStarGame = () => {
 
   // }
@@ -119,7 +123,8 @@ export default function SearchPastGames() {
         <h5>Searching</h5>
       ) : !searchPending && displayGames.length > 0 ? (
         <h5>
-          {searchString} ({displayGames.length} games):
+          {searchString} ({displayGames.length} games):{" "}
+          <button onClick={clearSearchResults}>Clear results</button>
         </h5>
       ) : null}
       {displayGames.length > 0 ? (
