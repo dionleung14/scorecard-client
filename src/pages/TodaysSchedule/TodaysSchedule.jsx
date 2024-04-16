@@ -1,56 +1,56 @@
 // This page should display all games scheduled to be played today
-// Currently has to be triggered manually because of some error with useEffect()
 
-import React, { useState } from "react";
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import GameCurrent from "./components/GameCurrent";
 import GamesContainer from "../../components/GamesContainer/GamesContainer";
 import { getGamesInADay } from "../../routes/sportradar";
-import './todaysSchedule.css'
+import "./todaysSchedule.css";
 
 export default function TodaysSchedule() {
-  const [displayGames, setDisplayGames] = useState([]);
+  const [displayGames, setDisplayGames] = useState([]); // stateful array of games played today
+  const [isFetchingGames, setIsFetchingGames] = useState(true); // stateful boolean for fetching games
 
   // get games scheduled to play today
   // local server will get games scheduled on 4/21/2021
   const loadGames = async () => {
     let now = new Date(Date.now());
-    let day = now.getDate()
-    let month = now.getMonth() + 1
-    let year = now.getFullYear()
+    let day = now.getDate();
+    let month = now.getMonth() + 1;
+    let year = now.getFullYear();
     let today = {
-      day, month, year
-    }
+      day,
+      month,
+      year,
+    };
     let schedule = await getGamesInADay(today);
-    setDisplayGames(schedule)
+    setDisplayGames(schedule);
+    setIsFetchingGames(false);
   };
 
-  // const loadGamesFromFile = async () => {
-  //   let now = new Date(Date.now());
-  //   let day = now.getDate()
-  //   let month = now.getMonth() + 1
-  //   let year = now.getFullYear()
-  //   let today = {
-  //     day, month, year
-  //   }
-  //   let schedule = await getGamesInADay(today);
-  //   setDisplayGames(schedule)
-  // };
-
+  // load games on page load after 1 second
+  useEffect(() => {
+    setTimeout(() => {
+      loadGames();
+    }, 1000);
+  }, []);
+  
   return (
     <div>
       <h3>Today's Schedule</h3>
-      <button onClick={loadGames}>Find games today</button>
-      {/* <button onClick={loadGamesFromFile}>Find games from the past (you know the date)</button> */}
-      {displayGames.length > 0 ? (
+      {/* <button onClick={loadGames}>Find games today</button> */}
+      {displayGames.length > 0 && isFetchingGames === false ? (
         <GamesContainer>
-        {displayGames.map(game => {
-          return <GameCurrent game={game} key={game.id} />;
-        })}
+          {displayGames.map(game => {
+            return <GameCurrent game={game} key={game.id} />;
+          })}
         </GamesContainer>
       ) : (
-        <h1>no games in state</h1>
+        <h1>Loading today's games...</h1>
       )}
+      {/* need additional conditionals to display this, like is this being accessed during off season? */}
+      {isFetchingGames === false && !displayGames ? (
+        <h1>Something went wrong, try reloading the page?</h1>
+      ) : null}
     </div>
   );
 }
