@@ -7,7 +7,12 @@ export default function PlayByPlay(props) {
   return (
     <div className="inning-whole">
       <h3 className="inning-number">{inningData.number}</h3>
-      <div className="inning-top">
+      <div
+        className="inning-top"
+        style={{
+          color: `#${inningData.awayTeam.secondary}`,
+          backgroundColor: `#${inningData.awayTeam.primary}`,
+        }}>
         <h5 className="inning-top-or-bottom">Top</h5>
         <ol>
           {inningData.top.map(inningEvent => {
@@ -20,7 +25,12 @@ export default function PlayByPlay(props) {
         </ol>
       </div>
       {inningData.bottom.length > 0 ? (
-        <div className="inning-bottom">
+        <div
+          className="inning-bottom"
+          style={{
+            color: `#${inningData.homeTeam.secondary}`,
+            backgroundColor: `#${inningData.homeTeam.primary}`,
+          }}>
           <h5 className="inning-top-or-bottom">Bottom</h5>
           <ol>
             {inningData.bottom.map(inningEvent => {

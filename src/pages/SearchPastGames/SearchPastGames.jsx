@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import Game from "../../components/Game/Game";
 import GamesContainer from "../../components/GamesContainer/GamesContainer";
 import { getSeasonGamesForATeam } from "../../routes";
-import teams from "../../data/teams";
-import SelectionYearsRange from "./components/SelectionYearsRange";
 import SearchForm from "./components/SearchForm";
+import Error from "./components/Error";
+import SearchResultsString from "./components/SearchResultsString";
 import { generateSearchResultsString } from "../../services/schedule/scheduleUtil";
 
 export default function SearchPastGames() {
@@ -116,16 +116,15 @@ export default function SearchPastGames() {
         onChange={handleChangeAllGamesInSzn}
         statefulForm={formAllGamesInSzn}
       />
-      {errorLoading ? (
-        <h3>Error: please contact dioncleung@gmail.com for more information</h3>
-      ) : null}
+      {errorLoading ? <Error /> : null}
       {searchPending ? (
         <h5>Searching</h5>
       ) : !searchPending && displayGames.length > 0 ? (
-        <h5>
-          {searchString} ({displayGames.length} games):{" "}
-          <button onClick={clearSearchResults}>Clear results</button>
-        </h5>
+        <SearchResultsString
+          searchResults={searchString}
+          numberOfGames={displayGames.length}
+          clearSearchFunction={clearSearchResults}
+        />
       ) : null}
       {displayGames.length > 0 ? (
         <GamesContainer>
