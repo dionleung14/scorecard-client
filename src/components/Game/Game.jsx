@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 // import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { getSingleGameBoxscore } from "../../routes/sportradar"; // how do i get the score and display it on the preview?
+// import { getSingleGameBoxscore } from "../../routes"; // how do i get the score and display it on the preview?
 import "./game.css";
 import teams from "../../data/teams";
 

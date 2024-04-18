@@ -7,7 +7,7 @@ import {
   getPBPForAGame,
   // setGameLineups, // placeholder for the live roster; could leverage it for a generated scorecard?
   getSingleGameBoxScore,
-} from "../../routes/sportradar";
+} from "../../routes";
 import BoxScore from "./components/BoxScore";
 import Lineups from "./components/Lineups";
 import StatefulLineups from "./components/StatefulLineups";

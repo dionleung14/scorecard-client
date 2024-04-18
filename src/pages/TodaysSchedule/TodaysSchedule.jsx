@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import GameCurrent from "./components/GameCurrent";
 import GamesContainer from "../../components/GamesContainer/GamesContainer";
-import { getGamesInADay } from "../../routes/sportradar";
+import { getGamesInADay } from "../../routes";
 import "./todaysSchedule.css";
 
 export default function TodaysSchedule() {
@@ -28,6 +28,7 @@ export default function TodaysSchedule() {
   };
 
   // load games on page load after 1 second
+  // TODO: investigate why this runs twice
   useEffect(() => {
     setTimeout(() => {
       loadGames();

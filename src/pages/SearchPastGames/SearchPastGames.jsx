@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Game from "../../components/Game/Game";
 import GamesContainer from "../../components/GamesContainer/GamesContainer";
-import { getSeasonGamesForATeam } from "../../routes/sportradar";
+import { getSeasonGamesForATeam } from "../../routes";
 import teams from "../../data/teams";
 import SelectionYearsRange from "./components/SelectionYearsRange";
 import SearchForm from "./components/SearchForm";
