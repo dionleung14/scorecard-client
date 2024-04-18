@@ -22,8 +22,9 @@ export const getSingleGameBoxScore = async gameId => {
   } else if (gameId) {
     const url = await process.env.REACT_APP_SERVER_URL;
     let scores = fetch(
-      `${url}sportradar/game/game-info/boxscore/${gameId}`
+      // `${url}sportradar/game/game-info/boxscore/${gameId}`
       // `${url}sportradar/pbp/game-info/boxscore/${gameId}`
+      `${url}pbp/game-info/boxscore/${gameId}`
     ).then(async response => {
       if (response.status === 202) {
         console.log("boxscore data is from file");
@@ -61,7 +62,8 @@ export const getPBPForAGame = async gameId => {
     return playByPlay;
   } else if (gameId) {
     const url = await process.env.REACT_APP_SERVER_URL;
-    let playByPlay = fetch(`${url}sportradar/pbp/${gameId}`, {
+    // let playByPlay = fetch(`${url}sportradar/pbp/${gameId}`, {
+    let playByPlay = fetch(`${url}pbp/${gameId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

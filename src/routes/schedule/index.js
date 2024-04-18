@@ -13,7 +13,7 @@ export const getSeasonGamesForATeam = async searchTerms => {
     // const season = searchTerms.type
     const savedData = searchTerms.savedData || false;
     // let games = fetch(`${LOCAL_BASE_URL}/sportradar/season/team`, {
-    let games = fetch(`${LOCAL_BASE_URL}/sportradar/schedule/team`, {
+    let games = fetch(`${LOCAL_BASE_URL}/schedule/team`, {
       method: "POST",
       body: JSON.stringify({
         year,
@@ -36,8 +36,8 @@ export const getSeasonGamesForATeam = async searchTerms => {
     // const url = await process.env.REACT_APP_SERVER_URL;
     // let games = fetch(`${url}sportradar/season/team`, {
     let games = fetch(
-      // `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/schedule/team`,
-      `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/season/team`,
+      // `https://scorecard-server-heroku-deploy.herokuapp.com/schedule/team`,
+      `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/season/team`, // TODO: delete this and uncomment above line
       {
         method: "POST",
         body: JSON.stringify({
@@ -69,7 +69,7 @@ export const getGamesInADay = async date => {
   if (process.env.REACT_APP_ENVIRONMENT === "LOCAL_CLIENT") {
     console.log("using local server on 8080");
     const { year, month, day } = date;
-    let games = fetch(`${LOCAL_BASE_URL}/sportradar/schedule/day`, {
+    let games = fetch(`${LOCAL_BASE_URL}/schedule/day`, {
       // let games = fetch(`${LOCAL_BASE_URL}/sportradar/game/day`, {
       method: "POST",
       body: JSON.stringify({
@@ -98,8 +98,9 @@ export const getGamesInADay = async date => {
     console.log("hitting deployed server on AWS/Heroku");
     const { year, month, day } = date;
     const url = await process.env.REACT_APP_SERVER_URL;
-    // let games = fetch(`${url}sportradar/schedule/day`, {
+    // let games = fetch(`${url}schedule/day`, {
     let games = fetch(`${url}sportradar/game/day`, {
+      // TODO: delete this and uncomment above line
       method: "POST",
       body: JSON.stringify({
         year,
