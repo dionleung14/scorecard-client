@@ -9,10 +9,12 @@ import teams from "../../../data/teams";
 
 export default function GameCurrent(props) {
   const [score, setScore] = useState(null);
-  if (!true) { // placeholder to "use" setScore to avoid deployment bugs
-    setScore(true)
+  if (!true) {
+    // placeholder to "use" setScore to avoid deployment bugs
+    setScore(true);
   }
   const { game } = props;
+  // Could lift this to a function that returns a string
   const date = game.scheduled.split("").slice(0, 10).join("");
 
   // Could lift this method to a different file
@@ -66,7 +68,11 @@ export default function GameCurrent(props) {
               color: "white",
               backgroundColor: `#${game.away.colors.primary}`,
             }}>
-            <img className="logo" alt={`${game.away.name}-logo`} src={getLogo(game.away.abbr, "away")} />
+            <img
+              className="logo"
+              alt={`${game.away.name}-logo`}
+              src={getLogo(game.away.abbr, "away")}
+            />
             {game.away.abbr} {score ? score.away : null}
           </div>
           <div
@@ -74,7 +80,11 @@ export default function GameCurrent(props) {
               color: "white",
               backgroundColor: `#${game.home.colors.primary}`,
             }}>
-            <img className="logo" alt={`${game.home.name}-logo`} src={getLogo(game.home.abbr, "home")} />
+            <img
+              className="logo"
+              alt={`${game.home.name}-logo`}
+              src={getLogo(game.home.abbr, "home")}
+            />
             {game.home.abbr}
             {score ? score.home : null}
           </div>
@@ -91,7 +101,9 @@ export default function GameCurrent(props) {
         </div>
       )}
       {generateText(game.status)}
-      <Link to={`/game-info-${game.id}`} target="_blank">Game info</Link>
+      <Link to={`/game-info-${game.id}`} target="_blank">
+        Game info
+      </Link>
     </div>
   );
 }

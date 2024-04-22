@@ -1,5 +1,5 @@
 import React from "react";
-import SelectionYearsRange from "./SelectionYearsRange";
+import SearchFormSelectionYearsRange from "./SearchFormSelectionYearsRange";
 import teams from "../../../data/teams";
 
 export default function SearchForm({
@@ -11,7 +11,7 @@ export default function SearchForm({
 
   return (
     <form onSubmit={onSubmit} onReset={onReset}>
-      <SelectionYearsRange
+      <SearchFormSelectionYearsRange
         startYear="2016"
         endYear="2024"
         handleChange={onChange}

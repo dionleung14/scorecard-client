@@ -14,6 +14,7 @@ export default function Game(props) {
     setScore(true);
   }
   const { game } = props;
+  // Could lift this to a function that returns a string
   const date = game.scheduled.split("").slice(0, 10).join("");
 
   // Could lift this method to a different file

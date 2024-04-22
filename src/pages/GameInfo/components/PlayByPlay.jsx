@@ -10,8 +10,8 @@ export default function PlayByPlay(props) {
       <div
         className="inning-top"
         style={{
-          color: `#${inningData.awayTeam.secondary}`,
-          backgroundColor: `#${inningData.awayTeam.primary}`,
+          color: `#${inningData.awayTeamColors.secondary}`,
+          backgroundColor: `#${inningData.awayTeamColors.primary}`,
         }}>
         <h5 className="inning-top-or-bottom">Top</h5>
         <ol>
@@ -28,8 +28,8 @@ export default function PlayByPlay(props) {
         <div
           className="inning-bottom"
           style={{
-            color: `#${inningData.homeTeam.secondary}`,
-            backgroundColor: `#${inningData.homeTeam.primary}`,
+            color: `#${inningData.homeTeamColors.secondary}`,
+            backgroundColor: `#${inningData.homeTeamColors.primary}`,
           }}>
           <h5 className="inning-top-or-bottom">Bottom</h5>
           <ol>
