@@ -34,19 +34,20 @@ export default function GameInfo() {
   const [pitchersRecords, setPitchersRecords] = useState(null);
   const [dion, setDion] = useState(null);
   const getGameInfo = async () => {
-    let boxscore = await getSingleGameBoxScore(gameId);
+    // let boxscore = await getSingleGameBoxScore(gameId);
     setTimeout(async () => {
       let playByPlay = await getPBPForAGame(gameId);
       setStartingLineups(playByPlay.startingLineups);
       setStatefulLineups(playByPlay.startingLineups);
       setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
       setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
-      setGamePlayByPlay(playByPlay.scoreablePlays);
+      setGamePlayByPlay(playByPlay.recap);
       setScorecardPlays(playByPlay.scorecardPlays);
       setPitchersRecords(playByPlay.pitchersRecords);
       setDion(playByPlay.dion);
+      setGameBoxScore(playByPlay.boxscore);
     }, 1500);
-    setGameBoxScore(boxscore);
+    // setGameBoxScore(boxscore);
   };
 
   const toggleShowHidePbp = () => {

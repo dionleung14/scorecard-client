@@ -13,6 +13,8 @@ export const gameStatusTranslator = gameStatus => {
       return "Weather delay";
     case "fdelay":
       return "facility delay";
+    case "postponed":
+      return "Postponed";
     default:
       return "Error";
   }

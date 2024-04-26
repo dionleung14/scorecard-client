@@ -16,6 +16,7 @@ export const getSingleGameBoxScore = async gameId => {
         console.log("boxscore data is from api");
       }
       let parsed = await response.json();
+      console.log(parsed);
       return parsed;
     });
     return scores;

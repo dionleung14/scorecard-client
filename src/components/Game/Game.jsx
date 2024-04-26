@@ -61,41 +61,41 @@ export default function Game(props) {
       ) : (
         <p className="date">{displayDate(date)}</p>
       )}
-      {game.away.colors && game.home.colors ? (
+      {game.awayTeam.colors && game.homeTeam.colors ? (
         <div className="team-boxscore">
           <div
             style={{
               color: "white",
-              backgroundColor: `#${game.away.colors.primary}`,
+              backgroundColor: `#${game.awayTeam.colors.primary}`,
             }}>
             <img
               className="logo"
-              alt={`${game.away.name}-logo`}
-              src={getLogo(game.away.abbr, "away")}
+              alt={`${game.awayTeam.name}-logo`}
+              src={getLogo(game.awayTeam.abbr, "away")}
             />
-            {game.away.abbr} {score ? score.away : null}
+            {game.awayTeam.abbr} {score ? score.away : null}
           </div>
           <div
             style={{
               color: "white",
-              backgroundColor: `#${game.home.colors.primary}`,
+              backgroundColor: `#${game.homeTeam.colors.primary}`,
             }}>
             <img
               className="logo"
-              alt={`${game.home.name}-logo`}
-              src={getLogo(game.home.abbr, "home")}
+              alt={`${game.homeTeam.name}-logo`}
+              src={getLogo(game.homeTeam.abbr, "home")}
             />
-            {game.home.abbr}
+            {game.homeTeam.abbr}
             {score ? score.home : null}
           </div>
         </div>
       ) : (
         <div>
           <p>
-            {game.away.abbr} {score ? score.away : null}
+            {game.awayTeam.abbr} {score ? score.away : null}
           </p>
           <p>
-            {game.home.abbr}
+            {game.homeTeam.abbr}
             {score ? score.home : null}
           </p>
         </div>
