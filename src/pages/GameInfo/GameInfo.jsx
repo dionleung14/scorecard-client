@@ -26,11 +26,9 @@ export default function GameInfo() {
   // toggle for showing and hiding the scorecards
   const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
   const [gameBoxScore, setGameBoxScore] = useState(null);
-  const [simpleScore, setSimpleScore] = useState(null);
   const [gamePlayByPlay, setGamePlayByPlay] = useState(null);
   const [scorecardPlays, setScorecardPlays] = useState(null);
   const [startingLineups, setStartingLineups] = useState(null);
-  const [statefulLineup, setStatefulLineups] = useState(null);
   const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
   const [pitchersRecords, setPitchersRecords] = useState(null);
   const [dion, setDion] = useState(null);
@@ -38,9 +36,7 @@ export default function GameInfo() {
     // let boxscore = await getSingleGameBoxScore(gameId);
     let playByPlay = await getPBPForAGame(gameId);
     setStartingLineups(playByPlay.startingLineups);
-    setStatefulLineups(playByPlay.startingLineups);
     setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
-    setSimpleScore(playByPlay.finalScore); // use as toggle between detailed score and not?
     setGamePlayByPlay(playByPlay.recap);
     setScorecardPlays(playByPlay.scorecardPlays);
     setPitchersRecords(playByPlay.pitchersRecords);
@@ -75,14 +71,14 @@ export default function GameInfo() {
       <button onClick={getGameInfo}>Get game info</button>
       <h1>
         Boxscore
-        {simpleScore || gameBoxScore ? (
+        { gameBoxScore ? (
           <button onClick={toggleSimpleOrBoxscore}>
             {scoreToggle ? "View more details" : "View fewer details"}
           </button>
         ) : null}
       </h1>
-      {simpleScore && scoreToggle === true ? (
-        <SimpleScore simpleScore={simpleScore} />
+      {gameBoxScore && scoreToggle === true ? (
+        <SimpleScore gameInfo={gameBoxScore}/>
       ) : gameBoxScore && scoreToggle === false ? (
         <BoxScore gameInfo={gameBoxScore} />
       ) : null}
@@ -115,18 +111,16 @@ export default function GameInfo() {
       ) : (
         <h1>Play by Play</h1>
       )}
-      {statefulLineup && battingLineupsWithSubs && pitchersRecords ? (
+      {battingLineupsWithSubs && pitchersRecords ? (
         <div>
-          <h1>Stateful Lineup</h1>
+          <h1>Lineup with substitutions</h1>
           <div className="lineup-card">
             <StatefulLineups
-              startingLineup={startingLineups.awayTeam}
               battingLineupsWithSubs={battingLineupsWithSubs.awayLineup}
               pitchersRecords={pitchersRecords.awayTeam}
               team="Away"
             />
             <StatefulLineups
-              startingLineup={startingLineups.homeTeam}
               battingLineupsWithSubs={battingLineupsWithSubs.homeLineup}
               pitchersRecords={pitchersRecords.homeTeam}
               team="Home"

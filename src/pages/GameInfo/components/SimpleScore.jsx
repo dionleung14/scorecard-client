@@ -1,30 +1,21 @@
 // The simple score with teams, runs, hits, errors
 import React from "react";
+import SimpleScoreRow from "./SimpleScoreRow";
 
 export default function SimpleScore(props) {
-  const { simpleScore } = props;
+  const { gameInfo } = props;
   return (
     <div>
       <table>
         <tbody>
           <tr>
-            <th>{null}</th>
+            <th>Team</th>
             <th>Runs</th>
             <th>Hits</th>
             <th>Errors</th>
           </tr>
-          <tr>
-            <td>{simpleScore.awayScoring.team.teamAbbr}</td>
-            <td>{simpleScore.awayScoring.runs}</td>
-            <td>{simpleScore.awayScoring.hits}</td>
-            <td>{simpleScore.awayScoring.errors}</td>
-          </tr>
-          <tr>
-            <td>{simpleScore.homeScoring.team.teamAbbr}</td>
-            <td>{simpleScore.homeScoring.runs}</td>
-            <td>{simpleScore.homeScoring.hits}</td>
-            <td>{simpleScore.homeScoring.errors}</td>
-          </tr>
+          <SimpleScoreRow teamInfo={gameInfo.away}/>
+          <SimpleScoreRow teamInfo={gameInfo.home}/>
         </tbody>
       </table>
     </div>
