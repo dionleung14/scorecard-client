@@ -5,7 +5,6 @@ export default function BoxScore(props) {
   const { gameInfo } = props;
   return (
     <div>
-      <h2>Box score</h2>
       <table>
         <tbody>
           <tr>

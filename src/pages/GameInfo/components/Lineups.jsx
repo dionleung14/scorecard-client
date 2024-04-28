@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import { defensivePositionMapper } from "../../../util/constants";
 
 export default function Lineups(props) {
-  const [lineup, setLineup] = useState(props.lineup.slice(1, 10));
+  // console.log(props)
+  const [lineup, setLineup] = useState(props.lineup.lineup.slice(1, 10));
+  const [team, setTeam] = useState(props.lineup.team)
   if (!true) {
     // placeholder to "use" setLineup to avoid deployment bugs
     setLineup(true);
@@ -12,7 +14,8 @@ export default function Lineups(props) {
 
   return (
     <div>
-      <h2>{props.team} team starting lineup</h2>
+      <h2>{`${team.market} ${team.name}`} starting lineup</h2>
+      <h2>{team.teamAbbr} starting lineup</h2>
       <table>
         <tbody>
           <tr>
@@ -40,9 +43,9 @@ export default function Lineups(props) {
             : null}
           {/* Pitchers at the end at index 0 */}
           <tr>
-            <td>{props.lineup[0].jerseyNumber}</td>
+            <td>{lineup[0].jerseyNumber}</td>
             <td>
-              {props.lineup[0].firstName} {props.lineup[0].lastName}
+              {lineup[0].firstName} {lineup[0].lastName}
             </td>
             <td>{defensivePositionMapper[1].positionAbbr}</td>
           </tr>

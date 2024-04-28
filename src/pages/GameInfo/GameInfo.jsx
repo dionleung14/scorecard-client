@@ -21,6 +21,7 @@ export default function GameInfo() {
   const { gameId } = useParams();
   // toggle for showing and hiding the play by play text
   const [showPbpOrNah, setShowPbpOrNah] = useState(true);
+  const [scoreToggle, setScoreToggle] = useState(true);
 
   // toggle for showing and hiding the scorecards
   const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
@@ -35,19 +36,16 @@ export default function GameInfo() {
   const [dion, setDion] = useState(null);
   const getGameInfo = async () => {
     // let boxscore = await getSingleGameBoxScore(gameId);
-    setTimeout(async () => {
-      let playByPlay = await getPBPForAGame(gameId);
-      setStartingLineups(playByPlay.startingLineups);
-      setStatefulLineups(playByPlay.startingLineups);
-      setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
-      setSimpleScore(playByPlay.finalScore); // uses play by play data, could we use something else?
-      setGamePlayByPlay(playByPlay.recap);
-      setScorecardPlays(playByPlay.scorecardPlays);
-      setPitchersRecords(playByPlay.pitchersRecords);
-      setDion(playByPlay.dion);
-      setGameBoxScore(playByPlay.boxscore);
-    }, 1500);
-    // setGameBoxScore(boxscore);
+    let playByPlay = await getPBPForAGame(gameId);
+    setStartingLineups(playByPlay.startingLineups);
+    setStatefulLineups(playByPlay.startingLineups);
+    setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
+    setSimpleScore(playByPlay.finalScore); // use as toggle between detailed score and not?
+    setGamePlayByPlay(playByPlay.recap);
+    setScorecardPlays(playByPlay.scorecardPlays);
+    setPitchersRecords(playByPlay.pitchersRecords);
+    setDion(playByPlay.dion);
+    setGameBoxScore(playByPlay.boxscore);
   };
 
   const toggleShowHidePbp = () => {
@@ -55,6 +53,9 @@ export default function GameInfo() {
   };
   const toggleShowHideCombinedSC = () => {
     setShowCombinedScoreCards(!showCombinedScoreCards);
+  };
+  const toggleSimpleOrBoxscore = () => {
+    setScoreToggle(!scoreToggle);
   };
   // useEffect(() => {
   //   console.log("game PBP state has changed");
@@ -72,22 +73,25 @@ export default function GameInfo() {
     <div>
       <h3>GameInfo</h3>
       <button onClick={getGameInfo}>Get game info</button>
-      {simpleScore ? (
+      <h1>
+        Boxscore
+        {simpleScore || gameBoxScore ? (
+          <button onClick={toggleSimpleOrBoxscore}>
+            {scoreToggle ? "View more details" : "View fewer details"}
+          </button>
+        ) : null}
+      </h1>
+      {simpleScore && scoreToggle === true ? (
         <SimpleScore simpleScore={simpleScore} />
-      ) : (
-        <h1>Simple score</h1>
-      )}
-      {gameBoxScore && gameBoxScore.status !== "canceled" ? (
+      ) : gameBoxScore && scoreToggle === false ? (
         <BoxScore gameInfo={gameBoxScore} />
-      ) : (
-        <h1>Box score</h1>
-      )}
+      ) : null}
       {startingLineups ? (
         <div>
           <h1>Starting Lineups (Lineups component)</h1>
           <div className="lineup-card">
-            <Lineups lineup={startingLineups.awayTeam} team="Away" />
-            <Lineups lineup={startingLineups.homeTeam} team="Home" />
+            <Lineups lineup={startingLineups.awayTeam} />
+            <Lineups lineup={startingLineups.homeTeam} />
           </div>
         </div>
       ) : (

@@ -5,7 +5,6 @@ export default function SimpleScore(props) {
   const { simpleScore } = props;
   return (
     <div>
-      <h2>Simple score</h2>
       <table>
         <tbody>
           <tr>
@@ -15,16 +14,16 @@ export default function SimpleScore(props) {
             <th>Errors</th>
           </tr>
           <tr>
-            <td>{simpleScore.awayTeam.abbr}</td>
-            <td>{simpleScore.awayTeam.runs}</td>
-            <td>{simpleScore.awayTeam.hits}</td>
-            <td>{simpleScore.awayTeam.errors}</td>
+            <td>{simpleScore.awayScoring.team.teamAbbr}</td>
+            <td>{simpleScore.awayScoring.runs}</td>
+            <td>{simpleScore.awayScoring.hits}</td>
+            <td>{simpleScore.awayScoring.errors}</td>
           </tr>
           <tr>
-            <td>{simpleScore.homeTeam.abbr}</td>
-            <td>{simpleScore.homeTeam.runs}</td>
-            <td>{simpleScore.homeTeam.hits}</td>
-            <td>{simpleScore.homeTeam.errors}</td>
+            <td>{simpleScore.homeScoring.team.teamAbbr}</td>
+            <td>{simpleScore.homeScoring.runs}</td>
+            <td>{simpleScore.homeScoring.hits}</td>
+            <td>{simpleScore.homeScoring.errors}</td>
           </tr>
         </tbody>
       </table>
