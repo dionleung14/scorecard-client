@@ -1,15 +1,19 @@
 // Starting lineups
 // Could use this as a base for the live lineups (live) or scorecard lineups (generated from past game)
 import React, { useState } from "react";
-import { defensivePositionMapper } from "../../../util/constants";
+import LineupsRow from "./LineupsRow";
 
 export default function Lineups(props) {
-  // console.log(props)
-  const [lineup, setLineup] = useState(props.lineup.lineup.slice(1, 10));
-  const [team, setTeam] = useState(props.lineup.team)
+  const [startingPitcher, setStartingPitcher] = useState(
+    props.lineup.lineup[0]
+  );
+  const [batters, setBatters] = useState(props.lineup.lineup.slice(1, 10));
+  const [team, setTeam] = useState(props.lineup.team);
   if (!true) {
-    // placeholder to "use" setLineup to avoid deployment bugs
-    setLineup(true);
+    // placeholder to "use" set (X) to avoid deployment bugs
+    setStartingPitcher(true);
+    setBatters(true);
+    setTeam(true);
   }
 
   return (
@@ -23,32 +27,13 @@ export default function Lineups(props) {
             <th>Player</th>
             <th>Position</th>
           </tr>
-          {lineup.length > 1
-            ? lineup.map(player => {
-                return (
-                  <tr key={player.playerId}>
-                    <td>{player.jerseyNumber}</td>
-                    <td>
-                      {player.preferredName} {player.lastName}
-                    </td>
-                    <td>
-                      {
-                        defensivePositionMapper[player.positionNumber]
-                          .positionAbbr
-                      }
-                    </td>
-                  </tr>
-                );
+          {batters.length > 1
+            ? batters.map(player => {
+                return <LineupsRow player={player} />;
               })
             : null}
           {/* Pitchers at the end at index 0 */}
-          <tr>
-            <td>{lineup[0].jerseyNumber}</td>
-            <td>
-              {lineup[0].firstName} {lineup[0].lastName}
-            </td>
-            <td>{defensivePositionMapper[1].positionAbbr}</td>
-          </tr>
+          <LineupsRow player={startingPitcher} />
         </tbody>
       </table>
     </div>

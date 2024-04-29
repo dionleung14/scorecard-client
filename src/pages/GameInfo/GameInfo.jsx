@@ -12,7 +12,7 @@ import BoxScore from "./components/BoxScore";
 import Lineups from "./components/Lineups";
 import StatefulLineups from "./components/StatefulLineups";
 import SimpleScore from "./components/SimpleScore";
-import PlayByPlay from "./components/PlayByPlay";
+import Recap from "./components/Recap";
 import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard"; // placed this outside of the ./components folder because it is very likely this page will be refactored
 import "./gameInfo.css";
 import Dion from "../../components/Dion/Dion";
@@ -20,13 +20,13 @@ import Dion from "../../components/Dion/Dion";
 export default function GameInfo() {
   const { gameId } = useParams();
   // toggle for showing and hiding the play by play text
-  const [showPbpOrNah, setShowPbpOrNah] = useState(true);
+  const [displayRecap, setDisplayRecap] = useState(true);
   const [scoreToggle, setScoreToggle] = useState(true);
 
   // toggle for showing and hiding the scorecards
   const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
   const [gameBoxScore, setGameBoxScore] = useState(null);
-  const [gamePlayByPlay, setGamePlayByPlay] = useState(null);
+  const [gameRecap, setGameRecap] = useState(null);
   const [scorecardPlays, setScorecardPlays] = useState(null);
   const [startingLineups, setStartingLineups] = useState(null);
   const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
@@ -37,7 +37,7 @@ export default function GameInfo() {
     let playByPlay = await getPBPForAGame(gameId);
     setStartingLineups(playByPlay.startingLineups);
     setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
-    setGamePlayByPlay(playByPlay.recap);
+    setGameRecap(playByPlay.recap);
     setScorecardPlays(playByPlay.scorecardPlays);
     setPitchersRecords(playByPlay.pitchersRecords);
     setDion(playByPlay.dion);
@@ -45,7 +45,7 @@ export default function GameInfo() {
   };
 
   const toggleShowHidePbp = () => {
-    setShowPbpOrNah(!showPbpOrNah);
+    setDisplayRecap(!displayRecap);
   };
   const toggleShowHideCombinedSC = () => {
     setShowCombinedScoreCards(!showCombinedScoreCards);
@@ -69,16 +69,14 @@ export default function GameInfo() {
     <div>
       <h3>GameInfo</h3>
       <button onClick={getGameInfo}>Get game info</button>
-      <h1>
-        Boxscore
-        { gameBoxScore ? (
-          <button onClick={toggleSimpleOrBoxscore}>
-            {scoreToggle ? "View more details" : "View fewer details"}
-          </button>
-        ) : null}
-      </h1>
+      <h1>Boxscore</h1>
+      {gameBoxScore ? (
+        <button onClick={toggleSimpleOrBoxscore}>
+          {scoreToggle ? "View more details" : "View fewer details"}
+        </button>
+      ) : null}
       {gameBoxScore && scoreToggle === true ? (
-        <SimpleScore gameInfo={gameBoxScore}/>
+        <SimpleScore gameInfo={gameBoxScore} />
       ) : gameBoxScore && scoreToggle === false ? (
         <BoxScore gameInfo={gameBoxScore} />
       ) : null}
@@ -93,16 +91,16 @@ export default function GameInfo() {
       ) : (
         <h1>Lineups</h1>
       )}
-      {gamePlayByPlay ? (
+      {gameRecap ? (
         <div>
           <h1>
             Play by Play{" "}
             <button onClick={toggleShowHidePbp}>toggle show/hide</button>
           </h1>
           {/* {gamePlayByPlay.reverse().map(inning => { // could have a toggle button to do reverse chronological, makes more sense for the live scorecard to have that though  */}
-          {showPbpOrNah ? (
-            gamePlayByPlay.map((inning, index) => {
-              return <PlayByPlay key={index} inningData={inning} />;
+          {displayRecap ? (
+            gameRecap.events.map((inning, index) => {
+              return <Recap key={index} inningData={inning} teams={gameRecap.teams} />;
             })
           ) : (
             <h2>Play by Play text is hidden</h2>
