@@ -37,7 +37,7 @@ export default function GameInfo() {
     let playByPlay = await getPBPForAGame(gameId);
     setStartingLineups(playByPlay.startingLineups);
     setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
-    setGameRecap(playByPlay.recap);
+    setGameRecap(playByPlay.recap.recap);
     setScorecardPlays(playByPlay.scorecardPlays);
     setPitchersRecords(playByPlay.pitchersRecords);
     setDion(playByPlay.dion);
@@ -99,8 +99,9 @@ export default function GameInfo() {
           </h1>
           {/* {gamePlayByPlay.reverse().map(inning => { // could have a toggle button to do reverse chronological, makes more sense for the live scorecard to have that though  */}
           {displayRecap ? (
-            gameRecap.events.map((inning, index) => {
-              return <Recap key={index} inningData={inning} teams={gameRecap.teams} />;
+            // gameRecap.events.map((inning, index) => {
+            gameRecap.map((inning, index) => {
+              return <Recap key={index} inningData={inning} teams={inning.teams} />;
             })
           ) : (
             <h2>Play by Play text is hidden</h2>

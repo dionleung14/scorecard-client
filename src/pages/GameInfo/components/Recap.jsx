@@ -6,17 +6,17 @@ export default function Recap(props) {
   const { inningData, teams } = props;
   return (
     <div className="inning-whole">
-      <h3 className="inning-number">{inningData.number}</h3>
+      <h3 className="inning-number">{inningData.inningInfo.inningNumber}</h3>
       <RecapTeams
         inningHalf="Top"
         team={teams.awayTeam}
-        inningData={inningData.top}
+        inningData={inningData.events.top}
       />
-      {inningData.bottom.length > 0 ? (
+      {inningData.events.bottom.length > 0 ? (
         <RecapTeams
           inningHalf="Bottom"
           team={teams.homeTeam}
-          inningData={inningData.bottom}
+          inningData={inningData.events.bottom}
         />
       ) : null}
     </div>

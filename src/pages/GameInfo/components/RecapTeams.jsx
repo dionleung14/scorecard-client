@@ -16,6 +16,7 @@ export default function RecapTeams(props) {
           return (
             <li key={inningEvent.eventId} data-pbp-id={inningEvent.eventId}>
               {inningEvent.description}
+              {/* {inningEvent.eventId} */}
             </li>
           );
         })}
