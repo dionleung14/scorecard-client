@@ -108,7 +108,7 @@ export default function GameInfo() {
           )}
         </div>
       ) : (
-        <h1>Play by Play</h1>
+        <h1>Play by Play Recap</h1>
       )}
       {battingLineupsWithSubs && pitchersRecords ? (
         <div>
