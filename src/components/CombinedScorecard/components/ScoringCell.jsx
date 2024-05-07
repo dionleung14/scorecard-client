@@ -6,7 +6,7 @@ export default function ScoringCell({ scoringEvent }) {
     return (
       <td className="scorecard-cell scoring-cell">
         {/* {scoringEvent.scoringString} */}
-        {scoringEvent.out ? "Out" : "Safe"}
+        {scoringEvent.out === true ? "Out" : "Not out"}
       </td>
     );
   } else {
