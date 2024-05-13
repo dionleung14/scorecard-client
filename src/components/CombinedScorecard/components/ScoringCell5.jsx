@@ -3,5 +3,4 @@ import React from "react";
 
 export default function ScoringCell5({ outcome }) {
   return <td className="scorecard-cell scoring-cell">{outcome}</td>;
-  // return <td className="scorecard-cell scoring-cell">yo</td>;
 }
