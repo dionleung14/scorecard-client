@@ -102,13 +102,13 @@ export default function Game(props) {
       )}
       {game.status === "unnecessary" ? (
         <button className="game-info-unnecessary">
-          <Link disabled to={`/game-info-${game.id}`}>
+          <Link disabled to={`/game-info-${game.gameId}`}>
             Game info
           </Link>
         </button>
       ) : (
         <button className="game-info">
-          <Link to={`/game-info-${game.id}`} target="_blank">Game info</Link>
+          <Link to={`/game-info-${game.gameId}`} target="_blank">Game Info</Link>
         </button>
       )}
     </div>

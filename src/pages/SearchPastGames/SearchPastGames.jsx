@@ -123,7 +123,7 @@ export default function SearchPastGames() {
       {displayGames.length > 0 ? (
         <GamesContainer>
           {displayGames.map(game => {
-            return <Game game={game} key={game.id} />;
+            return <Game game={game} key={game.gameId} />;
           })}
         </GamesContainer>
       ) : null}
