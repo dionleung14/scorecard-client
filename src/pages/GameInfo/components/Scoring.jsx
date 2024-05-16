@@ -1,9 +1,11 @@
 import React from "react";
-import ScoringRow from "./ScoringRow";
+// import ScoringRow from "./ScoringRow";
 import ScoringRow5 from "./ScoringRow5";
 
 export default function Scoring({ innings, team, scoring}) {
-  const {batterRows, batterRows5} = scoring
+  const {
+    // batterRows
+    batterRows5} = scoring
   return (
     <div>
       <h3>{team.market} {team.name}</h3>

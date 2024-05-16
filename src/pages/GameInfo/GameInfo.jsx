@@ -13,9 +13,9 @@ import Lineups from "./components/Lineups";
 // import StatefulLineups from "./components/StatefulLineups";
 import SimpleScore from "./components/SimpleScore";
 import Recap from "./components/Recap";
-import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard"; // placed this outside of the ./components folder because it is very likely this page will be refactored
+// import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard"; // placed this outside of the ./components folder because it is very likely this page will be refactored
 import "./gameInfo.css";
-import Dion from "../../components/Dion/Dion";
+// import Dion from "../../components/Dion/Dion";
 import Scorecards from "./components/Scorecards";
 
 export default function GameInfo() {
