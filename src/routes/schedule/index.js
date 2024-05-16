@@ -36,8 +36,8 @@ export const getSeasonGamesForATeam = async searchTerms => {
     // const url = await process.env.REACT_APP_SERVER_URL;
     // let games = fetch(`${url}sportradar/season/team`, {
     let games = fetch(
-      // `https://scorecard-server-heroku-deploy.herokuapp.com/schedule/team`,
-      `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/season/team`, // TODO: delete this and uncomment above line
+      `https://scorecard-server-heroku-deploy.herokuapp.com/schedule/team`,
+      // `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/season/team`, // TODO: delete this and uncomment above line
       {
         method: "POST",
         body: JSON.stringify({
@@ -98,8 +98,8 @@ export const getGamesInADay = async date => {
     console.log("hitting deployed server on AWS/Heroku");
     const { year, month, day } = date;
     const url = await process.env.REACT_APP_SERVER_URL;
-    // let games = fetch(`${url}schedule/day`, {
-    let games = fetch(`${url}sportradar/game/day`, {
+    let games = fetch(`${url}schedule/day`, {
+      // let games = fetch(`${url}sportradar/game/day`, {
       // TODO: delete this and uncomment above line
       method: "POST",
       body: JSON.stringify({
