@@ -1,7 +1,7 @@
 // This component deals with the years available to select for getting games in a season
 import React from "react";
 
-export default function SelectionYearsRange(props) {
+export default function SearchFormSelectionYearsRange(props) {
   const { startYear, endYear } = props;
   let iterations = parseInt(endYear) - parseInt(startYear);
   let iterableYears = [];

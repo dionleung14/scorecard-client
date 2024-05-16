@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 // import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { getSingleGameBoxscore } from "../../routes/sportradar"; // how do i get the score and display it on the preview?
+// import { getSingleGameBoxscore } from "../../routes"; // how do i get the score and display it on the preview?
 import "./game.css";
 import teams from "../../data/teams";
 
@@ -14,6 +14,7 @@ export default function Game(props) {
     setScore(true);
   }
   const { game } = props;
+  // Could lift this to a function that returns a string
   const date = game.scheduled.split("").slice(0, 10).join("");
 
   // Could lift this method to a different file
@@ -60,41 +61,41 @@ export default function Game(props) {
       ) : (
         <p className="date">{displayDate(date)}</p>
       )}
-      {game.away.colors && game.home.colors ? (
+      {game.awayTeam.colors && game.homeTeam.colors ? (
         <div className="team-boxscore">
           <div
             style={{
               color: "white",
-              backgroundColor: `#${game.away.colors.primary}`,
+              backgroundColor: `#${game.awayTeam.colors.primary}`,
             }}>
             <img
               className="logo"
-              alt={`${game.away.name}-logo`}
-              src={getLogo(game.away.abbr, "away")}
+              alt={`${game.awayTeam.name}-logo`}
+              src={getLogo(game.awayTeam.abbr, "away")}
             />
-            {game.away.abbr} {score ? score.away : null}
+            {game.awayTeam.abbr} {score ? score.away : null}
           </div>
           <div
             style={{
               color: "white",
-              backgroundColor: `#${game.home.colors.primary}`,
+              backgroundColor: `#${game.homeTeam.colors.primary}`,
             }}>
             <img
               className="logo"
-              alt={`${game.home.name}-logo`}
-              src={getLogo(game.home.abbr, "home")}
+              alt={`${game.homeTeam.name}-logo`}
+              src={getLogo(game.homeTeam.abbr, "home")}
             />
-            {game.home.abbr}
+            {game.homeTeam.abbr}
             {score ? score.home : null}
           </div>
         </div>
       ) : (
         <div>
           <p>
-            {game.away.abbr} {score ? score.away : null}
+            {game.awayTeam.abbr} {score ? score.away : null}
           </p>
           <p>
-            {game.home.abbr}
+            {game.homeTeam.abbr}
             {score ? score.home : null}
           </p>
         </div>
