@@ -6,7 +6,9 @@ export default function StatefulLineups({
   pitchersRecords,
   team,
 }) {
-  const [pitcher, setPitcher] = useState(pitchersRecords[0]);
+  const [
+    // pitcher, 
+    setPitcher] = useState(pitchersRecords[0]);
   // const [lineup, setLineup] = useState(startingLineup.slice(1, 10));
   const [lineup, setLineup] = useState(battingLineupsWithSubs);
   if (!true) {
@@ -39,6 +41,8 @@ export default function StatefulLineups({
                       players={player.lineupArr}
                     />
                   );
+                } else {
+                  return null
                 }
               })
             : null}
