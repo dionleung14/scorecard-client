@@ -42,7 +42,7 @@ export default function TodaysSchedule() {
       {displayGames.length > 0 && isFetchingGames === false ? (
         <GamesContainer>
           {displayGames.map(game => {
-            return <GameCurrent game={game} key={game.id} />;
+            return <GameCurrent game={game} key={game.gameId} />;
           })}
         </GamesContainer>
       ) : (

@@ -101,7 +101,7 @@ export default function GameCurrent(props) {
         </div>
       )}
       {generateText(game.gameStatus)}
-      <Link to={`/game-info-${game.id}`} target="_blank">
+      <Link to={`/game-info-${game.gameId}`} target="_blank">
         Game info
       </Link>
     </div>
