@@ -6,8 +6,8 @@ export default function Scorecards( props) {
   const { scorecards } = props;
 
   const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
-  const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
-  const [pitchersRecords, setPitchersRecords] = useState(null);
+  // const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
+  // const [pitchersRecords, setPitchersRecords] = useState(null);
 
   // setBattingLineupsWithSubs(scorecards.battingLineupsWithSubstitutions);
 

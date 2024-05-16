@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import React from "react";
 import StatefulLineups from "./StatefulLineups";
 import Scoring from "./Scoring";
 import PitchingRecords from "./PitchingRecords";
@@ -6,15 +7,15 @@ import PitchingRecords from "./PitchingRecords";
 export default function ScorecardsTeam({ team }) {
   // const { team } = props;
 
-  const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
-  const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
-  const [pitchersRecords, setPitchersRecords] = useState(null);
+  // const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
+  // const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
+  // const [pitchersRecords, setPitchersRecords] = useState(null);
 
   // setBattingLineupsWithSubs(scorecards.battingLineupsWithSubstitutions);
 
-  const toggleShowHideCombinedSC = () => {
-    setShowCombinedScoreCards(!showCombinedScoreCards);
-  };
+  // const toggleShowHideCombinedSC = () => {
+  //   setShowCombinedScoreCards(!showCombinedScoreCards);
+  // };
 
   return (
     <div>
