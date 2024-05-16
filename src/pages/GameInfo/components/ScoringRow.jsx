@@ -1,9 +1,9 @@
 import React from "react";
-import ScoringCell from "../../CombinedScorecard/components/ScoringCell";
-import EmptyCell from "../../CombinedScorecard/components/EmptyCell";
+import ScoringCell from "../../../components/CombinedScorecard/components/ScoringCell";
+import EmptyCell from "../../../components/CombinedScorecard/components/EmptyCell";
 import { defensivePositionMapper } from "../../../util/constants";
 
-export default function ScorecardRowDion({ order, players, innings, idx }) {
+export default function ScoringRow({ order, players, innings, idx }) {
   return (
     <tr>
       {/* <th>14</th>

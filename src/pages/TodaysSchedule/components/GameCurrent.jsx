@@ -2,17 +2,19 @@
 // There is also a Game element/component for a schedule that is very similar
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { getSingleGameBoxscore } from "../../../routes/sportradar"; // how do i get the score and display it on the preview?
+// import { getSingleGameBoxscore } from "../../../routes"; // how do i get the score and display it on the preview?
 import { gameStatusTranslator } from "../../../services/gameStatusTranslator";
 
 import teams from "../../../data/teams";
 
 export default function GameCurrent(props) {
   const [score, setScore] = useState(null);
-  if (!true) { // placeholder to "use" setScore to avoid deployment bugs
-    setScore(true)
+  if (!true) {
+    // placeholder to "use" setScore to avoid deployment bugs
+    setScore(true);
   }
   const { game } = props;
+  // Could lift this to a function that returns a string
   const date = game.scheduled.split("").slice(0, 10).join("");
 
   // Could lift this method to a different file
@@ -59,39 +61,49 @@ export default function GameCurrent(props) {
   return (
     <div className="game">
       <p className="date">{displayDate(date)}</p>
-      {game.away.colors && game.home.colors ? (
+      {game.awayTeam.colors && game.homeTeam.colors ? (
         <div className="team-boxscore">
           <div
             style={{
               color: "white",
-              backgroundColor: `#${game.away.colors.primary}`,
+              backgroundColor: `#${game.awayTeam.colors.primary}`,
             }}>
-            <img className="logo" alt={`${game.away.name}-logo`} src={getLogo(game.away.abbr, "away")} />
-            {game.away.abbr} {score ? score.away : null}
+            <img
+              className="logo"
+              alt={`${game.awayTeam.name}-logo`}
+              src={getLogo(game.awayTeam.abbr, "away")}
+            />
+            {game.awayTeam.abbr} {score ? score.away : null}
           </div>
           <div
             style={{
               color: "white",
-              backgroundColor: `#${game.home.colors.primary}`,
+              backgroundColor: `#${game.homeTeam.colors.primary}`,
             }}>
-            <img className="logo" alt={`${game.home.name}-logo`} src={getLogo(game.home.abbr, "home")} />
-            {game.home.abbr}
+            <img
+              className="logo"
+              alt={`${game.homeTeam.name}-logo`}
+              src={getLogo(game.homeTeam.abbr, "home")}
+            />
+            {game.homeTeam.abbr}
             {score ? score.home : null}
           </div>
         </div>
       ) : (
         <div>
           <p>
-            {game.away.abbr} {score ? score.away : null}
+            {game.awayTeam.abbr} {score ? score.away : null}
           </p>
           <p>
-            {game.home.abbr}
+            {game.homeTeam.abbr}
             {score ? score.home : null}
           </p>
         </div>
       )}
-      {generateText(game.status)}
-      <Link to={`/game-info-${game.id}`} target="_blank">Game info</Link>
+      {generateText(game.gameStatus)}
+      <Link to={`/game-info-${game.id}`} target="_blank">
+        Game info
+      </Link>
     </div>
   );
 }

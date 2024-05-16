@@ -1,11 +1,11 @@
 // Long boxscore component
 import React from "react";
+import BoxScoreRow from "./BoxScoreRow"
 
 export default function BoxScore(props) {
   const { gameInfo } = props;
   return (
     <div>
-      <h2>Box score</h2>
       <table>
         <tbody>
           <tr>
@@ -17,24 +17,8 @@ export default function BoxScore(props) {
             <th>Hits</th>
             <th>Errors</th>
           </tr>
-          <tr>
-            <td>{gameInfo.away.name}</td>
-            {gameInfo.away.scoring.map((inning, index) => {
-              return <td key={index}>{inning.runs}</td>;
-            })}
-            <td>{gameInfo.away.runs}</td>
-            <td>{gameInfo.away.hits}</td>
-            <td>{gameInfo.away.errors}</td>
-          </tr>
-          <tr>
-            <td>{gameInfo.home.name}</td>
-            {gameInfo.home.scoring.map((inning, index) => {
-              return <td key={index}>{inning.runs}</td>;
-            })}
-            <td>{gameInfo.home.runs}</td>
-            <td>{gameInfo.home.hits}</td>
-            <td>{gameInfo.home.errors}</td>
-          </tr>
+          <BoxScoreRow teamInfo={gameInfo.away}/>
+          <BoxScoreRow teamInfo={gameInfo.home}/>
         </tbody>
       </table>
     </div>
