@@ -1,9 +1,10 @@
 import "./App.css";
 import Home from "./pages/Home";
-import TodaysSchedule from "./pages/TodaysSchedule/TodaysSchedule";
+import TodaysSchedule from "./pages/Scheduling/TodaysSchedule/TodaysSchedule";
+import SeasonSchedule from "./pages/Scheduling/SeasonSchedule/SeasonSchedule";
+// import { SeasonSchedule, TodaysSchedule } from "./pages/Scheduling/index.js";
 import About from "./pages/About";
 import GameInfo from "./pages/GameInfo/GameInfo";
-import SearchPastGames from "./pages/SearchPastGames/SearchPastGames";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 
@@ -16,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/todays-schedule" element={<TodaysSchedule />} />
-          <Route path="/game-lookup" element={<SearchPastGames />} />
+          <Route path="/game-lookup" element={<SeasonSchedule />} />
           <Route path="/game-info-:gameId" element={<GameInfo />} />
           <Route path="/about" element={<About />} />
           <Route path="/*" element={<Home />} /> {/* 404 handler */}

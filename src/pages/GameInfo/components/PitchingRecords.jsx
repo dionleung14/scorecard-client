@@ -1,5 +1,5 @@
 import React from "react";
-import PitcherRow from "./PitcherRow";
+import PitcherRow from "./PitchingRecordsRow";
 
 export default function PitchingRecords({ pitchers }) {
 

@@ -1,9 +1,9 @@
-// This page should display all games scheduled to be played today
-
+// This page displays all games scheduled to be played today
+// TODO: investigate if this can be used for a specific date search
 import React, { useState, useEffect } from "react";
-import GameCurrent from "./components/GameCurrent";
-import GamesContainer from "../../components/GamesContainer/GamesContainer";
-import { getGamesInADay } from "../../routes";
+import GameCurrent from "../components/GameCurrent";
+import GamesContainer from "../../../components/GamesContainer/GamesContainer";
+import { getGamesInADay } from "../../../routes";
 import "./todaysSchedule.css";
 
 export default function TodaysSchedule() {
@@ -38,7 +38,6 @@ export default function TodaysSchedule() {
   return (
     <div>
       <h3>Today's Schedule</h3>
-      {/* <button onClick={loadGames}>Find games today</button> */}
       {displayGames.length > 0 && isFetchingGames === false ? (
         <GamesContainer>
           {displayGames.map(game => {

@@ -1,6 +1,7 @@
 import React from "react";
 import SearchFormSelectionYearsRange from "./SearchFormSelectionYearsRange";
-import teams from "../../../data/teams";
+// import teams from "../../../data/teams";
+import teams from "../../../../data/teams";
 
 export default function SearchForm({
   onSubmit,

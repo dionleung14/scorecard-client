@@ -2,7 +2,6 @@
 // There is also a Game element/component for a schedule that is very similar
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { getSingleGameBoxscore } from "../../../routes"; // how do i get the score and display it on the preview?
 import { gameStatusTranslator } from "../../../services/gameStatusTranslator";
 
 import teams from "../../../data/teams";
@@ -50,14 +49,7 @@ export default function GameCurrent(props) {
     let text = gameStatusTranslator(gameStatus);
     return <p>{text}</p>;
   };
-  // useEffect(() => {
-  //   const loadScores = async () => {
-  //     let schedule = await getSingleGameBoxscore(game.id)
-  //     // console.log(schedule.score)
-  //     setScore(schedule.score);
-  //   };
-  //   loadScores();
-  // }, []);
+
   return (
     <div className="game">
       <p className="date">{displayDate(date)}</p>

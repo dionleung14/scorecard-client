@@ -19,9 +19,6 @@ export default function ScorecardsTeam({ team }) {
 
   return (
     <div>
-      <div>
-        {team.team.market} {team.team.name}
-      </div>
       <div className="scorecard">
         <h3>
           {team.team.market} {team.team.name}

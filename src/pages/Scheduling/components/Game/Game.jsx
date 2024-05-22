@@ -1,11 +1,10 @@
 // This file contains the Game element that is rendered in the Array.map for a season
 // There is also a GameCurrent element/component for today's games that is very similar
 import React, { useState } from "react";
-// import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import { getSingleGameBoxscore } from "../../routes"; // how do i get the score and display it on the preview?
 import "./game.css";
-import teams from "../../data/teams";
+import teams from "../../../../data/teams";
 
 export default function Game(props) {
   const [score, setScore] = useState(null);

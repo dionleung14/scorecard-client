@@ -1,9 +1,9 @@
 // This page retrieves past games in a season filtered by team
 import React, { useState } from "react";
-import { getSeasonGamesForATeam } from "../../routes";
-import { generateSearchResultsString } from "../../services/schedule/scheduleUtil";
-import GamesContainer from "../../components/GamesContainer/GamesContainer";
-import Game from "../../components/Game/Game";
+import { getSeasonGamesForATeam } from "../../../routes";
+import { generateSearchResultsString } from "../../../services/schedule/scheduleUtil";
+import GamesContainer from "../../../components/GamesContainer/GamesContainer";
+import Game from "../components/Game/Game";
 import { SearchForm, Error, SearchResultsString } from "./components";
 
 export default function SearchPastGames() {

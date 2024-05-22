@@ -1,14 +1,4 @@
 import { getSeasonGamesForATeam, getGamesInADay } from "./schedule/index";
-import {
-  getPBPForAGame,
-  getSingleGameBoxScore,
-  // getSingleGameExtendedSummary,
-} from "./playbyplay/index";
+import { getPBPForAGame } from "./playbyplay/index";
 
-export {
-  getGamesInADay,
-  getSingleGameBoxScore,
-  // getSingleGameExtendedSummary,
-  getSeasonGamesForATeam,
-  getPBPForAGame,
-};
+export { getSeasonGamesForATeam, getGamesInADay, getPBPForAGame };

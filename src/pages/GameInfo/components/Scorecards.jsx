@@ -22,7 +22,7 @@ export default function Scorecards( props) {
         <button onClick={toggleShowHideCombinedSC}>toggle show/hide</button>
       </h1>
       {showCombinedScoreCards ? (
-        <div>
+        <div className="scorecards">
 
           <h3>hi</h3>
           <ScorecardsTeam team={scorecards.awayTeam}/>
