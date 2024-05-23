@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ScoringCell from "./ScoringCell";
-import EmptyCell from "./EmptyCell";
+import EmptyCell from "../../../pages/GameInfo/components/scorecards/EmptyCell";
 import { 
   wasBatterInvolved
 } from "../../../services/scorecardRowSub";

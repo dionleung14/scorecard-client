@@ -1,9 +1,8 @@
 // Long boxscore component
 import React from "react";
-import BoxScoreRow from "./BoxScoreRow"
+import BoxScoreDetailedRow from "./BoxScoreDetailedRow"
 
-export default function BoxScore(props) {
-  const { gameInfo } = props;
+export default function BoxScoreDetailed({gameInfo}) {
   return (
     <div>
       <table>
@@ -17,8 +16,8 @@ export default function BoxScore(props) {
             <th>Hits</th>
             <th>Errors</th>
           </tr>
-          <BoxScoreRow teamInfo={gameInfo.away}/>
-          <BoxScoreRow teamInfo={gameInfo.home}/>
+          <BoxScoreDetailedRow teamInfo={gameInfo.away}/>
+          <BoxScoreDetailedRow teamInfo={gameInfo.home}/>
         </tbody>
       </table>
     </div>

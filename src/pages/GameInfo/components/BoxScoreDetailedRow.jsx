@@ -1,8 +1,7 @@
 // Long boxscore component
 import React from "react";
 
-export default function BoxScoreRow(props) {
-  const { teamInfo } = props;
+export default function BoxScoreDetailedRow({ teamInfo }) {
   return (
     <tr>
       <td>

@@ -1,5 +1,5 @@
 import React from "react";
-import { defensivePositionMapper } from "../../../util/constants";
+import { defensivePositionMapper } from "../../../../util/constants";
 
 export default function StatefulLineupRow({ players, order }) {
 

@@ -1,8 +1,7 @@
 // The simple score with teams, runs, hits, errors
 import React from "react";
 
-export default function SimpleScoreRow(props) {
-  const { teamInfo } = props;
+export default function BoxScoreSimpleRow({ teamInfo }) {
   return (
     <tr>
       <td>{teamInfo.team.teamAbbr}</td>

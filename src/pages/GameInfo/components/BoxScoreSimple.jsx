@@ -1,9 +1,8 @@
 // The simple score with teams, runs, hits, errors
 import React from "react";
-import SimpleScoreRow from "./SimpleScoreRow";
+import BoxScoreSimpleRow from "./BoxScoreSimpleRow";
 
-export default function SimpleScore(props) {
-  const { gameInfo } = props;
+export default function BoxScoreSimple({ gameInfo }) {
   return (
     <div>
       <table>
@@ -14,8 +13,8 @@ export default function SimpleScore(props) {
             <th>Hits</th>
             <th>Errors</th>
           </tr>
-          <SimpleScoreRow teamInfo={gameInfo.away}/>
-          <SimpleScoreRow teamInfo={gameInfo.home}/>
+          <BoxScoreSimpleRow teamInfo={gameInfo.away} />
+          <BoxScoreSimpleRow teamInfo={gameInfo.home} />
         </tbody>
       </table>
     </div>

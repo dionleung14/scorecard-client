@@ -1,22 +1,20 @@
 // This file is a big page that holds pretty much all the functionality of the client for a specific game
 
 import React, { useState } from "react";
-// import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   getPBPForAGame,
   // setGameLineups, // placeholder for the live roster; could leverage it for a generated scorecard?
-  // getSingleGameBoxScore,
 } from "../../routes";
-import BoxScore from "./components/BoxScore";
+import BoxScoreSimple from "./components/BoxScoreSimple";
+import BoxScoreDetailed from "./components/BoxScoreDetailed";
 import Lineups from "./components/Lineups";
 // import StatefulLineups from "./components/StatefulLineups";
-import SimpleScore from "./components/SimpleScore";
-import Recap from "./components/Recap";
+import Recap from "./components/recap/Recap";
 // import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard"; // placed this outside of the ./components folder because it is very likely this page will be refactored
 import "./gameInfo.css";
 // import Dion from "../../components/Dion/Dion";
-import Scorecards from "./components/Scorecards";
+import Scorecards from "./components/scorecards/Scorecards";
 
 export default function GameInfo() {
   const { gameId } = useParams();
@@ -77,9 +75,9 @@ export default function GameInfo() {
         </button>
       ) : null}
       {gameBoxScore && scoreToggle === true ? (
-        <SimpleScore gameInfo={gameBoxScore} />
+        <BoxScoreSimple gameInfo={gameBoxScore} />
       ) : gameBoxScore && scoreToggle === false ? (
-        <BoxScore gameInfo={gameBoxScore} />
+        <BoxScoreDetailed gameInfo={gameBoxScore} />
       ) : null}
       {startingLineups ? (
         <div>

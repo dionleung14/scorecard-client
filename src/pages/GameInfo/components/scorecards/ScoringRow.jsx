@@ -1,7 +1,7 @@
 import React from "react";
-import ScoringCell from "../../../components/CombinedScorecard/components/ScoringCell";
-import EmptyCell from "../../../components/CombinedScorecard/components/EmptyCell";
-import { defensivePositionMapper } from "../../../util/constants";
+import ScoringCell from "../../../../components/CombinedScorecard/components/ScoringCell";
+import EmptyCell from "./EmptyCell";
+import { defensivePositionMapper } from "../../../../util/constants";
 
 export default function ScoringRow({ order, players, innings, idx }) {
   return (
