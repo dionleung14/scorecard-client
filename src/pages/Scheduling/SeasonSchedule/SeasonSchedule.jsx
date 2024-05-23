@@ -2,11 +2,12 @@
 import React, { useState } from "react";
 import { getSeasonGamesForATeam } from "../../../routes";
 import { generateSearchResultsString } from "../../../services/schedule/scheduleUtil";
-import GamesContainer from "../../../components/GamesContainer/GamesContainer";
-import Game from "../components/Game/Game";
+import GamesContainer from "../components/GamesContainer";
+import Game from "../components/Game";
 import { SearchForm, Error, SearchResultsString } from "./components";
+import "../scheduling.css";
 
-export default function SearchPastGames() {
+export default function SeasonSchedule() {
   const [displayGames, setDisplayGames] = useState([]); // array to hold games from results
   const [searchPending, setSearchPending] = useState(false); // search pending flag for loading or nah
   const [errorLoading, setErrorLoading] = useState(false); // error message

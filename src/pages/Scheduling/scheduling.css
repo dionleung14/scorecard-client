@@ -1,3 +1,6 @@
+#dionion {
+  color:red
+}
 .game {
   color: "red";
   border: 1px solid black;
@@ -8,6 +11,14 @@
   justify-content: space-around;
   align-items: center;
 }
+.games-container {
+  color: "red";
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 .team-boxscore {
   display: flex;
@@ -17,6 +28,7 @@
 }
 
 .team-boxscore div {
+  color: black
   /* text-decoration: line-through ; */
   /* height: 2rem */
   /* overflow: hidden; */

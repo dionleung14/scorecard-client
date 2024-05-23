@@ -1,5 +1,5 @@
 // This file is the combined scorecard section in the GameInfo page
-
+// Unused, to be deleted
 import React from "react";
 // import PlayerColumns from "./components/PlayerColumns";
 // import ScoringCell from "./components/ScoringCell";

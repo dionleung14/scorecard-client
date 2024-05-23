@@ -1,10 +1,8 @@
 // This file contains the Game element that is rendered in the Array.map for a season
-// There is also a GameCurrent element/component for today's games that is very similar
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { getSingleGameBoxscore } from "../../routes"; // how do i get the score and display it on the preview?
-import "./game.css";
-import teams from "../../../../data/teams";
+import { gameStatusTranslator } from "../../../services/gameStatusTranslator";
+import teams from "../../../data/teams";
 
 export default function Game(props) {
   const [score, setScore] = useState(null);
@@ -43,6 +41,13 @@ export default function Game(props) {
       return teamObj.insignia;
     }
   };
+
+    // Generates a paragraph tag with the game status from sportradar
+    const generateText = gameStatus => {
+      let text = gameStatusTranslator(gameStatus);
+      return <p>{text}</p>;
+    };
+
   // useEffect(() => {
   //   const loadScores = async () => {
   //     let schedule = await getSingleGameBoxscore(game.id)
@@ -58,7 +63,7 @@ export default function Game(props) {
           {displayDate(date)} <span>Unnecessary</span>
         </p>
       ) : (
-        <p className="date">{displayDate(date)}</p>
+        <p className="date" >{displayDate(date)}</p>
       )}
       {game.awayTeam.colors && game.homeTeam.colors ? (
         <div className="team-boxscore">
@@ -99,6 +104,7 @@ export default function Game(props) {
           </p>
         </div>
       )}
+      {generateText(game.gameStatus)}
       {game.status === "unnecessary" ? (
         <button className="game-info-unnecessary">
           <Link disabled to={`/game-info-${game.gameId}`}>

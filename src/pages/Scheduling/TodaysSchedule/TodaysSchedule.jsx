@@ -1,10 +1,10 @@
 // This page displays all games scheduled to be played today
 // TODO: investigate if this can be used for a specific date search
 import React, { useState, useEffect } from "react";
-import GameCurrent from "../components/GameCurrent";
-import GamesContainer from "../../../components/GamesContainer/GamesContainer";
+import Game from "../components/Game";
+import GamesContainer from "../components/GamesContainer";
 import { getGamesInADay } from "../../../routes";
-import "./todaysSchedule.css";
+import "../scheduling.css";
 
 export default function TodaysSchedule() {
   const [displayGames, setDisplayGames] = useState([]); // stateful array of games played today
@@ -41,7 +41,7 @@ export default function TodaysSchedule() {
       {displayGames.length > 0 && isFetchingGames === false ? (
         <GamesContainer>
           {displayGames.map(game => {
-            return <GameCurrent game={game} key={game.gameId} />;
+            return <Game game={game} key={game.gameId} />;
           })}
         </GamesContainer>
       ) : (

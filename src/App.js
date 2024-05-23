@@ -1,9 +1,6 @@
 import "./App.css";
-import Home from "./pages/Home";
-import TodaysSchedule from "./pages/Scheduling/TodaysSchedule/TodaysSchedule";
-import SeasonSchedule from "./pages/Scheduling/SeasonSchedule/SeasonSchedule";
-// import { SeasonSchedule, TodaysSchedule } from "./pages/Scheduling/index.js";
-import About from "./pages/About";
+import { Home, About } from "./pages/Other/";
+import { SeasonSchedule, TodaysSchedule } from "./pages/Scheduling/index.js";
 import GameInfo from "./pages/GameInfo/GameInfo";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
