@@ -1,22 +1,23 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function FeedbackForm() {
-  const [showDisplayForm, setShowDisplayForm] = useState(true);
+  const [showDisplayForm, setShowDisplayForm] = useState(false);
   const FEEDBACK_FORM_WRAPPER_ID = "feedback-form-wrapper";
   const FEEDBACK_FORM_ID = "feedback-form";
-
+  const { gameId } = useParams();
 
   const toggleShowDisplayForm = () => {
     setShowDisplayForm(!showDisplayForm);
   };
 
-  const submitForm = (event) => {
-    event.preventDefault()
-    console.log("shup")
-  }
+  const submitForm = event => {
+    event.preventDefault();
+    console.log(gameId);
+  };
 
   return (
-    <div id={FEEDBACK_FORM_WRAPPER_ID} >
+    <div id={FEEDBACK_FORM_WRAPPER_ID}>
       <p>
         Report an issue{" "}
         {!showDisplayForm ? (
@@ -32,7 +33,7 @@ export default function FeedbackForm() {
             <input type="text" id="fname" name="fname" />
             <label for="lname">Last name:</label>
             <input type="text" id="lname" name="lname" />
-            <input type="submit" id="lname" name="lname" text="hi"/>
+            <input type="submit" id="lname" name="lname" text="hi" />
           </form>
         </div>
       ) : null}

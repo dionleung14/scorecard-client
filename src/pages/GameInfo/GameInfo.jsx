@@ -15,6 +15,7 @@ import Recap from "./components/recap/Recap";
 import "./gameInfo.css";
 // import Dion from "../../components/Dion/Dion";
 import Scorecards from "./components/scorecards/Scorecards";
+import { FeedbackForm } from "../../components";
 
 export default function GameInfo() {
   const { gameId } = useParams();
@@ -67,6 +68,7 @@ export default function GameInfo() {
   return (
     <div>
       <h3>GameInfo</h3>
+      <FeedbackForm />
       <button onClick={getGameInfo}>Get game info</button>
       <h1>Boxscore</h1>
       {gameBoxScore ? (

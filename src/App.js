@@ -3,7 +3,8 @@ import { Home, About } from "./pages/Other/";
 import { SeasonSchedule, TodaysSchedule } from "./pages/Scheduling/index.js";
 import GameInfo from "./pages/GameInfo/GameInfo";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { FeedbackForm, Navigation } from "./components/";
+// import { FeedbackForm, Navigation } from "./components/";
+import { Navigation } from "./components/";
 
 // Not sure if this is best practice but I use App.js essentially as a router
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <Navigation />
-        <FeedbackForm />
+        {/* <FeedbackForm /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/todays-schedule" element={<TodaysSchedule />} />
