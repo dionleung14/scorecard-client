@@ -2,15 +2,35 @@
   text-align: center;
   width: 75%;
   margin: 0 auto;
+  display: flexbox;
 }
 
 .game-summary {
-  color: "red",
+  color: "red";
 }
 
 .nav-bar {
   display: flex;
   justify-content: space-around;
+}
+
+#feedback-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px black solid;
+  width: 130px;
+  position: fixed;
+  margin-left: -138px;
+}
+
+#feedback-form {
+  display: flex;
+  border: 1px red solid;
+}
+
+#feedback-form .form{
+  display: flex;
+  border: 1px red solid;
 }
 
 @keyframes App-logo-spin {
