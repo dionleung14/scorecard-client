@@ -21,16 +21,29 @@
   width: 130px;
   position: fixed;
   margin-left: -138px;
+  text-wrap:pretty;
 }
 
 #feedback-form {
   display: flex;
   border: 1px red solid;
+  width: auto;
+  overflow: scroll;
 }
 
-#feedback-form .form{
+#reset-form-button {
+  align-self: flex-start;
+}
+
+#feedback-form form {
   display: flex;
-  border: 1px red solid;
+  flex-direction: column;
+  border: 1px blue solid;
+  align-items: flex-start;
+}
+
+#feedback-form p {
+  text-align: left;
 }
 
 @keyframes App-logo-spin {

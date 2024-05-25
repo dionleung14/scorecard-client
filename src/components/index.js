@@ -1,4 +1,4 @@
-import FeedbackForm from "./FeedbackForm";
+import FeedbackForm from "./FeedbackForm/FeedbackForm";
 import Navigation from "./Navigation";
 
 export { FeedbackForm, Navigation };
