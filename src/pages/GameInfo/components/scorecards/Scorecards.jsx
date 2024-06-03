@@ -24,7 +24,6 @@ export default function Scorecards( props) {
       {showCombinedScoreCards ? (
         <div className="scorecards">
 
-          <h3>hi</h3>
           <ScorecardsTeam team={scorecards.awayTeam}/>
           <ScorecardsTeam team={scorecards.homeTeam}/>
         </div>

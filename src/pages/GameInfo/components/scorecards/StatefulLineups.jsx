@@ -22,7 +22,7 @@ export default function StatefulLineups({
 
   return (
     <div>
-      <h2>{team} team lineup</h2>
+      {/* <h2>{team} team lineup</h2> */}
       <table>
         <tbody className="batting-lineups">
           <tr>

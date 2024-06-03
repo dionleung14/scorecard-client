@@ -8,7 +8,7 @@ export default function Scoring({ innings, team, scoring}) {
     batterRows5} = scoring
   return (
     <div>
-      <h3>{team.market} {team.name}</h3>
+      {/* <h3>{team.market} {team.name}</h3> */}
       <div className="scorecard">
         <table className="roster">
           <tbody>
