@@ -1,7 +1,7 @@
 // import React, { useState } from "react";
 import React from "react";
-import StatefulLineups from "./StatefulLineups";
-import Scoring from "./Scoring";
+// import StatefulLineups from "./StatefulLineups";
+// import Scoring from "./Scoring";
 import PitchingRecords from "./PitchingRecords";
 import FullScorecard from "./FullScorecard";
 
@@ -24,60 +24,6 @@ export default function ScorecardsTeam({ team }) {
         {team.team.market} {team.team.name}
       </h3>
       <div className="scorecard">
-        {/* <tr>
-            <th>Batting Order</th>
-            <th>Number</th>
-            <th>Player</th>
-            <th>Position</th>
-            {team.inningsPlays.map((inning, index) => {
-              if (inning.columns && inning.columns.length > 0) {
-                return inning.columns.map(inningCol => {
-                  return (
-                    <th
-                      className="scorecard-inning-header"
-                      key={inningCol.columnNumber}>
-                      {inningCol.inningNumber}
-                    </th>
-                  );
-                });
-              } else {
-                return (
-                  <th className="scorecard-inning-header" key={index}>
-                    {inning.inningNumber}
-                  </th>
-                );
-              }
-            })}
-          </tr> */}
-        {/* <table>
-          <tbody>
-            <tr>
-              <th>Batting Order</th>
-              <th>Number</th>
-              <th>Player</th>
-              <th>Position</th>
-              {team.inningsPlays.map((inning, index) => {
-                if (inning.columns && inning.columns.length > 0) {
-                  return inning.columns.map(inningCol => {
-                    return (
-                      <th
-                        className="scorecard-inning-header"
-                        key={inningCol.columnNumber}>
-                        {inningCol.inningNumber}
-                      </th>
-                    );
-                  });
-                } else {
-                  return (
-                    <th className="scorecard-inning-header" key={index}>
-                      {inning.inningNumber}
-                    </th>
-                  );
-                }
-              })}
-            </tr>
-          </tbody>
-        </table> */}
         {/* <StatefulLineups
           battingLineupsWithSubs={team.lineups}
           pitchersRecords={team.pitchersUsed}
