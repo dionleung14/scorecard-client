@@ -1,0 +1,133 @@
+// This page retrieves past games in a season filtered by team
+import React, { useState } from "react";
+import { getSeasonGamesForATeam } from "../../../routes";
+import { generateSearchResultsString } from "../../../services/schedule/scheduleUtil";
+import GamesContainer from "../components/GamesContainer";
+import Game from "../components/Game";
+import { SearchForm, Error, SearchResultsString } from "./components";
+import "../scheduling.css";
+
+export default function SeasonSchedule() {
+  const [displayGames, setDisplayGames] = useState([]); // array to hold games from results
+  const [searchPending, setSearchPending] = useState(false); // search pending flag for loading or nah
+  const [errorLoading, setErrorLoading] = useState(false); // error message
+
+  // copy of drop down form that updates when search completes so it can be displayed in a string
+  const [displaySearchTerms, setDisplaySearchTerms] = useState({
+    year: null,
+    team: null,
+    type: null,
+  });
+
+  // search completed string
+  const [searchString, setSearchString] = useState("");
+
+  // search form
+  const [formAllGamesInSzn, setFormAllGamesInSzn] = useState({
+    year: null,
+    team: null,
+    type: null,
+  });
+
+  // form handler for the dropdowns
+  const handleChangeAllGamesInSzn = event => {
+    setFormAllGamesInSzn({
+      ...formAllGamesInSzn,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  // submitting the form
+  const submission = async event => {
+    event.preventDefault();
+    if (
+      formAllGamesInSzn.year !== null &&
+      formAllGamesInSzn.type !== null &&
+      formAllGamesInSzn.team !== null
+    ) {
+      setSearchPending(true); // toggle search flag
+      let games = await getSeasonGamesForATeam(formAllGamesInSzn); // fetch games
+      if (games !== null && games.length > 0) {
+        setDisplayGames(games); // displays games for a given team in a given year
+      } else {
+        setSearchPending(false); // toggle search flag
+        setErrorLoading(true);
+      }
+      setDisplaySearchTerms({
+        // set the display results graphic/text
+        ...displaySearchTerms,
+        year: formAllGamesInSzn.year,
+        team: formAllGamesInSzn.team,
+        type: formAllGamesInSzn.type,
+      });
+      setSearchPending(false); // toggle search flag
+      setSearchString(generateSearchResultsString(formAllGamesInSzn));
+      // TODO: debug this so that all star game searches don't need the team
+      // } else if (
+      //   formAllGamesInSzn.year !== null &&
+      //   formAllGamesInSzn.type === "AST"
+      // ) {
+      //   setSearchPending(true); // toggle search flag
+      //   let games = await getSeasonGamesForATeam(formAllGamesInSzn); // fetch games
+      //   if (games !== null && games.length > 0) {
+      //     setDisplayGames(games); // displays games for a given team in a given year
+      //   } else {
+      //     setSearchPending(false); // toggle search flag
+      //     setErrorLoading(true);
+      //   }
+      //   setDisplaySearchTerms({
+      //     // set the display results graphic/text
+      //     ...displaySearchTerms,
+      //     year: formAllGamesInSzn.year,
+      //     team: formAllGamesInSzn.team,
+      //     type: formAllGamesInSzn.type,
+      //   });
+      //   setSearchPending(false); // toggle search flag
+      //   generateSearchResultsString(formAllGamesInSzn);
+    } else {
+      window.alert("Please fill out the form completely"); // alert user to fill out form
+    }
+  };
+
+  // clear out the stateful form
+  const clearForm = () => {
+    setFormAllGamesInSzn({
+      year: null,
+      team: null,
+      type: null,
+    });
+  };
+
+  const clearSearchResults = () => {
+    setDisplayGames([]);
+  };
+
+  return (
+    <div>
+      <h1>Search past games</h1>
+      <SearchForm
+        onSubmit={submission}
+        onReset={clearForm}
+        onChange={handleChangeAllGamesInSzn}
+        statefulForm={formAllGamesInSzn}
+      />
+      {errorLoading ? <Error /> : null}
+      {searchPending ? (
+        <h5>Searching</h5>
+      ) : !searchPending && displayGames.length > 0 ? (
+        <SearchResultsString
+          searchResults={searchString}
+          numberOfGames={displayGames.length}
+          clearSearchFunction={clearSearchResults}
+        />
+      ) : null}
+      {displayGames.length > 0 ? (
+        <GamesContainer>
+          {displayGames.map(game => {
+            return <Game game={game} key={game.gameId} />;
+          })}
+        </GamesContainer>
+      ) : null}
+    </div>
+  );
+}

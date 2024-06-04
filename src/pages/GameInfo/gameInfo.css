@@ -34,7 +34,7 @@
   display: flex;
 } */
 
-.away-scorecard, .home-scorecard {
+.scorecard {
   display: flex;
 }
 
@@ -52,4 +52,20 @@
 
 table, th, td, tr {
   border: solid black 1px;
+}
+
+.scorecard-cell {
+  color:white;
+}
+
+.scoring-cell {
+  background-color: pink;
+}
+
+.empty-cell {
+  background-color: darkkhaki;
+}
+
+.scorecard-inning-header {
+  width: 3rem;
 }
