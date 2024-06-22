@@ -6,8 +6,9 @@ import {
   getPBPForAGame,
   // setGameLineups, // placeholder for the live roster; could leverage it for a generated scorecard?
 } from "../../routes";
-import BoxScoreSimple from "./components/BoxScoreSimple";
-import BoxScoreDetailed from "./components/BoxScoreDetailed";
+import GameDetails from "./components/GameDetails";
+import BoxScoreSimple from "./components/boxscore/BoxScoreSimple";
+import BoxScoreDetailed from "./components/boxscore/BoxScoreDetailed";
 import Lineups from "./components/Lineups";
 // import StatefulLineups from "./components/StatefulLineups";
 import Recap from "./components/recap/Recap";
@@ -29,12 +30,13 @@ export default function GameInfo() {
   const [gameRecap, setGameRecap] = useState(null);
   const [scorecardPlays, setScorecardPlays] = useState(null);
   const [startingLineups, setStartingLineups] = useState(null);
-  // const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
+  const [gameInfo, setGameInfo] = useState(null);
   // const [pitchersRecords, setPitchersRecords] = useState(null);
   // const [dion, setDion] = useState(null);
   const getGameInfo = async () => {
     // let boxscore = await getSingleGameBoxScore(gameId);
     let playByPlay = await getPBPForAGame(gameId);
+    setGameInfo(playByPlay.gameInfo);
     setStartingLineups(playByPlay.startingLineups);
     // setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
     setGameRecap(playByPlay.recap.recap);
@@ -67,32 +69,46 @@ export default function GameInfo() {
 
   return (
     <div>
-      <h3>GameInfo</h3>
       <FeedbackForm />
-      <button onClick={getGameInfo}>Get game info</button>
-      <h1>Boxscore</h1>
-      {gameBoxScore ? (
-        <button onClick={toggleSimpleOrBoxscore}>
-          {scoreToggle ? "View more details" : "View fewer details"}
-        </button>
-      ) : null}
-      {gameBoxScore && scoreToggle === true ? (
-        <BoxScoreSimple gameInfo={gameBoxScore} />
-      ) : gameBoxScore && scoreToggle === false ? (
-        <BoxScoreDetailed gameInfo={gameBoxScore} />
-      ) : null}
+      <div className="game-info-header">
+        <h2>Game Information</h2>
+        {gameInfo ? (
+          <button className="get-game-info-btn" onClick={getGameInfo}>
+            Refresh game info
+          </button>
+        ) : (
+          <button className="get-game-info-btn" onClick={getGameInfo}>
+            Get game info
+          </button>
+        )}
+      </div>
+      {gameInfo ? <GameDetails gameInfo={gameInfo} /> : null}
+      {/* TODO: create a boxscore container */}
+      <div className="boxscore-container">
+        {gameBoxScore && scoreToggle === true ? (
+          <BoxScoreSimple
+            gameInfo={gameBoxScore}
+            toggleSimpleDetailed={toggleSimpleOrBoxscore}
+          />
+        ) : gameBoxScore && scoreToggle === false ? (
+          <BoxScoreDetailed
+            gameInfo={gameBoxScore}
+            toggleSimpleDetailed={toggleSimpleOrBoxscore}
+          />
+        ) : null}
+      </div>
       {startingLineups ? (
+        // TODO: create a lineups container
         <div>
-          <h1>Starting Lineups (Lineups component)</h1>
+          <h1>Starting Lineups</h1>
           <div className="lineup-card">
             <Lineups lineup={startingLineups.awayTeam} />
             <Lineups lineup={startingLineups.homeTeam} />
           </div>
         </div>
-      ) : (
-        <h1>Lineups</h1>
-      )}
+      ) : null}
       {gameRecap ? (
+        // TODO: create a recap container
         <div>
           <h1>
             Play by Play{" "}
@@ -109,14 +125,8 @@ export default function GameInfo() {
             <h2>Play by Play text is hidden</h2>
           )}
         </div>
-      ) : (
-        <h1>Play by Play Recap</h1>
-      )}
-      {scorecardPlays ? (
-        <Scorecards scorecards={scorecardPlays} />
-      ) : (
-        <h1>Scorecard service</h1>
-      )}
+      ) : null}
+      {scorecardPlays ? <Scorecards scorecards={scorecardPlays} /> : null}
     </div>
   );
 }

@@ -1,3 +1,39 @@
+/* body {
+  background-color: maroon;
+} */
+
+.boxscore-container {
+  margin: auto;
+}
+
+.boxscore-container button {
+  margin: 0 0 0.5rem;
+}
+
+.boxscore-container th {
+  padding: 5px;
+}
+
+.boxscore-table,
+.starting-lineup-table {
+  margin: auto;
+}
+
+/* .game-info-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+} */
+
+/* .game-info-header h2 {
+position: relative;
+}
+
+.get-game-info-btn {
+  position: absolute;
+  right: 5px;
+} */
+
 .lineup-card {
   display: flex;
   justify-content: space-between;
@@ -38,6 +74,18 @@
   display: flex;
 }
 
+.scorecard table {
+  margin: auto;
+}
+
+.scorecard td {
+  margin: 0 3px;
+}
+
+.scorecard td p {
+  margin: 0.25rem;
+}
+
 .player-columns-categories th {
   height: 1.3rem;
 }
@@ -50,12 +98,15 @@
   background-color: goldenrod;
 }
 
-table, th, td, tr {
+table,
+th,
+td,
+tr {
   border: solid black 1px;
 }
 
 .scorecard-cell {
-  color:white;
+  color: white;
 }
 
 .scoring-cell {
@@ -68,4 +119,8 @@ table, th, td, tr {
 
 .scorecard-inning-header {
   width: 3rem;
+}
+
+.pitching-records table {
+  margin: auto;
 }

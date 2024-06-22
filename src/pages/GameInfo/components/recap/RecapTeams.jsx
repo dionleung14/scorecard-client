@@ -3,6 +3,12 @@ import React from "react";
 
 export default function RecapTeams(props) {
   const { inningData, team, inningHalf } = props;
+
+  // placeholder for linking recap and scorecard events
+  const logInfo = eventId => {
+    console.log(eventId);
+  };
+
   return (
     <div
       className="inning-top"
@@ -14,9 +20,11 @@ export default function RecapTeams(props) {
       <ol>
         {inningData.map(inningEvent => {
           return (
-            <li key={inningEvent.eventId} data-pbp-id={inningEvent.eventId}>
+            <li
+              key={inningEvent.eventId}
+              data-pbp-id={inningEvent.eventId}
+              onClick={() => logInfo(inningEvent.eventId)}>
               {inningEvent.description}
-              {/* {inningEvent.eventId} */}
             </li>
           );
         })}

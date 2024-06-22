@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 // import StatefulLineups from "./components/StatefulLineups";
 import ScorecardsTeam from "./ScorecardsTeam";
 
-export default function Scorecards( props) {
+export default function Scorecards(props) {
   const { scorecards } = props;
 
   const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
@@ -18,14 +18,13 @@ export default function Scorecards( props) {
   return (
     <div>
       <h1>
-        Scorecard Table
+        Scorecard Table{" "}
         <button onClick={toggleShowHideCombinedSC}>toggle show/hide</button>
       </h1>
       {showCombinedScoreCards ? (
         <div className="scorecards">
-
-          <ScorecardsTeam team={scorecards.awayTeam}/>
-          <ScorecardsTeam team={scorecards.homeTeam}/>
+          <ScorecardsTeam team={scorecards.awayTeam} />
+          <ScorecardsTeam team={scorecards.homeTeam} />
         </div>
       ) : (
         <h2>Scorecards are hidden</h2>

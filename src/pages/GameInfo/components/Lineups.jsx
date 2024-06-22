@@ -35,7 +35,7 @@ export default function Lineups(props) {
     <div>
       <h2>{`${team.market} ${team.name}`} starting lineup</h2>
       <h2>{team.teamAbbr} starting lineup</h2>
-      <table>
+      <table className="starting-lineup-table">
         <tbody>
           <tr>
             <th>Number</th>

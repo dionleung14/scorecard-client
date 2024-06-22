@@ -21,6 +21,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/*" element={<Home />} /> {/* 404 handler */}
         </Routes>
+        {/* <Navigation /> // Footer? */}
       </div>
     </Router>
   );

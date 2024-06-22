@@ -1,11 +1,13 @@
 // Long boxscore component
 import React from "react";
-import BoxScoreDetailedRow from "./BoxScoreDetailedRow"
+import BoxScoreDetailedRow from "./BoxScoreDetailedRow";
 
-export default function BoxScoreDetailed({gameInfo}) {
+export default function BoxScoreDetailed({ gameInfo, toggleSimpleDetailed }) {
   return (
     <div>
-      <table>
+      <h1>Boxscore</h1>
+      <button onClick={toggleSimpleDetailed}>View fewer details</button>
+      <table className="boxscore-table">
         <tbody>
           <tr>
             <th>Team</th>
@@ -16,8 +18,8 @@ export default function BoxScoreDetailed({gameInfo}) {
             <th>Hits</th>
             <th>Errors</th>
           </tr>
-          <BoxScoreDetailedRow teamInfo={gameInfo.away}/>
-          <BoxScoreDetailedRow teamInfo={gameInfo.home}/>
+          <BoxScoreDetailedRow teamInfo={gameInfo.away} />
+          <BoxScoreDetailedRow teamInfo={gameInfo.home} />
         </tbody>
       </table>
     </div>
