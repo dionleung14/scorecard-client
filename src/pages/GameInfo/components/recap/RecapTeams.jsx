@@ -23,6 +23,7 @@ export default function RecapTeams(props) {
             <li
               key={inningEvent.eventId}
               data-pbp-id={inningEvent.eventId}
+              className="recap-event"
               onClick={() => logInfo(inningEvent.eventId)}>
               {inningEvent.description}
             </li>

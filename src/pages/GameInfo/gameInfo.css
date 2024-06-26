@@ -19,6 +19,15 @@
   margin: auto;
 }
 
+.recap-event:hover, .scoring-cell:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.empty-cell:hover {
+  cursor: not-allowed;
+}
+
 /* .game-info-header {
   display: flex;
   flex-direction: row;

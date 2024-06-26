@@ -31,12 +31,14 @@ export default function GameInfo() {
   const [scorecardPlays, setScorecardPlays] = useState(null);
   const [startingLineups, setStartingLineups] = useState(null);
   const [gameInfo, setGameInfo] = useState(null);
+  const [firstPitch, setFirstPitch] = useState(null);
   // const [pitchersRecords, setPitchersRecords] = useState(null);
   // const [dion, setDion] = useState(null);
   const getGameInfo = async () => {
     // let boxscore = await getSingleGameBoxScore(gameId);
     let playByPlay = await getPBPForAGame(gameId);
     setGameInfo(playByPlay.gameInfo);
+    setFirstPitch(playByPlay.firstPitchTime);
     setStartingLineups(playByPlay.startingLineups);
     // setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
     setGameRecap(playByPlay.recap.recap);
@@ -82,7 +84,7 @@ export default function GameInfo() {
           </button>
         )}
       </div>
-      {gameInfo ? <GameDetails gameInfo={gameInfo} /> : null}
+      {gameInfo ? <GameDetails gameInfo={gameInfo} firstPitch={firstPitch} /> : null}
       {/* TODO: create a boxscore container */}
       <div className="boxscore-container">
         {gameBoxScore && scoreToggle === true ? (
@@ -122,7 +124,7 @@ export default function GameInfo() {
               );
             })
           ) : (
-            <h2>Play by Play text is hidden</h2>
+            <h2>Play by Play is hidden</h2>
           )}
         </div>
       ) : null}

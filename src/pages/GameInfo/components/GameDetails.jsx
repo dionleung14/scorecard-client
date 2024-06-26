@@ -2,7 +2,7 @@ import React from "react";
 // import { gameStatusTranslator } from "../../../services/gameStatusTranslator";
 import teams from "../../../data/teams";
 
-export default function GameDetails({ gameInfo }) {
+export default function GameDetails({ gameInfo, firstPitch }) {
   const { scheduled, homeTeam, awayTeam, attendance, duration, venue } =
     gameInfo;
 
@@ -77,6 +77,7 @@ export default function GameDetails({ gameInfo }) {
       </p>
       {/* <p> {generateText(gameStatus)}</p> */}
       <p>Attendance: {attendanceDisplay}</p>
+      <p>First Pitch: {firstPitch.start_time}</p>
       <p>Duration: {durationDisplay(duration)}</p>
     </div>
   );
