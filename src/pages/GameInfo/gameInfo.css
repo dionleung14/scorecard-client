@@ -2,6 +2,22 @@
   background-color: maroon;
 } */
 
+/* ------------ MAIN PAGE ------------ */
+/* .game-info-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.game-info-header h2 {
+position: relative;
+}
+
+.get-game-info-btn {
+  position: absolute;
+  right: 5px;
+} */
+
 .boxscore-container {
   margin: auto;
 }
@@ -14,45 +30,31 @@
   padding: 5px;
 }
 
-.boxscore-table,
-.starting-lineup-table {
+/* ------------ GAME DETAILS ------------ */
+/* nothing atm */
+
+/* ------------ BOXSCORE ------------ */
+.boxscore-table {
   margin: auto;
 }
 
-.recap-event:hover, .scoring-cell:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.empty-cell:hover {
-  cursor: not-allowed;
-}
-
-/* .game-info-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-} */
-
-/* .game-info-header h2 {
-position: relative;
-}
-
-.get-game-info-btn {
-  position: absolute;
-  right: 5px;
-} */
-
+/* ------------ STARTING LINEUPS ------------ */
 .lineup-card {
   display: flex;
   justify-content: space-between;
 }
 
+.starting-lineup-table {
+  margin: auto;
+}
+
+/* ------------ PLAY-BY-PLAY RECAP ------------ */
 .inning-whole {
   background-color: salmon;
   border: 1px solid black;
   margin: 1rem auto;
 }
+
 .inning-number {
   text-align: left;
 }
@@ -67,17 +69,21 @@ position: relative;
   background-color: teal;
   text-align: left;
 }
+
 .inning-top-or-bottom {
   text-align: left;
 }
+
+.recap-event:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ------------ SCORECARD TABLE ------------ */
 .scorecards-dion {
   display: flex;
   justify-content: space-around;
 }
-
-/* .scorecards {
-  display: flex;
-} */
 
 .scorecard {
   display: flex;
@@ -94,6 +100,32 @@ position: relative;
 .scorecard td p {
   margin: 0.25rem;
 }
+.scorecard-cell {
+  color: white;
+}
+
+.scoring-cell {
+  background-color: pink;
+}
+
+.empty-cell {
+  background-color: darkkhaki;
+}
+
+.pitching-records table {
+  margin: auto;
+}
+
+.scoring-cell:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.empty-cell:hover {
+  cursor: not-allowed;
+}
+
+/* ------------ MISCELLANEOUS ------------ */
 
 .player-columns-categories th {
   height: 1.3rem;
@@ -114,22 +146,7 @@ tr {
   border: solid black 1px;
 }
 
-.scorecard-cell {
-  color: white;
-}
-
-.scoring-cell {
-  background-color: pink;
-}
-
-.empty-cell {
-  background-color: darkkhaki;
-}
 
 .scorecard-inning-header {
   width: 3rem;
-}
-
-.pitching-records table {
-  margin: auto;
 }

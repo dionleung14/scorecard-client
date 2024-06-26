@@ -69,7 +69,7 @@ export default function GameDetails({ gameInfo, firstPitch }) {
           src={getLogo(homeTeam.teamAbbr, "home")}
         />
       </p>
-      <p className="date">{displayDate(date)}</p>
+      <p>{displayDate(date)}</p>
       <p>{venue.name} </p>
       <p>{venue.address}</p>
       <p>
