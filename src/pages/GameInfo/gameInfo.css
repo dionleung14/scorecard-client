@@ -108,6 +108,13 @@ position: relative;
   background-color: pink;
 }
 
+.out-indicator {
+  border: 1px solid black;
+  border-radius:50%;
+  height: 25px;
+  width: 25px;
+}
+
 .empty-cell {
   background-color: darkkhaki;
 }

@@ -9,6 +9,7 @@ export default function ScoringCell5({ outcome, info }) {
   return (
     <td className="scorecard-cell scoring-cell" onClick={logInfo}>
       {outcome}
+      {info.isOut ? <p className="out-indicator">{info.outNumber}</p> : null}
     </td>
   );
 }
