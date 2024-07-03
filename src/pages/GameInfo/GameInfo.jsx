@@ -22,6 +22,7 @@ export default function GameInfo() {
   const { gameId } = useParams();
   // toggle for showing and hiding the play by play text
   const [displayRecap, setDisplayRecap] = useState(true);
+  const [recapFlex, setRecapFlex] = useState(false);
   const [scoreToggle, setScoreToggle] = useState(true);
 
   // toggle for showing and hiding the scorecards
@@ -48,8 +49,11 @@ export default function GameInfo() {
     setGameBoxScore(playByPlay.boxscore);
   };
 
-  const toggleShowHidePbp = () => {
+  const toggleShowHideRecap = () => {
     setDisplayRecap(!displayRecap);
+  };
+  const toggleRecapFlex = () => {
+    setRecapFlex(!recapFlex);
   };
   // const toggleShowHideCombinedSC = () => {
   //   setShowCombinedScoreCards(!showCombinedScoreCards);
@@ -114,13 +118,14 @@ export default function GameInfo() {
         <div>
           <h1>
             Play by Play{" "}
-            <button onClick={toggleShowHidePbp}>toggle show/hide</button>
+            <button onClick={toggleShowHideRecap}>toggle show/hide</button>
+            <button onClick={toggleRecapFlex}>toggle display</button>
           </h1>
           {/* {gamePlayByPlay.reverse().map(inning => { // could have a toggle button to do reverse chronological, makes more sense for the live scorecard to have that though  */}
           {displayRecap ? (
             gameRecap.map((inning, index) => {
               return (
-                <Recap key={index} inningData={inning} teams={inning.teams} />
+                <Recap key={index} inningData={inning} teams={inning.teams} displayFlex={recapFlex}/>
               );
             })
           ) : (

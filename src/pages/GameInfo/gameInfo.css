@@ -57,16 +57,23 @@ position: relative;
 
 .inning-number {
   text-align: left;
+  display: block;
 }
 
-.inning-top {
+.recap-halfs-container-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inning-half-flex {
   background-color: gray;
-  /* color: white; */
+  color: white;
   text-align: left;
+  width: 50%;
 }
-
-.inning-bottom {
-  background-color: teal;
+.inning-half {
+  background-color: gray;
+  color: white;
   text-align: left;
 }
 
@@ -106,13 +113,29 @@ position: relative;
 
 .scoring-cell {
   background-color: pink;
+  position: relative;
+  width: 70px;
+  height: 80px;
 }
 
 .out-indicator {
   border: 1px solid black;
+  position: absolute;
+  right: -4px;
+  bottom: 1px;
   border-radius:50%;
   height: 25px;
   width: 25px;
+}
+
+.final-out-indicator {
+  height: 1px;
+  width: 40px;
+  background: black;
+  position: absolute;
+  right: -10px;
+  bottom: -5px;
+  transform: rotate(-45deg);
 }
 
 .empty-cell {

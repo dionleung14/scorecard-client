@@ -2,7 +2,7 @@
 import React from "react";
 
 export default function RecapTeams(props) {
-  const { inningData, team, inningHalf } = props;
+  const { inningData, team, inningHalf, displayFlex } = props;
 
   // placeholder for linking recap and scorecard events
   const logInfo = eventId => {
@@ -11,7 +11,7 @@ export default function RecapTeams(props) {
 
   return (
     <div
-      className="inning-top"
+      className={displayFlex ? "inning-half-flex":"inning-half" }
       style={{
         color: `#${team.colors.secondary}`,
         backgroundColor: `#${team.colors.primary}`,
