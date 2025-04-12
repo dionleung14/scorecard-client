@@ -45,7 +45,7 @@ export default function SavedSchedule() {
           })}
         </GamesContainer>
       ) : (
-        <h1>Loading today's games...</h1>
+        <h1>Loading sample games...</h1>
       )}
       {/* need additional conditionals to display this, like is this being accessed during off season? */}
       {isFetchingGames === false && !displayGames ? (
