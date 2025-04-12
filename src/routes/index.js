@@ -1,14 +1,15 @@
-import { getSeasonGamesForATeam, getGamesInADay } from "./schedule/index";
 import {
-  getPBPForAGame,
-  getSingleGameBoxScore,
-  // getSingleGameExtendedSummary,
-} from "./playbyplay/index";
+  getSeasonGamesForATeam,
+  getGamesInADay,
+  getSavedSampleGames,
+} from "./schedule/index";
+import { getPBPForAGame } from "./playbyplay/index";
+import { submitFeedbackForm } from "./other/index";
 
 export {
-  getGamesInADay,
-  getSingleGameBoxScore,
-  // getSingleGameExtendedSummary,
   getSeasonGamesForATeam,
+  getGamesInADay,
+  getSavedSampleGames,
   getPBPForAGame,
+  submitFeedbackForm,
 };

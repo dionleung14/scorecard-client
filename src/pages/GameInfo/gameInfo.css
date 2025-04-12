@@ -1,42 +1,161 @@
+/* body {
+  background-color: maroon;
+} */
+
+/* ------------ MAIN PAGE ------------ */
+/* .game-info-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.game-info-header h2 {
+position: relative;
+}
+
+.get-game-info-btn {
+  position: absolute;
+  right: 5px;
+} */
+
+.boxscore-container {
+  margin: auto;
+}
+
+.boxscore-container button {
+  margin: 0 0 0.5rem;
+}
+
+.boxscore-container th {
+  padding: 5px;
+}
+
+/* ------------ GAME DETAILS ------------ */
+/* nothing atm */
+
+/* ------------ BOXSCORE ------------ */
+.boxscore-table {
+  margin: auto;
+}
+
+/* ------------ STARTING LINEUPS ------------ */
 .lineup-card {
   display: flex;
   justify-content: space-between;
 }
 
+.starting-lineup-table {
+  margin: auto;
+}
+
+/* ------------ PLAY-BY-PLAY RECAP ------------ */
 .inning-whole {
   background-color: salmon;
   border: 1px solid black;
   margin: 1rem auto;
 }
+
 .inning-number {
   text-align: left;
+  display: block;
 }
 
-.inning-top {
+.recap-halfs-container-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inning-half-flex {
   background-color: gray;
-  /* color: white; */
+  color: white;
+  text-align: left;
+  width: 50%;
+}
+.inning-half {
+  background-color: gray;
+  color: white;
   text-align: left;
 }
 
-.inning-bottom {
-  background-color: teal;
-  text-align: left;
-}
 .inning-top-or-bottom {
   text-align: left;
 }
+
+.recap-event:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ------------ SCORECARD TABLE ------------ */
 .scorecards-dion {
   display: flex;
   justify-content: space-around;
 }
 
-/* .scorecards {
-  display: flex;
-} */
-
-.away-scorecard, .home-scorecard {
+.scorecard {
   display: flex;
 }
+
+.scorecard table {
+  margin: auto;
+}
+
+.scorecard td {
+  margin: 0 3px;
+}
+
+.scorecard td p {
+  margin: 0.25rem;
+}
+.scorecard-cell {
+  color: white;
+}
+
+.scoring-cell {
+  background-color: pink;
+  position: relative;
+  width: 70px;
+  height: 80px;
+}
+
+.out-indicator {
+  border: 1px solid black;
+  position: absolute;
+  right: -4px;
+  bottom: 1px;
+  border-radius:50%;
+  height: 25px;
+  width: 25px;
+}
+
+.final-out-indicator {
+  height: 1px;
+  width: 40px;
+  background: black;
+  position: absolute;
+  right: -10px;
+  bottom: -5px;
+  transform: rotate(-45deg);
+}
+
+.empty-cell {
+  background-color: darkkhaki;
+}
+
+.pitching-records table {
+  margin: auto;
+}
+
+.scoring-cell:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.empty-cell:hover {
+  cursor: not-allowed;
+}
+
+/* ------------ MISCELLANEOUS ------------ */
 
 .player-columns-categories th {
   height: 1.3rem;
@@ -50,6 +169,14 @@
   background-color: goldenrod;
 }
 
-table, th, td, tr {
+table,
+th,
+td,
+tr {
   border: solid black 1px;
+}
+
+
+.scorecard-inning-header {
+  width: 3rem;
 }

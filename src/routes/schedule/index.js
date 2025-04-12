@@ -12,7 +12,6 @@ export const getSeasonGamesForATeam = async searchTerms => {
     // const team = searchTerms.team
     // const season = searchTerms.type
     const savedData = searchTerms.savedData || false;
-    // let games = fetch(`${LOCAL_BASE_URL}/sportradar/season/team`, {
     let games = fetch(`${LOCAL_BASE_URL}/schedule/team`, {
       method: "POST",
       body: JSON.stringify({
@@ -33,11 +32,8 @@ export const getSeasonGamesForATeam = async searchTerms => {
     const { year, team, type: season } = searchTerms;
     const savedData = searchTerms.savedData || false;
     console.log("fetching games in a season for a team");
-    // const url = await process.env.REACT_APP_SERVER_URL;
-    // let games = fetch(`${url}sportradar/season/team`, {
     let games = fetch(
       `https://scorecard-server-heroku-deploy.herokuapp.com/schedule/team`,
-      // `https://scorecard-server-heroku-deploy.herokuapp.com/sportradar/season/team`, // TODO: delete this and uncomment above line
       {
         method: "POST",
         body: JSON.stringify({
@@ -70,7 +66,6 @@ export const getGamesInADay = async date => {
     console.log("using local server on 8080");
     const { year, month, day } = date;
     let games = fetch(`${LOCAL_BASE_URL}/schedule/day`, {
-      // let games = fetch(`${LOCAL_BASE_URL}/sportradar/game/day`, {
       method: "POST",
       body: JSON.stringify({
         year,
@@ -99,8 +94,6 @@ export const getGamesInADay = async date => {
     const { year, month, day } = date;
     const url = await process.env.REACT_APP_SERVER_URL;
     let games = fetch(`${url}schedule/day`, {
-      // let games = fetch(`${url}sportradar/game/day`, {
-      // TODO: delete this and uncomment above line
       method: "POST",
       body: JSON.stringify({
         year,
@@ -125,7 +118,87 @@ export const getGamesInADay = async date => {
       });
     return games;
   } else {
-    // let games = fetch("sportradar/schedule/day", {
+    let games = fetch("sportradar/game/day", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async response => {
+        if (response.status === 202) {
+          console.log("schedule data is from file");
+        } else if (response.status === 200) {
+          console.log("schedule data is from api");
+        }
+        let parsed = await response.json();
+        return parsed.games;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    return games;
+  }
+};
+
+// get sample games data
+export const getSavedSampleGames = async date => {
+  console.log("getting saved sample games");
+  if (process.env.REACT_APP_ENVIRONMENT === "LOCAL_CLIENT") {
+    console.log("using local server on 8080");
+    const { year, month, day } = date;
+    let games = fetch(`${LOCAL_BASE_URL}/schedule/saved`, {
+      method: "POST",
+      body: JSON.stringify({
+        year,
+        month,
+        day,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async response => {
+        if (response.status === 202) {
+          console.log("schedule data is from file");
+        } else if (response.status === 200) {
+          console.log("schedule data is from api");
+        }
+        let parsed = await response.json();
+        return parsed;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    return games;
+  } else if (date) {
+    console.log("hitting deployed server on AWS/Heroku");
+    const { year, month, day } = date;
+    const url = await process.env.REACT_APP_SERVER_URL;
+    let games = fetch(`${url}schedule/day`, {
+      method: "POST",
+      body: JSON.stringify({
+        year,
+        month,
+        day,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async response => {
+        if (response.status === 202) {
+          console.log("schedule data is from file");
+        } else if (response.status === 200) {
+          console.log("schedule data is from api");
+        }
+        let parsed = await response.json();
+        return parsed;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    return games;
+  } else {
     let games = fetch("sportradar/game/day", {
       method: "POST",
       headers: {

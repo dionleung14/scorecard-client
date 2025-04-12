@@ -2,15 +2,48 @@
   text-align: center;
   width: 75%;
   margin: 0 auto;
+  display: flexbox;
 }
 
 .game-summary {
-  color: "red",
+  color: "red";
 }
 
 .nav-bar {
   display: flex;
   justify-content: space-around;
+}
+
+#feedback-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px black solid;
+  width: 130px;
+  position: fixed;
+  margin-left: -138px;
+  text-wrap:pretty;
+}
+
+#feedback-form {
+  display: flex;
+  border: 1px red solid;
+  width: auto;
+  overflow: scroll;
+}
+
+#reset-form-button {
+  align-self: flex-start;
+}
+
+#feedback-form form {
+  display: flex;
+  flex-direction: column;
+  border: 1px blue solid;
+  align-items: flex-start;
+}
+
+#feedback-form p {
+  text-align: left;
 }
 
 @keyframes App-logo-spin {
