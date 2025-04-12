@@ -34,10 +34,12 @@ export default function ScorecardsTeam({ team }) {
           team={team.team}
           scoring={team.scorecard}
         /> */}
-        <FullScorecard fullScorecard={team.fullScorecard}/>
+        <FullScorecard fullScorecard={team.fullScorecard} />
       </div>
-      <h5>{team.team.market} pitchers</h5>
-      <PitchingRecords pitchers={team.pitchersUsed} />
+      <h3>{team.team.market} pitchers</h3>
+      <div className="pitching-records">
+        <PitchingRecords pitchers={team.pitchersUsed} />
+      </div>
     </div>
   );
 }

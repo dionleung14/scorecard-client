@@ -24,7 +24,12 @@ export default function FullScorecardRow({ row }) {
       </td>
       {playInnings.map(playedInningCell => {
         if (playedInningCell.involved === true) {
-          return <ScoringCell5 outcome={playedInningCell.scoringOutcome} />;
+          return (
+            <ScoringCell5
+              outcome={playedInningCell.scoringOutcome}
+              info={playedInningCell}
+            />
+          );
         } else {
           return <EmptyCell />;
         }

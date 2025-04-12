@@ -2,10 +2,16 @@
 import React from "react";
 
 export default function RecapTeams(props) {
-  const { inningData, team, inningHalf } = props;
+  const { inningData, team, inningHalf, displayFlex } = props;
+
+  // placeholder for linking recap and scorecard events
+  const logInfo = eventId => {
+    console.log(eventId);
+  };
+
   return (
     <div
-      className="inning-top"
+      className={displayFlex ? "inning-half-flex":"inning-half" }
       style={{
         color: `#${team.colors.secondary}`,
         backgroundColor: `#${team.colors.primary}`,
@@ -14,9 +20,12 @@ export default function RecapTeams(props) {
       <ol>
         {inningData.map(inningEvent => {
           return (
-            <li key={inningEvent.eventId} data-pbp-id={inningEvent.eventId}>
+            <li
+              key={inningEvent.eventId}
+              data-pbp-id={inningEvent.eventId}
+              className="recap-event"
+              onClick={() => logInfo(inningEvent.eventId)}>
               {inningEvent.description}
-              {/* {inningEvent.eventId} */}
             </li>
           );
         })}
