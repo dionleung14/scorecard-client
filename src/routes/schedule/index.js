@@ -143,6 +143,7 @@ export const getGamesInADay = async date => {
 // get sample games data
 export const getSavedSampleGames = async date => {
   console.log("getting saved sample games");
+  const { year, month, day } = date;
   let games = fetch(`${LOCAL_BASE_URL}/schedule/saved`, {
     method: "POST",
     body: JSON.stringify({
