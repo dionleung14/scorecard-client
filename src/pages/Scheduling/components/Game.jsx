@@ -10,7 +10,7 @@ export default function Game(props) {
     // placeholder to "use" setScore to avoid deployment bugs
     setScore(true);
   }
-  const { game } = props;
+  const { game, saved } = props;
   // Could lift this to a function that returns a string
   const date = game.scheduled.split("").slice(0, 10).join("");
 
@@ -42,11 +42,11 @@ export default function Game(props) {
     }
   };
 
-    // Generates a paragraph tag with the game status from sportradar
-    const generateText = gameStatus => {
-      let text = gameStatusTranslator(gameStatus);
-      return <p>{text}</p>;
-    };
+  // Generates a paragraph tag with the game status from sportradar
+  const generateText = gameStatus => {
+    let text = gameStatusTranslator(gameStatus);
+    return <p>{text}</p>;
+  };
 
   // useEffect(() => {
   //   const loadScores = async () => {
@@ -63,7 +63,7 @@ export default function Game(props) {
           {displayDate(date)} <span>Unnecessary</span>
         </p>
       ) : (
-        <p className="date" >{displayDate(date)}</p>
+        <p className="date">{displayDate(date)}</p>
       )}
       {game.awayTeam.colors && game.homeTeam.colors ? (
         <div className="team-boxscore">
@@ -111,9 +111,17 @@ export default function Game(props) {
             Game info
           </Link>
         </button>
+      ) : saved ? (
+        <button className="game-info">
+          <Link to={`/game-info-sample/gameId/${game.gameId}/sample/${saved}`} target="_blank">
+            Game Info
+          </Link>
+        </button>
       ) : (
         <button className="game-info">
-          <Link to={`/game-info-${game.gameId}`} target="_blank">Game Info</Link>
+          <Link to={`/game-info-${game.gameId}`} target="_blank">
+            Game Info
+          </Link>
         </button>
       )}
     </div>

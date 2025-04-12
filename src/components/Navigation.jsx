@@ -8,6 +8,7 @@ export default function Navigation() {
       <Link to="/">Home</Link>
       <Link to="/game-lookup">Search past games</Link>
       <Link to="/todays-schedule">Today's schedule</Link>
+      <Link to="/sample-games">Sample games</Link>
       <Link to="/about">About</Link>
       <form action="https://www.paypal.com/donate" method="post" target="_top">
         <input type="hidden" name="business" value="R8W2J7W4MF4XW" />

@@ -19,7 +19,8 @@ import Scorecards from "./components/scorecards/Scorecards";
 import { FeedbackForm } from "../../components";
 
 export default function GameInfo() {
-  const { gameId } = useParams();
+  // const { saved } = props;
+  const { gameId, saved } = useParams();
   // toggle for showing and hiding the play by play text
   const [displayRecap, setDisplayRecap] = useState(true);
   const [recapFlex, setRecapFlex] = useState(false);
@@ -37,7 +38,7 @@ export default function GameInfo() {
   // const [dion, setDion] = useState(null);
   const getGameInfo = async () => {
     // let boxscore = await getSingleGameBoxScore(gameId);
-    let playByPlay = await getPBPForAGame(gameId);
+    let playByPlay = await getPBPForAGame(gameId, saved);
     setGameInfo(playByPlay.gameInfo);
     setFirstPitch(playByPlay.firstPitchTime);
     setStartingLineups(playByPlay.startingLineups);
@@ -77,7 +78,8 @@ export default function GameInfo() {
     <div>
       <FeedbackForm />
       <div className="game-info-header">
-        <h2>Game Information</h2>
+        <h2>Game Information         {saved? "- Sample Game" : null}</h2>
+
         {gameInfo ? (
           <button className="get-game-info-btn" onClick={getGameInfo}>
             Refresh game info
@@ -88,7 +90,9 @@ export default function GameInfo() {
           </button>
         )}
       </div>
-      {gameInfo ? <GameDetails gameInfo={gameInfo} firstPitch={firstPitch} /> : null}
+      {gameInfo ? (
+        <GameDetails gameInfo={gameInfo} firstPitch={firstPitch} />
+      ) : null}
       {/* TODO: create a boxscore container */}
       <div className="boxscore-container">
         {gameBoxScore && scoreToggle === true ? (
@@ -125,7 +129,12 @@ export default function GameInfo() {
           {displayRecap ? (
             gameRecap.map((inning, index) => {
               return (
-                <Recap key={index} inningData={inning} teams={inning.teams} displayFlex={recapFlex}/>
+                <Recap
+                  key={index}
+                  inningData={inning}
+                  teams={inning.teams}
+                  displayFlex={recapFlex}
+                />
               );
             })
           ) : (

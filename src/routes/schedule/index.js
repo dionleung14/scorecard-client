@@ -139,3 +139,84 @@ export const getGamesInADay = async date => {
     return games;
   }
 };
+
+// get sample games data
+export const getSavedSampleGames = async date => {
+  console.log("getting saved sample games");
+  if (process.env.REACT_APP_ENVIRONMENT === "LOCAL_CLIENT") {
+    console.log("using local server on 8080");
+    const { year, month, day } = date;
+    let games = fetch(`${LOCAL_BASE_URL}/schedule/saved`, {
+      method: "POST",
+      body: JSON.stringify({
+        year,
+        month,
+        day,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async response => {
+        if (response.status === 202) {
+          console.log("schedule data is from file");
+        } else if (response.status === 200) {
+          console.log("schedule data is from api");
+        }
+        let parsed = await response.json();
+        return parsed;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    return games;
+  } else if (date) {
+    console.log("hitting deployed server on AWS/Heroku");
+    const { year, month, day } = date;
+    const url = await process.env.REACT_APP_SERVER_URL;
+    let games = fetch(`${url}schedule/day`, {
+      method: "POST",
+      body: JSON.stringify({
+        year,
+        month,
+        day,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async response => {
+        if (response.status === 202) {
+          console.log("schedule data is from file");
+        } else if (response.status === 200) {
+          console.log("schedule data is from api");
+        }
+        let parsed = await response.json();
+        return parsed;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    return games;
+  } else {
+    let games = fetch("sportradar/game/day", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async response => {
+        if (response.status === 202) {
+          console.log("schedule data is from file");
+        } else if (response.status === 200) {
+          console.log("schedule data is from api");
+        }
+        let parsed = await response.json();
+        return parsed.games;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    return games;
+  }
+};
