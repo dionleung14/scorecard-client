@@ -1,6 +1,7 @@
 // This page displays all games scheduled to be played today
 // TODO: investigate if this can be used for a specific date search
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Game from "../components/Game";
 import GamesContainer from "../components/GamesContainer";
 import { getSavedSampleGames } from "../../../routes";
