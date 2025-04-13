@@ -111,10 +111,16 @@ export const getGamesInADay = async date => {
           console.log("schedule data is from api");
           console.log(response);
         }
-        let parsed = await response.json();
-        return parsed;
+        try {
+          let parsed = await response.json();
+          return parsed;
+        } catch (err) {
+          console.log("error converting response into json");
+          console.log(err);
+        }
       })
       .catch(err => {
+        console.log("error with getting a response from server");
         console.error(err);
       });
     return games;
