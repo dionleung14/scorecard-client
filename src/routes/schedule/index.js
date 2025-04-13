@@ -174,7 +174,7 @@ export const getSavedSampleGames = async date => {
     console.log("hitting deployed server on AWS/Heroku");
     const { year, month, day } = date;
     const url = await process.env.REACT_APP_SERVER_URL;
-    let games = fetch(`${url}/schedule/saved`, {
+    let games = fetch(`${url}schedule/saved`, {
       method: "POST",
       body: JSON.stringify({
         year,
