@@ -10,18 +10,19 @@ export default function TodaysSchedule() {
   const [displayGames, setDisplayGames] = useState([]); // stateful array of games played today
   const [isFetchingGames, setIsFetchingGames] = useState(true); // stateful boolean for fetching games
 
+  const now = new Date(Date.now());
+  const day = now.getDate();
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+  const today = {
+    day,
+    month,
+    year,
+  };
+
   // get games scheduled to play today
   // local server will get games scheduled on 4/21/2021
   const loadGames = async () => {
-    let now = new Date(Date.now());
-    let day = now.getDate();
-    let month = now.getMonth() + 1;
-    let year = now.getFullYear();
-    let today = {
-      day,
-      month,
-      year,
-    };
     let schedule = await getGamesInADay(today);
     setDisplayGames(schedule);
     setIsFetchingGames(false);
@@ -37,7 +38,7 @@ export default function TodaysSchedule() {
   
   return (
     <div>
-      <h3>Today's Schedule</h3>
+      <h3>Today's Schedule - {dateFormatter(day, month, year)}</h3>
       {displayGames.length > 0 && isFetchingGames === false ? (
         <GamesContainer>
           {displayGames.map(game => {
@@ -53,4 +54,8 @@ export default function TodaysSchedule() {
       ) : null}
     </div>
   );
+}
+
+const dateFormatter = (day, month, year) => {
+  return `${month}/${day}/${year}`;
 }
