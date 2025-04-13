@@ -34,7 +34,7 @@ export default function TodaysSchedule() {
     setTimeout(() => {
       loadGames();
     }, 1000);
-  }, []);
+  });
   
   return (
     <div>
