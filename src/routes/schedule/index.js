@@ -109,6 +109,7 @@ export const getGamesInADay = async date => {
           console.log("schedule data is from file");
         } else if (response.status === 200) {
           console.log("schedule data is from api");
+          console.log(response);
         }
         let parsed = await response.json();
         return parsed;
