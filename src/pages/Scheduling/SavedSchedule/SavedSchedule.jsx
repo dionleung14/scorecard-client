@@ -29,24 +29,27 @@ export default function SavedSchedule() {
 
   // load games on page load after 1 second
   // TODO: investigate why this runs twice
-  useEffect(() => {
-    setTimeout(() => {
-      loadGames();
-    }, 1000);
-  }, []);
-  
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     loadGames();
+  //   }, 1000);
+  // }, []);
+
   return (
     <div>
       <h3>Sample Games</h3>
+      {displayGames.length <= 0 ? (
+        <button onClick={loadGames}>Retrieve sample games</button>
+      ) : null}
       {displayGames.length > 0 && isFetchingGames === false ? (
         <GamesContainer>
           {displayGames.map(game => {
-            return <Game game={game} key={game.gameId} saved="true"/>;
+            return <Game game={game} key={game.gameId} saved="true" />;
           })}
         </GamesContainer>
-      ) : (
+      ) : isFetchingGames === false ? (
         <h1>Loading sample games...</h1>
-      )}
+      ) : null}
       {/* need additional conditionals to display this, like is this being accessed during off season? */}
       {isFetchingGames === false && !displayGames ? (
         <h1>Something went wrong, try reloading the page?</h1>
