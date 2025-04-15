@@ -31,7 +31,7 @@ export const getSeasonGamesForATeam = async searchTerms => {
   } else {
     const { year, team, type: season } = searchTerms;
     const savedData = searchTerms.savedData || false;
-    console.log("fetching games in a season for a team");
+    console.log("hitting deployed server on AWS/Heroku");
     let games = fetch(
       `https://scorecard-server-heroku-deploy.herokuapp.com/schedule/team`,
       {
@@ -48,9 +48,11 @@ export const getSeasonGamesForATeam = async searchTerms => {
       }
     ).then(async response => {
       if (response.status === 200) {
+        console.log("good response");
         let parsed = await response.json();
         return parsed;
       } else if (response.status === 403) {
+        console.log("bad response");
         // console.log("uh oh");
         return null;
       }
