@@ -25,15 +25,19 @@ export default function TodaysSchedule() {
   // local server will get games scheduled on 4/21/2021
   const loadGames = async () => {
     try {
-      console.log("loading games in a day")
+      console.log("loading games in a day");
       let schedule = await getGamesInADay(today);
-      console.log("getGamesInADay succeeded... in a way")
-      console.log(schedule)
-      setDisplayGames(schedule);
-      setIsFetchingGames(false);
+      console.log("getGamesInADay succeeded... in a way");
+      console.log(schedule);
+      if (schedule) {
+        setDisplayGames(schedule);
+        setIsFetchingGames(false);
+      } else {
+        setIsError(true);
+      }
     } catch (err) {
-      console.log("catching an error from the frontend utility")
-      console.log(err)
+      console.log("catching an error from the frontend utility");
+      console.log(err);
       setIsError(true);
     }
   };
@@ -45,7 +49,7 @@ export default function TodaysSchedule() {
       loadGames();
     }, 1000);
   });
-  
+
   return (
     <div>
       <h3>Today's Schedule - {dateFormatter(day, month, year)}</h3>
@@ -68,4 +72,4 @@ export default function TodaysSchedule() {
 
 const dateFormatter = (day, month, year) => {
   return `${month}/${day}/${year}`;
-}
+};
