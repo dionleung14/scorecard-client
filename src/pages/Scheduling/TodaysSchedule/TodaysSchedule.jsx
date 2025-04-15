@@ -32,6 +32,7 @@ export default function TodaysSchedule() {
       setDisplayGames(schedule);
       setIsFetchingGames(false);
     } catch (err) {
+      console.log("catching an error from the frontend utility")
       console.log(err)
       setIsError(true);
     }
