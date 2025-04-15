@@ -10,6 +10,7 @@ export default function TodaysSchedule() {
   const [displayGames, setDisplayGames] = useState([]); // stateful array of games played today
   const [isFetchingGames, setIsFetchingGames] = useState(true); // stateful boolean for fetching games
   const [isError, setIsError] = useState(false); // stateful boolean for tracking errors
+  const [retryCount, setRetryCount] = useState(0); // Counting how many times trying to load today's schedule
 
   const now = new Date(Date.now());
   const day = now.getDate();
@@ -46,10 +47,16 @@ export default function TodaysSchedule() {
   // load games on page load after 1 second
   // TODO: investigate why this runs twice
   useEffect(() => {
-    setTimeout(() => {
-      loadGames();
-    }, 1000);
-  });
+    loadGames();
+  }, []);
+  // useEffect(() => {
+  //   if (retryCount < 4) {
+  //     setTimeout(() => {
+  //       loadGames();
+  //     }, 1000);
+  //     setRetryCount(retryCount + 1)
+  //   }
+  // }, [retryCount, loadGames]);
 
   return (
     <div>
