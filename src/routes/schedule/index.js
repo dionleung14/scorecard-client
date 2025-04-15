@@ -105,6 +105,9 @@ export const getGamesInADay = async date => {
       },
     })
       .then(async response => {
+        if (response.status === 500) {
+          throw new Error("Something went wrong");
+        }
         if (response.status === 202) {
           console.log("schedule data is from file");
         } else if (response.status === 200) {

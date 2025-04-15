@@ -27,6 +27,7 @@ export default function TodaysSchedule() {
     console.log("loading games in a day")
     let schedule = await getGamesInADay(today);
     console.log("getGamesInADay succeeded... in a way")
+    // if (schedule.status )
     console.log(schedule)
     setDisplayGames(schedule);
     setIsFetchingGames(false);
