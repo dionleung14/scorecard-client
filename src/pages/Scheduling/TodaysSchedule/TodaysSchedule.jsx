@@ -24,14 +24,17 @@ export default function TodaysSchedule() {
   // get games scheduled to play today
   // local server will get games scheduled on 4/21/2021
   const loadGames = async () => {
-    console.log("loading games in a day")
-    let schedule = await getGamesInADay(today);
-    console.log("getGamesInADay succeeded... in a way")
-    // if (schedule.status )
-    console.log(schedule)
-    setDisplayGames(schedule);
-    setIsFetchingGames(false);
-    setIsError(false);
+    try {
+      console.log("loading games in a day")
+      let schedule = await getGamesInADay(today);
+      console.log("getGamesInADay succeeded... in a way")
+      console.log(schedule)
+      setDisplayGames(schedule);
+      setIsFetchingGames(false);
+    } catch {err} {
+      console.log(err)
+      setIsError(true);
+    }
   };
 
   // load games on page load after 1 second
