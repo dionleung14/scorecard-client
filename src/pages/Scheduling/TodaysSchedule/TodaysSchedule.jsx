@@ -65,7 +65,10 @@ export default function TodaysSchedule() {
       )}
       {/* need additional conditionals to display this, like is this being accessed during off season? */}
       {isFetchingGames === false && isError ? (
-        <h1>Something went wrong, try reloading the page?</h1>
+        <h1>
+          Something went wrong, try reloading the page? If this persists, please
+          contact dioncleung@gmail.com
+        </h1>
       ) : null}
     </div>
   );
