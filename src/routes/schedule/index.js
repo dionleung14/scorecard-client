@@ -141,6 +141,7 @@ export const getGamesInADay = async date => {
         return parsed.games;
       })
       .catch(err => {
+        console.log("There was an error somewhere");
         console.error(err);
         return err;
       });
