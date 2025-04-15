@@ -9,6 +9,7 @@ import "../scheduling.css";
 export default function TodaysSchedule() {
   const [displayGames, setDisplayGames] = useState([]); // stateful array of games played today
   const [isFetchingGames, setIsFetchingGames] = useState(true); // stateful boolean for fetching games
+  const [isError, setIsError] = useState(false); // stateful boolean for tracking errors
 
   const now = new Date(Date.now());
   const day = now.getDate();
@@ -24,8 +25,10 @@ export default function TodaysSchedule() {
   // local server will get games scheduled on 4/21/2021
   const loadGames = async () => {
     let schedule = await getGamesInADay(today);
+    console.log(schedule)
     setDisplayGames(schedule);
     setIsFetchingGames(false);
+    setIsError(false);
   };
 
   // load games on page load after 1 second
@@ -49,7 +52,7 @@ export default function TodaysSchedule() {
         <h1>Loading today's games...</h1>
       )}
       {/* need additional conditionals to display this, like is this being accessed during off season? */}
-      {isFetchingGames === false && !displayGames ? (
+      {isFetchingGames === false && isError ? (
         <h1>Something went wrong, try reloading the page?</h1>
       ) : null}
     </div>

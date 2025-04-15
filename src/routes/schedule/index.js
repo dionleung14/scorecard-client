@@ -142,6 +142,7 @@ export const getGamesInADay = async date => {
       })
       .catch(err => {
         console.error(err);
+        return err;
       });
     return games;
   }
