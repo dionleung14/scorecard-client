@@ -26,6 +26,7 @@ export default function TodaysSchedule() {
   const loadGames = async () => {
     console.log("loading games in a day")
     let schedule = await getGamesInADay(today);
+    console.log("getGamesInADay succeeded... in a way")
     console.log(schedule)
     setDisplayGames(schedule);
     setIsFetchingGames(false);
