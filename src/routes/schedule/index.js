@@ -112,6 +112,7 @@ export const getGamesInADay = async date => {
           console.log(response);
         }
         try {
+          console.log("Attempting to convert into json");
           let parsed = await response.json();
           return parsed;
         } catch (err) {
