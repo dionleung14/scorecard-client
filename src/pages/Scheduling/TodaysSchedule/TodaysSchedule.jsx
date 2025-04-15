@@ -33,6 +33,7 @@ export default function TodaysSchedule() {
         setDisplayGames(schedule);
         setIsFetchingGames(false);
       } else {
+        setIsFetchingGames(false);
         setIsError(true);
       }
     } catch (err) {
