@@ -31,7 +31,7 @@ export default function TodaysSchedule() {
       console.log(schedule)
       setDisplayGames(schedule);
       setIsFetchingGames(false);
-    } catch {err} {
+    } catch (err) {
       console.log(err)
       setIsError(true);
     }
