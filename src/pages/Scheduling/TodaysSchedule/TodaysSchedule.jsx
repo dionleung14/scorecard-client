@@ -10,7 +10,7 @@ export default function TodaysSchedule() {
   const [displayGames, setDisplayGames] = useState([]); // stateful array of games played today
   const [isFetchingGames, setIsFetchingGames] = useState(true); // stateful boolean for fetching games
   const [isError, setIsError] = useState(false); // stateful boolean for tracking errors
-  const [retryCount, setRetryCount] = useState(0); // Counting how many times trying to load today's schedule
+  // const [retryCount, setRetryCount] = useState(0); // Counting how many times trying to load today's schedule
 
   const now = new Date(Date.now());
   const day = now.getDate();
