@@ -1,6 +1,6 @@
 import React from "react";
 // import ScoringRow from "./ScoringRow";
-import ScoringRow5 from "./ScoringRow5";
+import ScoringRow from "./ScoringRow";
 
 export default function Scoring({ innings, team, scoring}) {
   const {
@@ -48,7 +48,7 @@ export default function Scoring({ innings, team, scoring}) {
             })} */}
             {batterRows5.map((battingOrder, index) => {
               return (
-                <ScoringRow5
+                <ScoringRow
                   order={battingOrder}
                   idx={index} />
               );

@@ -1,14 +1,14 @@
 import React from "react";
-import ScoringCell5 from "./ScoringCell5";
+import ScoringCell from "./ScoringCell";
 import EmptyCell from "./EmptyCell";
 // import {getPlayerIdsPerInning} from "../util/scoringIdentity"
 
-export default function ScoringRow5({ order }) {
+export default function ScoringRow({ order }) {
   return (
     <tr>
       {order.map((inningCell, index) => {
         if (inningCell.involved === true) {
-          return <ScoringCell5 outcome={inningCell.scoringOutcome} />;
+          return <ScoringCell outcome={inningCell.scoringOutcome} />;
         } else {
           return <EmptyCell />;
         }
