@@ -118,6 +118,12 @@ position: relative;
   height: 80px;
 }
 
+.square {
+  height: 50px;
+  width: 50px;
+  background-color: #555;
+  transform: rotate(45deg);
+}
 .out-indicator {
   border: 1px solid black;
   position: absolute;
