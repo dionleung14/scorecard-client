@@ -28,9 +28,9 @@ export default function GameInfo() {
 
   // toggle for showing and hiding the scorecards
   // const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
+  const [scorecardData, setScorecardData] = useState(null);
   const [gameBoxScore, setGameBoxScore] = useState(null);
   const [gameRecap, setGameRecap] = useState(null);
-  const [scorecardPlays, setScorecardPlays] = useState(null);
   const [startingLineups, setStartingLineups] = useState(null);
   const [gameInfo, setGameInfo] = useState(null);
   const [firstPitch, setFirstPitch] = useState(null);
@@ -39,14 +39,14 @@ export default function GameInfo() {
   const getGameInfo = async () => {
     // let boxscore = await getSingleGameBoxScore(gameId);
     let playByPlay = await getPBPForAGame(gameId, saved);
-    console.log("heyyyyyyyyy");
+    console.log("playByPlay:");
     console.log(playByPlay);
     setGameInfo(playByPlay.gameInfo);
     setFirstPitch(playByPlay.firstPitchTime);
     setStartingLineups(playByPlay.startingLineups);
     // setBattingLineupsWithSubs(playByPlay.battingLineupsWithSubstitutions);
     setGameRecap(playByPlay.recap.recap);
-    setScorecardPlays(playByPlay.scorecardPlays);
+    setScorecardData(playByPlay.scorecardPlays);
     // setPitchersRecords(playByPlay.pitchersRecords);
     // setDion(playByPlay.dion);
     setGameBoxScore(playByPlay.boxscore);
@@ -144,7 +144,7 @@ export default function GameInfo() {
           )}
         </div>
       ) : null}
-      {scorecardPlays ? <Scorecards scorecards={scorecardPlays} /> : null}
+      {scorecardData ? <Scorecards scorecardData={scorecardData} /> : null}
     </div>
   );
 }

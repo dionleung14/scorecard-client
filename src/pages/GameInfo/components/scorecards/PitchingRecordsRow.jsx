@@ -1,7 +1,7 @@
 import React from "react";
 import { defensivePositionMapper } from "../../../../util/constants";
 
-export default function PitcherRow({ pitcher }) {
+export default function PitchingRecordsRow({ pitcher }) {
 
   return (
     <tr key={pitcher.sequenceNumber}>

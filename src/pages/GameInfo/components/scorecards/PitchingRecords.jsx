@@ -1,8 +1,7 @@
 import React from "react";
-import PitcherRow from "./PitchingRecordsRow";
+import { PitchingRecordsRow } from "./index.js";
 
 export default function PitchingRecords({ pitchers }) {
-
   return (
     <table>
       <tbody>
@@ -30,7 +29,9 @@ export default function PitchingRecords({ pitchers }) {
           <td>SP</td>
         </tr>
         {pitchers.slice(1, pitchers.length).map(pitcher => {
-          return <PitcherRow key={pitcher.playerId} pitcher={pitcher} />;
+          return (
+            <PitchingRecordsRow key={pitcher.playerId} pitcher={pitcher} />
+          );
         })}
       </tbody>
     </table>

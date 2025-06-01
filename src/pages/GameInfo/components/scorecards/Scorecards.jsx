@@ -2,9 +2,7 @@ import React, { useState } from "react";
 // import StatefulLineups from "./components/StatefulLineups";
 import { ScorecardsTeam } from "./index.js";
 
-export default function Scorecards(props) {
-  const { scorecards } = props;
-
+export default function Scorecards({ scorecardData }) {
   const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
   // const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
   // const [pitchersRecords, setPitchersRecords] = useState(null);
@@ -19,7 +17,7 @@ export default function Scorecards(props) {
     <div className="scorecards-component scorecards-container">
       <h1 className="scorecards-subsection-header">
         {/* <h1 id="scorecards-subsection-header">  // should this be an ID? */}
-        Scorecard Table{" "}
+        Scorecards{" "}
         <button
           className="toggle-display-button"
           id="toggle-display-button-scorecards"
@@ -29,8 +27,8 @@ export default function Scorecards(props) {
       </h1>
       {showCombinedScoreCards ? (
         <div className="combined-scorecards">
-          <ScorecardsTeam team={scorecards.awayTeam} />
-          <ScorecardsTeam team={scorecards.homeTeam} />
+          <ScorecardsTeam team={scorecardData.awayTeam} />
+          <ScorecardsTeam team={scorecardData.homeTeam} />
         </div>
       ) : (
         <h2 className="info-is-hidden-message">Scorecards are hidden</h2>

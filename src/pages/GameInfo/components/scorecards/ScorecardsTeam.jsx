@@ -2,11 +2,10 @@
 import React from "react";
 // import StatefulLineups from "./StatefulLineups";
 // import Scoring from "./Scoring";
-import PitchingRecords from "./PitchingRecords";
-import FullScorecard from "./FullScorecard";
+import { PitchingRecords, FullScorecard } from "./index.js";
 
 export default function ScorecardsTeam({ team }) {
-  // const { team } = props;
+  const { team: teamData, fullScorecard, pitchersUsed } = team;
 
   // const [showCombinedScoreCards, setShowCombinedScoreCards] = useState(true);
   // const [battingLineupsWithSubs, setBattingLineupsWithSubs] = useState(null);
@@ -21,7 +20,7 @@ export default function ScorecardsTeam({ team }) {
   return (
     <div className="scorecards-team">
       <h3 className="scorecards-team-team-header">
-        {team.team.market} {team.team.name}
+        {teamData.market} {teamData.name}
       </h3>
       <div className="scorecard-container">
         {/* <StatefulLineups
@@ -34,11 +33,13 @@ export default function ScorecardsTeam({ team }) {
           team={team.team}
           scoring={team.scorecard}
         /> */}
-        <FullScorecard fullScorecard={team.fullScorecard} />
+        <FullScorecard fullScorecard={fullScorecard} />
       </div>
-      <h3 className="scorecards-team-pitchers-header">{team.team.market} pitchers</h3>
+      <h3 className="scorecards-team-pitchers-header">
+        {teamData.market} pitchers
+      </h3>
       <div className="pitching-records">
-        <PitchingRecords pitchers={team.pitchersUsed} />
+        <PitchingRecords pitchers={pitchersUsed} />
       </div>
     </div>
   );

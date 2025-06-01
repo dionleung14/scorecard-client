@@ -88,18 +88,69 @@ position: relative;
 
 /* ------------ SCORECARD TABLE ------------ */
 .scorecard-container {
-  display: flex;
+  /* this is the scorecard component on gameinfo page */
+  /* display: grid; */
+  border: green 1px solid;
 }
 
-.scorecard-container table {
+.fullscorecard-container {
+  display: grid;
+  grid-template-areas:
+    "columnHeader"
+    /* "columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader columnHeader" */
+    ". . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . .";
+  /* gap: 10px; */
+  background-color: dodgerblue;
+  /* padding: 10px; */
   margin: auto;
 }
 
-.scorecard-container td {
+.fullscorecard-column-header-container {
+  grid-area: columnHeader;
+  /* background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center; */
+  /* margin: auto; */
+}
+
+/* .fullscorecard-container > .fullscorecard-column-header { */
+.fullscorecard-column-header {
+  /* grid-area: columnHeader; */
+  background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+  /* margin: auto; */
+}
+
+.full-scorecard-row {
+  /* scorecard columnHeader */
+  /* display: grid; */
+  margin: auto;
+    /* grid-area: columnHeader; */
+}
+.fullscorecard-column-header {
+  /* scorecard columnHeader */
+  /* display: grid; */
+  margin: auto;
+}
+
+.scorecard-container div {
   margin: 0 3px;
 }
 
-.scorecard-container td p {
+.scorecard-container div p {
   margin: 0.25rem;
 }
 .scorecard-cell {
@@ -114,8 +165,16 @@ position: relative;
   width: 70px;
   height: 80px;
 }
+.scoring-cell:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .empty-cell {
   background-color: darkkhaki;
+}
+.empty-cell:hover {
+  cursor: not-allowed;
 }
 
 .diamond {
@@ -156,17 +215,9 @@ position: relative;
   transform: rotate(-45deg);
 }
 
+/* ------------ PITCHING RECORDS ------------ */
 .pitching-records table {
   margin: auto;
-}
-
-.scoring-cell:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.empty-cell:hover {
-  cursor: not-allowed;
 }
 
 /* ------------ MISCELLANEOUS ------------ */

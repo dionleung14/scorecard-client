@@ -1,19 +1,17 @@
 import React from "react";
-import FullScorecardRow from "./FullScorecardRow";
+import { FullScorecardRow } from "./index.js";
 
 export default function FullScorecard({ fullScorecard }) {
   return (
-    <table>
-      <tbody>
-        <tr>
-          {fullScorecard.scorecardColumns.map(columnHeader => {
-            return <th>{columnHeader}</th>;
-          })}
-        </tr>
-        {fullScorecard.scorecardRows.map(scoreCardRow => {
-          return <FullScorecardRow scoreCardRow={scoreCardRow} />;
+    <div className="fullscorecard fullscorecard-container">
+      <div className="fullscorecard-column-header-container">
+        {fullScorecard.scorecardColumns.map(columnHeader => {
+          return <div className="fullscorecard-column-header">{columnHeader}</div>;
         })}
-      </tbody>
-    </table>
+      </div>
+      {fullScorecard.scorecardRows.map(scoreCardRow => {
+        return <FullScorecardRow scoreCardRow={scoreCardRow} />;
+      })}
+    </div>
   );
 }

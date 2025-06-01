@@ -1,28 +1,27 @@
 import React from "react";
-import ScoringCell from "./ScoringCell/ScoringCell";
-import EmptyCell from "./ScoringCell/EmptyCell";
+import {ScoringCell, EmptyCell} from "./ScoringCell";
 
 // This component represents an entire row of a scorecard for a given spot in the batting order
 export default function FullScorecardRow({ scoreCardRow }) {
   const playInnings = scoreCardRow.slice(4, scoreCardRow.length);
   return (
-    <tr className="full-scorecard-row">
-      <td>{scoreCardRow[0]}</td>
-      <td>
+    <div className="full-scorecard-row">
+      <div>{scoreCardRow[0]}</div>
+      <div>
         {scoreCardRow[1].map(batterNumber => {
           return <p>{batterNumber}</p>;
         })}
-      </td>
-      <td>
+      </div>
+      <div>
         {scoreCardRow[2].map(batterName => {
           return <p>{batterName}</p>;
         })}
-      </td>
-      <td>
+      </div>
+      <div>
         {scoreCardRow[3].map(batterPosition => {
           return <p>{batterPosition}</p>;
         })}
-      </td>
+      </div>
       {playInnings.map(playedInningCell => {
         if (playedInningCell.involved === true) {
           return (
@@ -36,6 +35,6 @@ export default function FullScorecardRow({ scoreCardRow }) {
           return <EmptyCell />;
         }
       })}
-    </tr>
+    </div>
   );
 }
