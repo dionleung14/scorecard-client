@@ -15,7 +15,7 @@ import Recap from "./components/recap/Recap";
 // import CombinedScorecard from "../../components/CombinedScorecard/CombinedScorecard"; // placed this outside of the ./components folder because it is very likely this page will be refactored
 import "./gameInfo.css";
 // import Dion from "../../components/Dion/Dion";
-import Scorecards from "./components/scorecards/Scorecards";
+import { Scorecards } from "./components/scorecards/index.js";
 import { FeedbackForm } from "../../components";
 
 export default function GameInfo() {
@@ -39,8 +39,8 @@ export default function GameInfo() {
   const getGameInfo = async () => {
     // let boxscore = await getSingleGameBoxScore(gameId);
     let playByPlay = await getPBPForAGame(gameId, saved);
-    console.log("heyyyyyyyyy")
-    console.log(playByPlay)
+    console.log("heyyyyyyyyy");
+    console.log(playByPlay);
     setGameInfo(playByPlay.gameInfo);
     setFirstPitch(playByPlay.firstPitchTime);
     setStartingLineups(playByPlay.startingLineups);
@@ -80,7 +80,7 @@ export default function GameInfo() {
     <div>
       <FeedbackForm />
       <div className="game-info-header">
-        <h2>Game Information         {saved? "- Sample Game" : null}</h2>
+        <h2>Game Information {saved ? "- Sample Game" : null}</h2>
 
         {gameInfo ? (
           <button className="get-game-info-btn" onClick={getGameInfo}>

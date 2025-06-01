@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import StatefulLineups from "./components/StatefulLineups";
-import ScorecardsTeam from "./ScorecardsTeam";
+import { ScorecardsTeam } from "./index.js";
 
 export default function Scorecards(props) {
   const { scorecards } = props;
@@ -16,18 +16,24 @@ export default function Scorecards(props) {
   };
 
   return (
-    <div>
-      <h1>
+    <div className="scorecards-component scorecards-container">
+      <h1 className="scorecards-subsection-header">
+        {/* <h1 id="scorecards-subsection-header">  // should this be an ID? */}
         Scorecard Table{" "}
-        <button onClick={toggleShowHideCombinedSC}>toggle show/hide</button>
+        <button
+          className="toggle-display-button"
+          id="toggle-display-button-scorecards"
+          onClick={toggleShowHideCombinedSC}>
+          toggle show/hide
+        </button>
       </h1>
       {showCombinedScoreCards ? (
-        <div className="scorecards">
+        <div className="combined-scorecards">
           <ScorecardsTeam team={scorecards.awayTeam} />
           <ScorecardsTeam team={scorecards.homeTeam} />
         </div>
       ) : (
-        <h2>Scorecards are hidden</h2>
+        <h2 className="info-is-hidden-message">Scorecards are hidden</h2>
       )}
     </div>
   );
