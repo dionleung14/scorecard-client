@@ -4,16 +4,13 @@ import ScoringCellDiamond from "./ScoringCellDiamond";
 
 export default function ScoringCell({ outcome, info, scoringOutcomes }) {
   // placeholder for linking recap and scorecard events
-  const logInfo = (event) => {
-    // console.log(info.eventId);
-    console.log(event.target)
-  };
+  // const logInfo = (event) => {
+  //   // console.log(info.eventId);
+  //   console.log(event.target)
+  // };
   return (
     <td className="scorecard-cell scoring-cell">
-      <ScoringCellDiamond scoringOutcomesArr={scoringOutcomes}/>
-      {scoringOutcomes.map(scoringOutcome => {
-        return <p onClick={logInfo}>{scoringOutcome.decision.scoringString}</p>;
-      })}
+      <ScoringCellDiamond scoringOutcomesArr={scoringOutcomes} isScoring={true}/>
       {info.isOut ? <p className="out-indicator">{info.outNumber}</p> : null}
       {info.isFinalOut ? <div className="final-out-indicator"></div> : null}
     </td>
