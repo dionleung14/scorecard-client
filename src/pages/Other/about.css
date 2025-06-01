@@ -1,0 +1,65 @@
+/* body {
+  background-color: rgb(245, 226, 53);
+} */
+:root {
+  --main-text-shadow: brown;
+}
+.text {
+  color: rgb(245, 226, 53);
+  /* color: var(--main-text-shadow); */
+  text-shadow: -1px -1px 0 var(--main-text-shadow), 1px -1px 0 var(--main-text-shadow), -1px 1px 0 var(--main-text-shadow), 1px 1px 0 var(--main-text-shadow);
+
+}
+
+#vert {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: "LXGW WenKai TC", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: xx-large;
+  padding-bottom: 0;
+}
+
+#vert p {
+  margin-bottom: 0;
+}
+
+#dion {
+  font-family: "LXGW WenKai TC", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: xx-large;
+  font-size: 4em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.dancing-script {
+  font-size: xx-large;
+  
+  /*font-family: "Arizonia", cursive;
+  font-weight: 400;
+  font-style: normal; */
+/* 
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal; */
+
+  /* font-family: "League Script", cursive;
+  font-weight: 700;
+  font-style: normal; */
+
+  font-family: "Alex Brush", cursive;
+  font-weight: 700;
+  font-style: normal;
+
+}
+
+.lxgw-wenkai-tc-regular {
+  font-family: "LXGW WenKai TC", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+

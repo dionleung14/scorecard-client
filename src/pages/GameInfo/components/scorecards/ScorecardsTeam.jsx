@@ -19,11 +19,11 @@ export default function ScorecardsTeam({ team }) {
   // };
 
   return (
-    <div>
-      <h3>
+    <div className="scorecards-team">
+      <h3 className="scorecards-team-team-header">
         {team.team.market} {team.team.name}
       </h3>
-      <div className="scorecard">
+      <div className="scorecard-container">
         {/* <StatefulLineups
           battingLineupsWithSubs={team.lineups}
           pitchersRecords={team.pitchersUsed}
@@ -36,7 +36,7 @@ export default function ScorecardsTeam({ team }) {
         /> */}
         <FullScorecard fullScorecard={team.fullScorecard} />
       </div>
-      <h3>{team.team.market} pitchers</h3>
+      <h3 className="scorecards-team-pitchers-header">{team.team.market} pitchers</h3>
       <div className="pitching-records">
         <PitchingRecords pitchers={team.pitchersUsed} />
       </div>

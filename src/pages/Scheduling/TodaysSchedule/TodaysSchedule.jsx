@@ -9,6 +9,8 @@ import "../scheduling.css";
 export default function TodaysSchedule() {
   const [displayGames, setDisplayGames] = useState([]); // stateful array of games played today
   const [isFetchingGames, setIsFetchingGames] = useState(true); // stateful boolean for fetching games
+  const [isError, setIsError] = useState(false); // stateful boolean for tracking errors
+  // const [retryCount, setRetryCount] = useState(0); // Counting how many times trying to load today's schedule
 
   const now = new Date(Date.now());
   const day = now.getDate();
@@ -23,19 +25,39 @@ export default function TodaysSchedule() {
   // get games scheduled to play today
   // local server will get games scheduled on 4/21/2021
   const loadGames = async () => {
-    let schedule = await getGamesInADay(today);
-    setDisplayGames(schedule);
-    setIsFetchingGames(false);
+    try {
+      console.log("loading games in a day");
+      let schedule = await getGamesInADay(today);
+      console.log("getGamesInADay succeeded... in a way");
+      console.log(schedule);
+      if (schedule) {
+        setDisplayGames(schedule);
+        setIsFetchingGames(false);
+      } else {
+        setIsFetchingGames(false);
+        setIsError(true);
+      }
+    } catch (err) {
+      console.log("catching an error from the frontend utility");
+      console.log(err);
+      setIsError(true);
+    }
   };
 
   // load games on page load after 1 second
   // TODO: investigate why this runs twice
   useEffect(() => {
-    setTimeout(() => {
-      loadGames();
-    }, 1000);
-  });
-  
+    loadGames();
+  }, []);
+  // useEffect(() => {
+  //   if (retryCount < 4) {
+  //     setTimeout(() => {
+  //       loadGames();
+  //     }, 1000);
+  //     setRetryCount(retryCount + 1)
+  //   }
+  // }, [retryCount, loadGames]);
+
   return (
     <div>
       <h3>Today's Schedule - {dateFormatter(day, month, year)}</h3>
@@ -49,8 +71,11 @@ export default function TodaysSchedule() {
         <h1>Loading today's games...</h1>
       )}
       {/* need additional conditionals to display this, like is this being accessed during off season? */}
-      {isFetchingGames === false && !displayGames ? (
-        <h1>Something went wrong, try reloading the page?</h1>
+      {isFetchingGames === false && isError ? (
+        <h1>
+          Something went wrong, try reloading the page? If this persists, please
+          contact dioncleung@gmail.com
+        </h1>
       ) : null}
     </div>
   );
@@ -58,4 +83,4 @@ export default function TodaysSchedule() {
 
 const dateFormatter = (day, month, year) => {
   return `${month}/${day}/${year}`;
-}
+};

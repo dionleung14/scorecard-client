@@ -10,11 +10,13 @@ export default function SearchForm({
   statefulForm,
 }) {
 
+  const today = new Date(Date.now());
+
   return (
     <form onSubmit={onSubmit} onReset={onReset}>
       <SearchFormSelectionYearsRange
         startYear="2016"
-        endYear="2024"
+        endYear={today.getFullYear()}
         handleChange={onChange}
       />
       <select

@@ -87,28 +87,25 @@ position: relative;
 }
 
 /* ------------ SCORECARD TABLE ------------ */
-.scorecards-dion {
-  display: flex;
-  justify-content: space-around;
-}
-
-.scorecard {
+.scorecard-container {
   display: flex;
 }
 
-.scorecard table {
+.scorecard-container table {
   margin: auto;
 }
 
-.scorecard td {
+.scorecard-container td {
   margin: 0 3px;
 }
 
-.scorecard td p {
+.scorecard-container td p {
   margin: 0.25rem;
 }
 .scorecard-cell {
   color: white;
+  /* flex-wrap:wrap; */
+  /* flex-direction: column; */
 }
 
 .scoring-cell {
@@ -117,13 +114,34 @@ position: relative;
   width: 70px;
   height: 80px;
 }
+.empty-cell {
+  background-color: darkkhaki;
+}
+
+.diamond {
+  position: relative;
+  top: 2px;
+  left: 5px;
+  height: 50px;
+  width: 50px;
+  background-color: #555;
+  /* transform: rotate(45deg); */
+}
+
+.scoring-diamond {
+  display: block;
+}
+
+.non-scoring-diamond {
+  opacity: 0.35;
+}
 
 .out-indicator {
   border: 1px solid black;
   position: absolute;
   right: -4px;
   bottom: 1px;
-  border-radius:50%;
+  border-radius: 50%;
   height: 25px;
   width: 25px;
 }
@@ -136,10 +154,6 @@ position: relative;
   right: -10px;
   bottom: -5px;
   transform: rotate(-45deg);
-}
-
-.empty-cell {
-  background-color: darkkhaki;
 }
 
 .pitching-records table {
@@ -175,7 +189,6 @@ td,
 tr {
   border: solid black 1px;
 }
-
 
 .scorecard-inning-header {
   width: 3rem;

@@ -11,7 +11,7 @@ export default function FullScorecard({ fullScorecard }) {
           })}
         </tr>
         {fullScorecard.scorecardRows.map(scoreCardRow => {
-          return <FullScorecardRow row={scoreCardRow} />;
+          return <FullScorecardRow scoreCardRow={scoreCardRow} />;
         })}
       </tbody>
     </table>
