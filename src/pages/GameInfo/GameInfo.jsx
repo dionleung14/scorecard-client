@@ -22,7 +22,7 @@ export default function GameInfo() {
   // const { saved } = props;
   const { gameId, saved } = useParams();
   // toggle for showing and hiding the play by play text
-  const [displayRecap, setDisplayRecap] = useState(true);
+  const [displayRecap, setDisplayRecap] = useState(false);
   const [recapFlex, setRecapFlex] = useState(false);
   const [scoreToggle, setScoreToggle] = useState(true);
 
@@ -39,6 +39,8 @@ export default function GameInfo() {
   const getGameInfo = async () => {
     // let boxscore = await getSingleGameBoxScore(gameId);
     let playByPlay = await getPBPForAGame(gameId, saved);
+    console.log("heyyyyyyyyy")
+    console.log(playByPlay)
     setGameInfo(playByPlay.gameInfo);
     setFirstPitch(playByPlay.firstPitchTime);
     setStartingLineups(playByPlay.startingLineups);
