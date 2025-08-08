@@ -4,8 +4,8 @@ import ScoringCellDiamond from "./ScoringCellDiamond";
 
 export default function EmptyCell() {
   return (
-    <td className="scorecard-cell empty-cell">
+    <div className="scorecard-cell empty-cell">
       <ScoringCellDiamond isScoring={false}/>
-    </td>
+    </div>
   );
 }

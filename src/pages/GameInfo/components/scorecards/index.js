@@ -4,6 +4,7 @@ import ScoringCellDiamond from "./ScoringCell/ScoringCellDiamond";
 
 import FullScorecard from "./FullScorecard";
 import FullScorecardRow from "./FullScorecardRow";
+import GridScorecardRow from "./GridScorecardRow";
 import PitchingRecords from "./PitchingRecords";
 import PitchingRecordsRow from "./PitchingRecordsRow";
 import Scorecards from "./Scorecards";
@@ -18,6 +19,7 @@ export {
   ScoringCellDiamond,
   FullScorecard,
   FullScorecardRow,
+  GridScorecardRow,
   PitchingRecords,
   PitchingRecordsRow,
   Scorecards,

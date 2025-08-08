@@ -1,0 +1,201 @@
+/* ------------ SCORECARD TABLE ------------ */
+:root {
+  --scoring-cell-height: 80px;
+  --scoring-cell-width: 70px;
+  --diamond-side-size: 50px;
+}
+
+.scorecard-container {
+  /* this is the scorecard component on gameinfo page */
+  border: green 5px solid;
+}
+
+.fullscorecard-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/*.fullscorecard-container {
+  display: grid;
+  /* grid-template-columns: auto ; */
+/* grid-template-rows: 150px 3000px; */
+/* grid-auto-rows: 10; */
+/* gap: 10px; */
+/* border: navy 5px solid; */
+/* background-color: dodgerblue; */
+/* padding: 10px; */
+/* } */
+
+.fullscorecard-container > span {
+  /* grid-area: columnHeader; */
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  /* background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 12px;
+  text-align: center; */
+  /* margin: auto; */
+}
+
+.fullscorecard-column-header-container {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-evenly;
+}
+
+.fullscorecard-player-info-container {
+  display: flex;
+   border: white 1px solid;
+   /* width: 50%; */
+  
+  /* min-width: 50%; */
+}
+.fullscorecard-played-innings-container {
+  display: flex;
+}
+
+.battingorder {
+}
+
+/* .fullscorecard-container > .fullscorecard-column-header { */
+.fullscorecard-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f1f1;
+  border: 1px solid black;
+  height: 50px;
+  min-width: var(--scoring-cell-width);
+  font-size: 20px;
+  /* text-align: center; */
+  /* margin: auto; */
+}
+
+.fullscorecard-content-container {
+  display: flex;
+  flex-direction: column;
+  /* scorecard columnHeader */
+  /* display: grid; */
+  /* grid-template-areas:
+    '. . . . .'
+    'myArea'; */
+  /* flex-direction: column; */
+  /* margin: auto; */
+}
+
+.grid-scorecard-row-content-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: auto auto auto;
+  border: 1px solid black;
+  /* column-gap: 2; */
+}
+
+/* .grid-scorecard-row-container div { */
+/* width: var(--scoring-cell-width); */
+/* justify-content: end; */
+/* } */
+
+.gridscorecard-player-info-container {
+  /* background-color: chartreuse; */
+  /* width: 4500px; */
+  display: flex;
+  flex: 0 0 auto;
+  border: white 1px solid;
+  /* width: 50%; */
+}
+
+.player-info {
+  /* background-color: red; */
+  /* display: flex; */
+  flex-direction: column;
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+.gridscorecard-batter-number-container,
+.gridscorecard-batter-name-container,
+.gridscorecard-batter-position-container {
+  color: white;
+  display: flex;
+  /* justify-content: space-around; */
+  /* align-items:end; */
+}
+
+.gridscorecard-played-innings-container {
+  display: flex;
+}
+
+.scorecard-container div {
+  margin: 0 3px;
+}
+
+.scorecard-container div p {
+  margin: 0.25rem;
+}
+.scorecard-cell {
+  color: white;
+  /* flex-wrap:wrap; */
+  /* flex-direction: column; */
+  width: var(--scoring-cell-width);
+  height: var(--scoring-cell-height);
+}
+
+.scoring-cell {
+  background-color: pink;
+  position: relative;
+}
+.scoring-cell:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.empty-cell {
+  background-color: darkkhaki;
+}
+.empty-cell:hover {
+  cursor: not-allowed;
+}
+
+.diamond {
+  position: relative;
+  top: 2px;
+  left: 5px;
+  height: var(--diamond-side-size);
+  /* width: var(--diamond-side-size); */
+  max-width: var(--diamond-side-size);
+  background-color: #555;
+  /* transform: rotate(45deg); */
+}
+
+.scoring-diamond {
+  display: block;
+}
+
+.non-scoring-diamond {
+  opacity: 0.35;
+}
+
+.out-indicator {
+  border: 1px solid black;
+  position: absolute;
+  right: -4px;
+  bottom: 1px;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+}
+
+.final-out-indicator {
+  height: 1px;
+  width: 40px;
+  background: black;
+  position: absolute;
+  right: -10px;
+  bottom: -5px;
+  transform: rotate(-45deg);
+}

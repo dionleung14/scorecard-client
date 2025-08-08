@@ -9,10 +9,10 @@ export default function ScoringCell({ outcome, info, scoringOutcomes }) {
   //   console.log(event.target)
   // };
   return (
-    <td className="scorecard-cell scoring-cell">
+    <div className="scorecard-cell scoring-cell">
       <ScoringCellDiamond scoringOutcomesArr={scoringOutcomes} isScoring={true}/>
       {info.isOut ? <p className="out-indicator">{info.outNumber}</p> : null}
       {info.isFinalOut ? <div className="final-out-indicator"></div> : null}
-    </td>
+    </div>
   );
 }
